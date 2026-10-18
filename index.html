@@ -1,1 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0c">
+  <meta name="description" content="CreativeVox Media helps brands stand out with website development, web design, social media marketing and creative content. Based in Bareilly, Uttar Pradesh, India.">
+  <meta property="og:title" content="CreativeVox Media — Stop Blending In.">
+  <meta property="og:description" content="Creative digital and technology solutions built to help your brand stand out.">
+  <meta property="og:type" content="website">
+  <title>CreativeVox Media — Stop Blending In.</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0a0a0c;--panel:#121216;--panel2:#18181d;--text:#f7f7f8;--muted:#a4a4ad;--line:rgba(255,255,255,.11);--red:#ff303b;--red2:#ff5962;--max:1160px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:86px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit}
+    .wrap{width:min(var(--max),calc(100% - 40px));margin-inline:auto}
+    .topline{height:3px;background:linear-gradient(90deg,#ff303b,#ff7b45,transparent)}
+    header{position:sticky;top:0;z-index:20;background:rgba(10,10,12,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:-.04em}
+    .mark{width:39px;height:39px;display:grid;place-items:center;border-radius:12px;background:var(--red);color:#fff;font-size:21px;font-weight:950;box-shadow:0 8px 30px #ff303b35}
+    .brand-name{font-size:16px;line-height:1.05}
+    .brand-name small{display:block;margin-top:5px;color:var(--muted);font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
+    .navlinks{display:flex;align-items:center;gap:26px;color:#c9c9ce;font-size:13px}
+    .navlinks a:hover,.textlink:hover{color:var(--red2)}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 18px;border:1px solid transparent;border-radius:8px;background:var(--red);color:white;font-weight:800;font-size:13px;transition:transform .2s,background .2s}
+    .button:hover{background:#e9212c;transform:translateY(-2px)}
+    .button.secondary{background:transparent;border-color:var(--line);color:var(--text)}
+    .button.secondary:hover{border-color:var(--red)}
+    .menu-btn{display:none;background:transparent;color:white;border:1px solid var(--line);border-radius:8px;padding:9px 12px}
+    .hero{position:relative;overflow:hidden;padding:105px 0 88px;border-bottom:1px solid var(--line)}
+    .hero:before{content:"";position:absolute;width:520px;height:520px;right:-80px;top:-100px;border-radius:50%;background:radial-gradient(circle,#ff303b22 0,transparent 68%);pointer-events:none}
+    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:55px;position:relative}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;color:#ff737b;text-transform:uppercase;font-size:11px;font-weight:850;letter-spacing:.18em}
+    .eyebrow:before{content:"";width:24px;height:2px;background:var(--red)}
+    h1{font-size:clamp(44px,6.7vw,82px);letter-spacing:-.075em;line-height:.99;margin:22px 0 24px;max-width:750px}
+    h1 em{font-style:normal;color:var(--red)}
+    .hero-copy{max-width:550px;color:#b9b9c2;font-size:17px;line-height:1.8}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .mini-proof{display:flex;align-items:center;gap:14px;margin-top:42px;color:var(--muted);font-size:12px}
+    .avatars{display:flex;padding-left:4px}
+    .avatar{width:30px;height:30px;margin-left:-4px;display:grid;place-items:center;border:2px solid var(--bg);border-radius:50%;background:#29292f;color:#fff;font-size:10px;font-weight:900}
+    .avatar:nth-child(2){background:#4a2025}.avatar:nth-child(3){background:#34313f}
+    .hero-art{min-height:410px;position:relative;display:grid;place-items:center}
+    .orbit{position:absolute;width:350px;height:350px;border:1px solid #ffffff13;border-radius:50%;transform:rotate(-24deg)}
+    .orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #ff303b42;border-radius:50%;inset:28px}
+    .orbit:after{inset:65px;border-color:#ffffff15}
+    .art-card{position:relative;width:min(100%,370px);min-height:310px;padding:28px;border:1px solid #ffffff1a;border-radius:20px;background:linear-gradient(145deg,#1a1a20ee,#0f0f12f2);box-shadow:0 30px 100px #0009;transform:rotate(3deg)}
+    .art-top{display:flex;align-items:center;justify-content:space-between;color:#aaa;font-size:11px;letter-spacing:.13em;text-transform:uppercase}
+    .dots{display:flex;gap:5px}.dots i{width:6px;height:6px;border-radius:50%;background:#5a5a63}.dots i:first-child{background:var(--red)}
+    .art-title{font-size:47px;font-weight:950;letter-spacing:-.075em;line-height:.94;margin:38px 0 20px}
+    .art-title span{color:var(--red)}
+    .art-line{height:7px;width:75%;border-radius:8px;background:#292930;margin:10px 0}.art-line.short{width:49%}
+    .art-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:34px;color:#aaa;font-size:10px;text-transform:uppercase;letter-spacing:.12em}
+    .art-stamp{display:grid;place-items:center;width:49px;height:49px;border-radius:50%;background:var(--red);font-size:22px;color:white}
+    .floating-tag{position:absolute;padding:12px 15px;border:1px solid #ffffff20;border-radius:10px;background:#17171ceF;box-shadow:0 16px 35px #0007;font-size:12px;font-weight:800}
+    .floating-tag.one{top:47px;right:-3px}.floating-tag.two{bottom:46px;left:-3px}
+    .floating-tag b{color:var(--red);margin-right:6px}
+    section{padding:88px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:34px}
+    .kicker{color:var(--red2);font-size:11px;letter-spacing:.19em;text-transform:uppercase;font-weight:900}
+    h2{font-size:clamp(31px,4vw,49px);line-height:1.08;letter-spacing:-.06em;margin:12px 0 0}
+    .section-intro{max-width:430px;color:var(--muted);font-size:14px;margin:0}
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .service{padding:27px 25px;border:1px solid var(--line);border-radius:13px;background:linear-gradient(150deg,#151519,#101013);transition:transform .2s,border-color .2s}
+    .service:hover{transform:translateY(-4px);border-color:#ff303b80}
+    .service-icon{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;background:#ff303b18;color:var(--red2);font-size:21px;margin-bottom:25px}
+    .service h3{font-size:17px;letter-spacing:-.025em;margin:0 0 10px}
+    .service p{font-size:13px;color:var(--muted);margin:0;line-height:1.8}
+    .service-num{display:block;margin-top:23px;color:#62626b;font-size:10px;letter-spacing:.15em}
+    .about{background:#101013;border-block:1px solid var(--line)}
+    .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
+    .about-note{padding:27px;border:1px solid #ff303b55;border-radius:14px;background:linear-gradient(145deg,#ff303b12,#141418)}
+    .quote-mark{font-size:42px;line-height:1;color:var(--red);font-weight:900}
+    .about-note p{font-size:21px;line-height:1.45;font-weight:750;letter-spacing:-.035em;margin:15px 0 18px}
+    .about-note small{color:var(--muted);font-size:12px}
+    .about-copy{color:#b6b6bf;font-size:15px;line-height:1.9}
+    .about-copy p{margin:0 0 17px}
+    .values{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:25px}
+    .value{padding:14px;border:1px solid var(--line);border-radius:9px;color:#e8e8eb;font-size:12px;font-weight:750}
+    .value span{color:var(--red);margin-right:8px}
+    .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .work-card{min-height:250px;padding:26px;border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative;background:var(--panel)}
+    .work-card:after{content:"";position:absolute;width:220px;height:220px;right:-70px;bottom:-100px;background:radial-gradient(circle,#ff303b38,transparent 70%)}
+    .work-card .label{color:var(--red2);font-size:10px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+    .work-card h3{position:relative;z-index:1;font-size:25px;letter-spacing:-.045em;margin:24px 0 8px}
+    .work-card p{position:relative;z-index:1;max-width:390px;color:var(--muted);font-size:13px;margin:0;line-height:1.8}
+    .work-card .work-foot{position:absolute;left:26px;bottom:23px;z-index:2;color:#ddd;font-size:11px;font-weight:800}
+    .work-card.feature{background:linear-gradient(130deg,#211115,#111114 65%)}
+    .work-card.feature:before{content:"CV";position:absolute;right:25px;top:28px;font-size:100px;line-height:1;font-weight:950;letter-spacing:-.1em;color:#ff303b15}
+    .team{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .person{padding:23px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+    .person-initial{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#ff303b1c;color:#ff656d;font-weight:950;font-size:17px;margin-bottom:20px}
+    .person h3{font-size:16px;margin:0 0 5px}.person p{margin:0;color:var(--muted);font-size:12px}
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .step{padding:22px;border-top:2px solid #3a3a42;background:#121216}
+    .step:first-child{border-color:var(--red)}
+    .step b{font-size:11px;color:var(--red);letter-spacing:.12em}
+    .step h3{font-size:15px;margin:16px 0 7px}
+    .step p{font-size:12px;color:var(--muted);margin:0;line-height:1.8}
+    .contact{padding:80px 0;background:radial-gradient(ellipse at 20% 50%,#ff303b15,transparent 48%),#101013;border-block:1px solid var(--line)}
+    .contact-grid{display:grid;grid-template-columns:1fr .8fr;gap:60px;align-items:center}
+    .contact-copy p{max-width:520px;color:var(--muted);font-size:15px;line-height:1.85}
+    .contact-box{padding:26px;border:1px solid var(--line);border-radius:14px;background:#151519}
+    .contact-row{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--line)}
+    .contact-row:last-of-type{border-bottom:0}
+    .contact-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;background:#ff303b18;color:var(--red2);flex-shrink:0}
+    .contact-row small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:4px}
+    .contact-row a,.contact-row strong{font-size:13px;overflow-wrap:anywhere}
+    .contact-box .button{width:100%;margin-top:16px}
+    footer{padding:27px 0}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px}
+    .footer-links{display:flex;gap:18px}
+    .footer-links a:hover{color:white}
+    .reveal{animation:rise .7s both}
+    @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    :focus-visible{outline:2px solid var(--red2);outline-offset:4px}
+    @media(max-width:850px){.navlinks{gap:15px}.navlinks a:not(.button){display:none}.hero-grid{grid-template-columns:1fr;gap:25px}.hero{padding:75px 0 60px}.hero-art{min-height:350px}.art-card{max-width:350px}.about-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.services{grid-template-columns:repeat(2,1fr)}.process{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){.wrap{width:min(var(--max),calc(100% - 28px))}.nav{height:66px}.brand-name{font-size:14px}.navlinks{gap:10px}.navlinks .button{padding:10px 12px;font-size:11px}.hero{padding:60px 0 42px}h1{font-size:48px}.hero-copy{font-size:15px}.hero-art{min-height:310px}.orbit{width:290px;height:290px}.art-card{min-height:265px;padding:22px}.art-title{font-size:39px;margin:30px 0 17px}.floating-tag.one{right:0;top:20px}.floating-tag.two{left:0;bottom:15px}section{padding:62px 0}.section-head{display:block}.section-intro{margin-top:16px}.services,.work-grid,.team{grid-template-columns:1fr}.service{padding:23px}.work-card{min-height:235px}.values{grid-template-columns:1fr}.contact{padding:60px 0}.footer-inner{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap}.mini-proof{align-items:flex-start}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="CreativeVox Media home">
+        <span class="mark">C<span style="font-size:13px">V</span></span>
+        <span class="brand-name">CreativeVox Media<small>Creative · Digital · Technology</small></span>
+      </a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="#services">Services</a><a href="#about">About</a><a href="#work">Our Work</a><a href="#approach">Our Approach</a>
+        <a class="button" href="#contact">Let's Talk <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
 
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">Your ideas. Our creative execution.</div>
+          <h1>Stop blending in.<br><em>Start standing out.</em></h1>
+          <p class="hero-copy">We help businesses build a stronger digital presence through thoughtful design, modern websites and creative marketing that puts their brand in the spotlight.</p>
+          <div class="hero-actions">
+            <a class="button" href="#contact">Start a Project <span aria-hidden="true">↗</span></a>
+            <a class="button secondary" href="#services">Explore Services <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="mini-proof"><div class="avatars"><span class="avatar">CV</span><span class="avatar">D</span><span class="avatar">+</span></div><span>Creative thinking. Practical digital solutions.</span></div>
+        </div>
+        <div class="hero-art" aria-label="CreativeVox Media brand artwork">
+          <div class="orbit"></div>
+          <div class="art-card">
+            <div class="art-top"><span>CreativeVox / Studio</span><span class="dots"><i></i><i></i><i></i></span></div>
+            <div class="art-title">MAKE<br>IT <span>MATTER.</span></div>
+            <div class="art-line"></div><div class="art-line short"></div>
+            <div class="art-bottom"><span>Ideas into impact</span><span class="art-stamp">↗</span></div>
+          </div>
+          <div class="floating-tag one"><b>✳</b> Creative by design</div>
+          <div class="floating-tag two"><b>↗</b> Built for growth</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">What we do</div><h2>Digital services that<br>move you forward.</h2></div><p class="section-intro">From your first online presence to your next campaign, we bring design, technology and content together under one roof.</p></div>
+        <div class="services">
+          <article class="service"><div class="service-icon">⌘</div><h3>Website Development</h3><p>Responsive, user-friendly websites designed to present your business clearly and help visitors take action.</p><span class="service-num">01 / DEVELOPMENT</span></article>
+          <article class="service"><div class="service-icon">▧</div><h3>Website & Landing Page Design</h3><p>Modern layouts and focused landing pages that communicate your value and support your business goals.</p><span class="service-num">02 / DESIGN</span></article>
+          <article class="service"><div class="service-icon">◉</div><h3>Social Media Marketing</h3><p>Consistent social media planning, page management and campaign support to strengthen your online presence.</p><span class="service-num">03 / MARKETING</span></article>
+          <article class="service"><div class="service-icon">✳</div><h3>Creative Posts & Posters</h3><p>Brand-aligned social posts and promotional creatives that make your message clear and memorable.</p><span class="service-num">04 / CREATIVE</span></article>
+          <article class="service"><div class="service-icon">▷</div><h3>Reel & Video Editing</h3><p>Short-form video editing for social platforms, designed to keep content engaging and on-brand.</p><span class="service-num">05 / VIDEO</span></article>
+          <article class="service"><div class="service-icon">✎</div><h3>Content Creation</h3><p>Creative content ideas and copy to help businesses communicate with the right audience.</p><span class="service-num">06 / CONTENT</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+        <div class="about-note"><div class="quote-mark">“</div><p>Good ideas deserve a digital presence that does them justice.</p><small>THE CREATIVEVOX APPROACH</small></div>
+        <div><div class="kicker">A little about us</div><h2>Creative thinking.<br>Real-world solutions.</h2><div class="about-copy"><p>CreativeVox Media is a digital services agency based in Bareilly, Uttar Pradesh, India. We bring creative execution and technology together to help businesses, startups and individuals present themselves confidently online.</p><p>Our approach is straightforward: understand the goal, create with purpose, and deliver digital experiences that feel clear, useful and consistent with your brand.</p></div><div class="values"><div class="value"><span>✳</span>Purpose-led creativity</div><div class="value"><span>↗</span>Business-first thinking</div><div class="value"><span>◇</span>Modern digital solutions</div><div class="value"><span>◎</span>Collaborative approach</div></div></div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">Capabilities</div><h2>Ideas made for the<br>digital world.</h2></div><p class="section-intro">A look at the kinds of solutions we can create for your business. Project examples can be added here as our portfolio grows.</p></div>
+        <div class="work-grid">
+          <article class="work-card feature"><span class="label">Web experience</span><h3>Websites that work<br>as hard as you do.</h3><p>Business websites and landing pages built around clear messaging, responsive layouts and easy navigation.</p><span class="work-foot">WEB DESIGN + DEVELOPMENT ↗</span></article>
+          <article class="work-card"><span class="label">Social presence</span><h3>A brand people<br>recognise.</h3><p>Consistent social creatives and content that help your business look professional across digital channels.</p><span class="work-foot">SOCIAL MEDIA + CREATIVE ↗</span></article>
+          <article class="work-card"><span class="label">Campaign creative</span><h3>Make every post<br>count.</h3><p>Promotional posters, branded posts and campaign visuals shaped around your message and audience.</p><span class="work-foot">DESIGN + CONTENT ↗</span></article>
+          <article class="work-card"><span class="label">Short-form video</span><h3>Stories with<br>momentum.</h3><p>Reels and short videos edited to support your brand voice and communicate quickly.</p><span class="work-foot">VIDEO EDITING ↗</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach" style="padding-top:15px">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">What we bring</div><h2>One creative partner.<br>Multiple ways to grow.</h2></div><p class="section-intro">We combine practical thinking, creative execution and digital know-how to help your business show up with confidence.</p></div>
+        <div class="team">
+          <article class="person"><div class="person-initial">01</div><h3>Strategy first</h3><p>Clear goals, thoughtful planning and business-focused decisions.</p></article>
+          <article class="person"><div class="person-initial">02</div><h3>Creative execution</h3><p>Consistent visuals and content shaped around your brand.</p></article>
+          <article class="person"><div class="person-initial">03</div><h3>Digital delivery</h3><p>Modern web experiences and digital solutions built for your needs.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:20px">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">How we work</div><h2>Simple process.<br>Clear direction.</h2></div></div>
+        <div class="process">
+          <article class="step"><b>STEP 01</b><h3>Discover</h3><p>We learn about your business, audience and goals.</p></article>
+          <article class="step"><b>STEP 02</b><h3>Plan</h3><p>We define the right approach, deliverables and direction.</p></article>
+          <article class="step"><b>STEP 03</b><h3>Create</h3><p>We turn the agreed direction into a thoughtful digital solution.</p></article>
+          <article class="step"><b>STEP 04</b><h3>Refine</h3><p>We review the work and make improvements based on feedback.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div class="contact-copy"><div class="kicker">Have a project in mind?</div><h2>Let's make something<br><em style="color:var(--red);font-style:normal">stand out.</em></h2><p>Tell us what you're building, what you want to improve or where you need creative support. Let's explore the right solution for your business.</p><a class="button" href="mailto:team@creativevoxmedia.com?subject=Project%20Enquiry%20%7C%20CreativeVox%20Media">Email Our Team <span aria-hidden="true">↗</span></a></div>
+        <div class="contact-box">
+          <div class="contact-row"><span class="contact-icon">✉</span><div><small>Email us</small><a href="mailto:team@creativevoxmedia.com">team@creativevoxmedia.com</a></div></div>
+          <div class="contact-row"><span class="contact-icon">⌖</span><div><small>Our location</small><strong>Bareilly, Uttar Pradesh, India</strong></div></div>
+          <div class="contact-row"><span class="contact-icon">◷</span><div><small>Working together</small><strong>For businesses, startups & individuals</strong></div></div>
+          <a class="button secondary" href="mailto:team@creativevoxmedia.com?subject=Let's%20Work%20Together">Discuss Your Project <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <a class="brand" href="#home"><span class="mark">C<span style="font-size:13px">V</span></span><span class="brand-name">CreativeVox Media<small>Stop blending in.</small></span></a>
+      <span>© <span id="year">2026</span> CreativeVox Media. All rights reserved.</span>
+      <div class="footer-links"><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a href="mailto:team@creativevoxmedia.com">Email</a></div>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
