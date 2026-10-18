@@ -83,14 +83,16 @@
     .value{padding:14px;border:1px solid var(--line);border-radius:9px;color:#e8e8eb;font-size:12px;font-weight:750}
     .value span{color:var(--red);margin-right:8px}
     .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .work-card{min-height:250px;padding:26px;border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative;background:var(--panel)}
-    .work-card:after{content:"";position:absolute;width:220px;height:220px;right:-70px;bottom:-100px;background:radial-gradient(circle,#ff303b38,transparent 70%)}
+    .work-card{min-height:390px;padding:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative;background:var(--panel);isolation:isolate}
+    .work-image{display:block;width:100%;height:205px;object-fit:cover;opacity:.9;transition:transform .35s}
+    .work-card:hover .work-image{transform:scale(1.035)}
+    .work-card-copy{position:relative;z-index:1;padding:22px 26px 60px;background:linear-gradient(180deg,#141418,#101013)}
     .work-card .label{color:var(--red2);font-size:10px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
-    .work-card h3{position:relative;z-index:1;font-size:25px;letter-spacing:-.045em;margin:24px 0 8px}
+    .work-card h3{position:relative;z-index:1;font-size:25px;letter-spacing:-.045em;margin:12px 0 8px}
     .work-card p{position:relative;z-index:1;max-width:390px;color:var(--muted);font-size:13px;margin:0;line-height:1.8}
-    .work-card .work-foot{position:absolute;left:26px;bottom:23px;z-index:2;color:#ddd;font-size:11px;font-weight:800}
-    .work-card.feature{background:linear-gradient(130deg,#211115,#111114 65%)}
-    .work-card.feature:before{content:"CV";position:absolute;right:25px;top:28px;font-size:100px;line-height:1;font-weight:950;letter-spacing:-.1em;color:#ff303b15}
+    .work-card .work-foot{position:absolute;left:26px;bottom:22px;z-index:2;color:#ddd;font-size:11px;font-weight:800}
+    .work-card.feature{background:var(--panel)}
+    .work-card:after,.work-card.feature:before{display:none}
     .team{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .person{padding:23px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
     .person-initial{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#ff303b1c;color:#ff656d;font-weight:950;font-size:17px;margin-bottom:20px}
