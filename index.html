@@ -205,6 +205,16 @@
     :focus-visible{outline:2px solid var(--red2);outline-offset:4px}
     @media(max-width:850px){.navlinks{gap:10px}.navlinks a:not(.button){display:block;padding:10px 12px}.hero-grid{grid-template-columns:1fr;gap:25px}.hero{padding:75px 0 60px}.hero-art{min-height:350px}.art-card{max-width:350px}.about-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.services{grid-template-columns:repeat(2,1fr)}.process{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:560px){.wrap{width:min(var(--max),calc(100% - 28px))}.nav{height:66px}.menu-btn{margin-right:0;transform:none;padding:8px 0 8px 10px;border:0;border-radius:0;background:transparent;align-self:center}.brand-name{font-size:14px}.navlinks{gap:10px}.navlinks .button{padding:10px 12px;font-size:11px}.hero{padding:60px 0 42px}h1{font-size:48px}.hero-copy{font-size:15px}.hero-art{min-height:310px}.orbit{width:290px;height:290px}.art-card{min-height:265px;padding:22px}.art-title{font-size:39px;margin:30px 0 17px}.floating-tag.one{right:0;top:20px}.floating-tag.two{left:0;bottom:15px}section{padding:62px 0}.section-head{display:block}.section-intro{margin-top:16px}.services,.work-grid,.team{grid-template-columns:1fr}.service{padding:23px}.work-card{min-height:235px}.values{grid-template-columns:1fr}.contact{padding:60px 0}.footer-inner{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap}.mini-proof{align-items:flex-start}}
+    /* Subtle site-wide motion: reveal sections, cards and images as they enter view. */
+    .motion-ready .motion-reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1);transition-delay:var(--motion-delay,0ms)}
+    .motion-ready .motion-reveal.is-visible{opacity:1;transform:translateY(0)}
+    .motion-ready .service-image,.motion-ready .work-image{transform:scale(1.025);transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .6s ease}
+    .motion-ready .service.is-visible .service-image,.motion-ready .work-card.is-visible .work-image{transform:scale(1);opacity:1}
+    .motion-ready .person,.motion-ready .step,.motion-ready .value,.motion-ready .contact-row{transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+    .person:hover,.step:hover,.value:hover{transform:translateY(-3px);border-color:#ff303b65}
+    .button,.linkedin-link,.theme-toggle{transition:transform .22s ease,border-color .22s ease,background-color .22s ease,color .22s ease}
+    .button:active,.linkedin-link:active{transform:translateY(1px)}
+    @media(prefers-reduced-motion:reduce){.motion-ready .motion-reveal{opacity:1;transform:none;transition:none}.motion-ready .service-image,.motion-ready .work-image{transform:none;transition:none}.person:hover,.step:hover,.value:hover{transform:none}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
   </style>
 </head>
@@ -379,6 +389,30 @@
       servicesHeadingObserver.observe(servicesHeading);
     } else if (servicesHeading) {
       servicesHeading.classList.add('is-visible');
+    }
+    // Reveal each major section and visual element gently as it scrolls into view.
+    document.documentElement.classList.add('motion-ready');
+    const motionTargets = document.querySelectorAll(
+      'main > section, .service, .work-card, .person, .step, .about-note, .values .value, .contact-box, .contact-copy, .footer-inner'
+    );
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const motionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+      motionTargets.forEach((element, index) => {
+        element.classList.add('motion-reveal');
+        if (element.matches('.service, .work-card, .person, .step, .value')) {
+          element.style.setProperty('--motion-delay', (index % 4) * 75 + 'ms');
+        }
+        motionObserver.observe(element);
+      });
+    } else {
+      motionTargets.forEach(element => element.classList.add('is-visible'));
     }
     const navToggle = document.getElementById('nav-toggle');
     const mainNav = document.getElementById('main-nav');
