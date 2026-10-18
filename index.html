@@ -130,6 +130,13 @@
     .kicker{color:var(--red2);font-size:11px;letter-spacing:.19em;text-transform:uppercase;font-weight:900}
     h2{font-size:clamp(31px,4vw,49px);line-height:1.08;letter-spacing:-.06em;margin:12px 0 0}
     .section-intro{max-width:430px;color:var(--muted);font-size:14px;margin:0}
+    .services-heading span{position:relative;display:inline-block;color:var(--red)}
+    .services-heading span:after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:3px;border-radius:4px;background:linear-gradient(90deg,var(--red),#ff8a62);transform:scaleX(0);transform-origin:left;transition:transform .75s cubic-bezier(.2,.7,.2,1)}
+    .services-heading-block.is-visible .services-kicker{animation:servicesFadeUp .55s both}
+    .services-heading-block.is-visible .services-heading{animation:servicesFadeUp .7s .08s both}
+    .services-heading-block.is-visible .services-intro{animation:servicesFadeUp .7s .18s both}
+    .services-heading-block.is-visible .services-heading span:after{transform:scaleX(1);transition-delay:.35s}
+    @keyframes servicesFadeUp{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
     .service-image{display:block;width:100%;height:165px;object-fit:cover;background:#18181d;border-bottom:1px solid var(--line)}
     .service{padding-top:0;overflow:hidden}
     .service .service-icon{margin-top:22px}
@@ -246,7 +253,7 @@
 
     <section id="services">
       <div class="wrap">
-        <div class="section-head"><div><div class="kicker">What we do</div><h2>Digital services that<br>move you forward.</h2></div><p class="section-intro">From your first online presence to your next campaign, we bring design, technology and content together under one roof.</p></div>
+        <div class="section-head services-heading-block"><div><div class="kicker services-kicker">What we do</div><h2 class="services-heading">Digital services that<br><span>move you forward.</span></h2></div><p class="section-intro services-intro">From your first online presence to your next campaign, we bring design, technology and content together under one roof.</p></div>
         <div class="services">
           <article class="service"><img class="service-image" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=85" alt="Website analytics dashboard" loading="lazy"><div class="service-icon">⌘</div><h3>Website Development</h3><p>Responsive, user-friendly websites designed to present your business clearly and help visitors take action.</p><span class="service-num">01 / DEVELOPMENT</span></article>
           <article class="service"><img class="service-image" src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=900&q=85" alt="Creative digital design" loading="lazy"><div class="service-icon">▧</div><h3>Website & Landing Page Design</h3><p>Modern layouts and focused landing pages that communicate your value and support your business goals.</p><span class="service-num">02 / DESIGN</span></article>
@@ -359,6 +366,20 @@
       localStorage.setItem('creativevox-theme', nextTheme);
       applyTheme(nextTheme);
     });
+    const servicesHeading = document.querySelector('.services-heading-block');
+    if (servicesHeading && 'IntersectionObserver' in window) {
+      const servicesHeadingObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            servicesHeadingObserver.unobserve(entry.target);
+          }
+        });
+      }, {threshold: 0.25});
+      servicesHeadingObserver.observe(servicesHeading);
+    } else if (servicesHeading) {
+      servicesHeading.classList.add('is-visible');
+    }
     const navToggle = document.getElementById('nav-toggle');
     const mainNav = document.getElementById('main-nav');
     navToggle.addEventListener('click', () => {
