@@ -85,6 +85,10 @@
     .values{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:25px}
     .value{padding:14px;border:1px solid var(--line);border-radius:9px;color:#e8e8eb;font-size:12px;font-weight:750}
     .value span{color:var(--red);margin-right:8px}
+    .work-image{display:block;width:100%;height:205px;object-fit:cover;opacity:.92}
+    .work-card{padding:0;min-height:390px;overflow:hidden}
+    .work-card-copy{position:relative;z-index:1;padding:22px 26px 60px;background:linear-gradient(180deg,#141418,#101013)}
+    .work-card h3{margin-top:12px}
     .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     .work-card{min-height:390px;padding:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative;background:var(--panel);isolation:isolate}
     .work-image{display:block;width:100%;height:205px;object-fit:cover;opacity:.9;transition:transform .35s}
@@ -195,10 +199,10 @@
       <div class="wrap">
         <div class="section-head"><div><div class="kicker">Capabilities</div><h2>Ideas made for the<br>digital world.</h2></div><p class="section-intro">A look at the kinds of solutions we can create for your business. Project examples can be added here as our portfolio grows.</p></div>
         <div class="work-grid">
-          <article class="work-card feature"><span class="label">Web experience</span><h3>Websites that work<br>as hard as you do.</h3><p>Business websites and landing pages built around clear messaging, responsive layouts and easy navigation.</p><span class="work-foot">WEB DESIGN + DEVELOPMENT ↗</span></article>
-          <article class="work-card"><span class="label">Social presence</span><h3>A brand people<br>recognise.</h3><p>Consistent social creatives and content that help your business look professional across digital channels.</p><span class="work-foot">SOCIAL MEDIA + CREATIVE ↗</span></article>
-          <article class="work-card"><span class="label">Campaign creative</span><h3>Make every post<br>count.</h3><p>Promotional posters, branded posts and campaign visuals shaped around your message and audience.</p><span class="work-foot">DESIGN + CONTENT ↗</span></article>
-          <article class="work-card"><span class="label">Short-form video</span><h3>Stories with<br>momentum.</h3><p>Reels and short videos edited to support your brand voice and communicate quickly.</p><span class="work-foot">VIDEO EDITING ↗</span></article>
+          <article class="work-card feature"><img class="work-image" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85" alt="Website development workspace" loading="lazy"><div class="work-card-copy"><span class="label">Web experience</span><h3>Websites that work<br>as hard as you do.</h3><p>Business websites and landing pages built around clear messaging, responsive layouts and easy navigation.</p><span class="work-foot">WEB DESIGN + DEVELOPMENT ↗</span></div></article>
+          <article class="work-card"><img class="work-image" src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=900&q=85" alt="Social media content on a phone" loading="lazy"><div class="work-card-copy"><span class="label">Social presence</span><h3>A brand people<br>recognise.</h3><p>Consistent social creatives and content that help your business look professional across digital channels.</p><span class="work-foot">SOCIAL MEDIA + CREATIVE ↗</span></div></article>
+          <article class="work-card"><img class="work-image" src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=85" alt="Graphic design and brand creative" loading="lazy"><div class="work-card-copy"><span class="label">Campaign creative</span><h3>Make every post<br>count.</h3><p>Promotional posters, branded posts and campaign visuals shaped around your message and audience.</p><span class="work-foot">DESIGN + CONTENT ↗</span></div></article>
+          <article class="work-card"><img class="work-image" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=900&q=85" alt="Video editing workspace" loading="lazy"><div class="work-card-copy"><span class="label">Short-form video</span><h3>Stories with<br>momentum.</h3><p>Reels and short videos edited to support your brand voice and communicate quickly.</p><span class="work-foot">VIDEO EDITING ↗</span></div></article>
         </div>
       </div>
     </section>
