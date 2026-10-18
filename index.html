@@ -38,6 +38,31 @@
   </script>
   <style>
     :root{color-scheme:dark;--bg:#0a0a0c;--panel:#121216;--panel2:#18181d;--text:#f7f7f8;--muted:#a4a4ad;--line:rgba(255,255,255,.11);--red:#ff303b;--red2:#ff5962;--max:1160px}
+    :root[data-theme="light"]{color-scheme:light;--bg:#f7f7f9;--panel:#ffffff;--panel2:#f0f0f3;--text:#18181c;--muted:#62626d;--line:rgba(20,20,30,.14);--red:#e92331;--red2:#d8202d}
+    :root[data-theme="light"] header{background:rgba(247,247,249,.9)}
+    :root[data-theme="light"] .navlinks{color:#383840}
+    :root[data-theme="light"] .menu-btn{color:var(--text)}
+    :root[data-theme="light"] .navlinks{background:#fff}
+    :root[data-theme="light"] .hero-copy,:root[data-theme="light"] .about-copy,:root[data-theme="light"] .contact-copy p{color:#52525d}
+    :root[data-theme="light"] .about{background:#eeeeF2}
+    :root[data-theme="light"] .about-note{background:linear-gradient(145deg,#ff303b0d,#fff)}
+    :root[data-theme="light"] .service{background:linear-gradient(150deg,#fff,#f4f4f7)}
+    :root[data-theme="light"] .art-card{background:linear-gradient(145deg,#fff,#ededf2);border-color:#00000018;box-shadow:0 30px 100px #00000012}
+    :root[data-theme="light"] .art-top,:root[data-theme="light"] .art-bottom{color:#656570}
+    :root[data-theme="light"] .art-line{background:#d9d9e0}
+    :root[data-theme="light"] .floating-tag{background:#fff;border-color:#00000018;box-shadow:0 16px 35px #00000012}
+    :root[data-theme="light"] .work-card-copy{background:linear-gradient(180deg,#fff,#f2f2f5)}
+    :root[data-theme="light"] .work-card .work-foot{color:#303039}
+    :root[data-theme="light"] .step{background:#fff}
+    :root[data-theme="light"] .contact{background:radial-gradient(ellipse at 20% 50%,#ff303b0c,transparent 48%),#eeeeF2}
+    :root[data-theme="light"] .contact-box{background:#fff}
+    :root[data-theme="light"] .person{background:#fff}
+    :root[data-theme="light"] .value{color:#292930}
+    :root[data-theme="light"] .footer-links a:hover{color:#111}
+    .theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:8px 11px;border:1px solid var(--line);border-radius:9px;background:transparent;color:var(--text);font-size:12px;font-weight:800;white-space:nowrap;cursor:pointer}
+    .theme-toggle:hover{border-color:var(--red)}
+    .theme-toggle-icon{font-size:16px;line-height:1}
+    @media(max-width:850px){.theme-toggle{align-self:flex-start;margin:6px 0 0 10px}}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;scroll-padding-top:86px}
     body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
@@ -181,7 +206,7 @@
         <img class="brand-logo" src="./CreativeVox%20Media%20Circular%20Logo.png?v=2" alt="CreativeVox Media circular logo" width="48" height="48">
         <span class="brand-name">Creative<span style="color:#ff303b">Vox</span> Media<small>Digital · Creative · Results</small></span>
       </a>
-      <button class="menu-btn" id="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">Menu ☰</button>
+      <div style="display:flex;align-items:center;gap:8px"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme"><span class="theme-toggle-icon" id="theme-icon" aria-hidden="true">☀</span><span id="theme-label">Light</span></button><button class="menu-btn" id="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">Menu ☰</button></div>
       <nav class="navlinks" id="main-nav" aria-label="Main navigation">
         <a href="#services">Services</a><a href="#about">About</a><a href="#leadership">Leadership</a><a href="#work">Portfolio</a><a href="#approach">Our Approach</a>
         <a class="button" href="#contact">Let's Talk <span aria-hidden="true">↗</span></a>
@@ -312,6 +337,25 @@
   </footer>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeLabel = document.getElementById('theme-label');
+    const savedTheme = localStorage.getItem('creativevox-theme');
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    function applyTheme(theme){
+      document.documentElement.dataset.theme = theme;
+      const isDark = theme === 'dark';
+      themeIcon.textContent = isDark ? '☾' : '☀';
+      themeLabel.textContent = isDark ? 'Dark' : 'Light';
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#0a0a0c' : '#f7f7f9');
+    }
+    applyTheme(savedTheme || (prefersLight ? 'light' : 'dark'));
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('creativevox-theme', nextTheme);
+      applyTheme(nextTheme);
+    });
     const navToggle = document.getElementById('nav-toggle');
     const mainNav = document.getElementById('main-nav');
     navToggle.addEventListener('click', () => {
