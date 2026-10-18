@@ -49,6 +49,9 @@
     .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:-.04em}
     .mark{width:39px;height:39px;display:grid;place-items:center;border-radius:12px;background:var(--red);color:#fff;font-size:21px;font-weight:950;box-shadow:0 8px 30px #ff303b35}
+    .logo-mark{background:#fff;border:1px solid #29292e;box-shadow:none;padding:3px;overflow:hidden}
+    .logo-mark svg{width:100%;height:100%;display:block}
+    .brand-name strong{color:#ff303b}
     .brand-name{font-size:16px;line-height:1.05}
     .brand-name small{display:block;margin-top:5px;color:var(--muted);font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
     .navlinks{display:flex;align-items:center;gap:26px;color:#c9c9ce;font-size:13px}
@@ -164,8 +167,8 @@
   <header>
     <div class="wrap nav">
       <a class="brand" href="#home" aria-label="CreativeVox Media home">
-        <span class="mark">C<span style="font-size:13px">V</span></span>
-        <span class="brand-name">CreativeVox Media<small>Creative · Digital · Technology</small></span>
+        <span class="mark logo-mark" aria-hidden="true"><svg viewBox="0 0 64 64" role="img" focusable="false"><path d="M35 7H17L4 24v16l13 17h18L22 40V24z" fill="#fff"/><path d="M35 7h13l12 17-21 22-12-12 10-10-10-12z" fill="#ff303b"/><path d="M24 25h10l-9 8 9 8H24L15 33z" fill="#0a0a0c"/></svg></span>
+        <span class="brand-name">Creative<span style="color:#ff303b">Vox</span> Media<small>Creative · Digital · Technology</small></span>
       </a>
       <nav class="navlinks" aria-label="Main navigation">
         <a href="#services">Services</a><a href="#about">About</a><a href="#leadership">Leadership</a><a href="#work">Our Work</a><a href="#approach">Our Approach</a>
@@ -290,7 +293,7 @@
 
   <footer>
     <div class="wrap footer-inner">
-      <a class="brand" href="#home"><span class="mark">C<span style="font-size:13px">V</span></span><span class="brand-name">CreativeVox Media<small>Stop blending in.</small></span></a>
+      <a class="brand" href="#home"><span class="mark logo-mark" aria-hidden="true"><svg viewBox="0 0 64 64" role="img" focusable="false"><path d="M35 7H17L4 24v16l13 17h18L22 40V24z" fill="#fff"/><path d="M35 7h13l12 17-21 22-12-12 10-10-10-12z" fill="#ff303b"/><path d="M24 25h10l-9 8 9 8H24L15 33z" fill="#0a0a0c"/></svg></span><span class="brand-name">Creative<span style="color:#ff303b">Vox</span> Media<small>Stop blending in.</small></span></a>
       <span>© <span id="year">2026</span> CreativeVox Media. All rights reserved.</span>
       <div class="footer-links"><a href="#services">Services</a><a href="#about">About</a><a href="#leadership">Leadership</a><a href="#contact">Contact</a><a href="mailto:team@creativevoxmedia.com">Email</a></div>
     </div>
