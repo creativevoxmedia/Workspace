@@ -216,6 +216,18 @@
     .work-card h3{position:relative;z-index:1;font-size:25px;letter-spacing:-.045em;margin:12px 0 8px}
     .work-card p{position:relative;z-index:1;max-width:390px;color:var(--muted);font-size:13px;margin:0;line-height:1.8}
     .work-card .work-foot{position:absolute;left:26px;bottom:22px;z-index:2;color:#ddd;font-size:11px;font-weight:800}
+    .video-category-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px}
+    .video-category-links .textlink{padding:0;border:0;background:none;cursor:pointer;font-weight:800;font-size:13px}
+    .video-category-dialog{width:min(820px,calc(100% - 28px));max-height:min(88vh,850px);overflow:auto;padding:0;border:1px solid var(--line);border-radius:18px;background:var(--panel);color:var(--text);box-shadow:0 28px 100px #0009}
+    .video-category-dialog::backdrop{background:rgba(0,0,0,.76);backdrop-filter:blur(5px)}
+    .video-category-dialog-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:24px 28px;border-bottom:1px solid var(--line)}
+    .video-category-dialog-head h2{font-size:clamp(25px,4vw,36px);margin-top:7px}
+    .video-category-dialog-body{padding:24px 28px 28px}
+    .video-category-content p{color:var(--muted);font-size:13px;line-height:1.75}
+    .video-category-content .drive-video-frame{margin:16px 0;border-radius:12px;overflow:hidden;background:#000}
+    .video-category-content .drive-video-frame iframe{display:block;width:100%;aspect-ratio:16/9;min-height:240px;border:0}
+    @media(max-width:560px){.video-category-dialog-head{padding:22px 18px}.video-category-dialog-body{padding:20px 18px}.video-category-content .drive-video-frame iframe{min-height:190px}}
+
     .work-card.feature{background:var(--panel)}
     .work-card:after,.work-card.feature:before{display:none}
     .leadership-accordion{border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,var(--panel2),var(--panel));overflow:hidden}
@@ -372,36 +384,26 @@
           </article>
           <article class="work-card video-work-selector">
             <div class="work-card-copy"><span class="label">03 / Video</span><h3>Video<br>Editing</h3><p>Choose the type of video work you want to explore: AI-generated videos or real-footage edits.</p>
-              <div class="video-category-links"><a href="#ai-videos" class="textlink">AI Videos ↗</a><a href="#real-videos" class="textlink">Real Videos ↗</a></div>
-              <span class="work-foot">VIDEO EDITING ↗</span>
-            </div>
-          </article>
-        </div>
+              <div class="video-category-links"><button type="button" class="textlink video-category-open" data-video-category="ai">AI Videos ↗</button><button type="button" class="textlink video-category-open" data-video-category="real">Real Videos ↗</button></div>
+              <span cla<dialog class="video-category-dialog" id="video-category-dialog" aria-labelledby="video-category-dialog-title">
+      <div class="video-category-dialog-head">
+        <div><div class="kicker">Our Work / Video Editing</div><h2 id="video-category-dialog-title">AI Videos</h2></div>
+        <button class="dialog-close" type="button" id="video-category-dialog-close" aria-label="Close video category">×</button>
+      </div>
+      <div class="video-category-dialog-body">
+        <section id="ai-video-content" class="video-category-content" hidden>
+          <p>AI-generated videos and promotional concepts created for CreativeVox Media.</p>
+          <div class="drive-video-frame"><iframe id="ai-video-popup-player" title="CreativeVox Media AI promotional advertisement" data-src="https://drive.google.com/file/d/1J7h3GPDpOj9Nx-TVB2d9odih8Q3fHm-T/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe></div>
+          <a class="textlink" href="https://drive.google.com/file/d/1J7h3GPDpOj9Nx-TVB2d9odih8Q3fHm-T/view" target="_blank" rel="noopener noreferrer">Open video in Google Drive ↗</a>
+        </section>
+        <section id="real-video-content" class="video-category-content" hidden>
+          <p>Real-footage videos and edits, kept separate from AI-generated projects.</p>
+          <div class="real-video-placeholder">Real video projects will appear here once you add them.</div>
+        </section>
+      </div>
+    </dialog>
 
-        <div class="video-projects" id="video-projects">
-          <div class="video-portfolio-heading" id="ai-videos" style="margin-top:52px;margin-bottom:22px">
-            <div class="kicker">Video Editing / Category 1</div>
-            <h2 style="font-size:clamp(27px,3.5vw,38px);margin-top:10px">AI Videos</h2>
-            <p class="section-intro" style="margin-top:10px">AI-generated videos and promotional concepts created for CreativeVox Media.</p>
-          </div>
-          <article class="work-card video-portfolio-card">
-            <div class="drive-video-frame">
-              <iframe src="https://drive.google.com/file/d/1J7h3GPDpOj9Nx-TVB2d9odih8Q3fHm-T/preview" title="CreativeVox Media AI promotional advertisement" allow="autoplay; fullscreen" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe>
-            </div>
-            <div class="work-card-copy">
-              <span class="label">AI VIDEO · COMPANY PROJECT</span>
-              <h3>CreativeVox Media — Promotional Ad</h3>
-              <p>An AI-generated promotional video created to introduce and promote CreativeVox Media.</p>
-              <a class="textlink" href="https://drive.google.com/file/d/1J7h3GPDpOj9Nx-TVB2d9odih8Q3fHm-T/view" target="_blank" rel="noopener noreferrer">Open video in Google Drive ↗</a>
-            </div>
-          </article>
-
-          <div class="video-portfolio-heading" id="real-videos" style="margin-top:42px;margin-bottom:18px">
-            <div class="kicker">Video Editing / Category 2</div>
-            <h2 style="font-size:clamp(27px,3.5vw,38px)">Real Videos</h2>
-            <p class="section-intro" style="margin-top:10px">Real-footage videos and edits, kept separate from AI-generated projects.</p>
-          </div>
-          <div class="real-video-placeholder" style="padding:22px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);font-size:13px">Real video projects will be added here. This category is separate from AI Videos.</div>
+ded here. This category is separate from AI Videos.</div>
         </div>
       </div>
     </section>
@@ -678,6 +680,30 @@
       const focusedCard = document.activeElement;
       if (focusedCard && focusedCard.matches('#services .service')) focusedCard.focus();
     });
+    const videoCategoryDialog = document.getElementById('video-category-dialog');
+    const videoCategoryDialogTitle = document.getElementById('video-category-dialog-title');
+    const videoCategoryDialogClose = document.getElementById('video-category-dialog-close');
+    const aiVideoPopupPlayer = document.getElementById('ai-video-popup-player');
+    const aiVideoContent = document.getElementById('ai-video-content');
+    const realVideoContent = document.getElementById('real-video-content');
+    document.querySelectorAll('.video-category-open').forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.dataset.videoCategory;
+        const isAI = category === 'ai';
+        videoCategoryDialogTitle.textContent = isAI ? 'AI Videos' : 'Real Videos';
+        aiVideoContent.hidden = !isAI;
+        realVideoContent.hidden = isAI;
+        aiVideoPopupPlayer.src = '';
+        if (isAI) aiVideoPopupPlayer.src = aiVideoPopupPlayer.dataset.src;
+        if (typeof videoCategoryDialog.showModal === 'function') videoCategoryDialog.showModal();
+      });
+    });
+    videoCategoryDialogClose.addEventListener('click', () => videoCategoryDialog.close());
+    videoCategoryDialog.addEventListener('click', event => {
+      if (event.target === videoCategoryDialog) videoCategoryDialog.close();
+    });
+    videoCategoryDialog.addEventListener('close', () => { aiVideoPopupPlayer.src = ''; });
+
     const enquiryForm = document.getElementById('enquiry-form');
     if (enquiryForm) {
       enquiryForm.addEventListener('submit', event => {
