@@ -116,7 +116,9 @@
     .orbit:after{inset:65px;border-color:#ffffff15}
     .art-card{position:relative;width:min(100%,370px);min-height:310px;padding:28px;border:1px solid #ffffff1a;border-radius:20px;background:linear-gradient(145deg,#1a1a20ee,#0f0f12f2);box-shadow:0 30px 100px #0009;transform:rotate(3deg)}
     .art-top{display:flex;align-items:center;justify-content:space-between;color:#aaa;font-size:11px;letter-spacing:.13em;text-transform:uppercase}
-    .dots{display:flex;gap:5px}.dots i{width:6px;height:6px;border-radius:50%;background:#5a5a63}.dots i:first-child{background:var(--red)}
+    .dots{display:flex;gap:7px;align-items:center}.brand-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:#5a5a63;cursor:pointer;transition:transform .2s,background .2s}.brand-dot.is-active{background:var(--red);transform:scale(1.25)}.brand-dot:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+    .art-slide{touch-action:pan-y;transition:opacity .18s,transform .18s}.art-title{font-size:clamp(31px,4vw,47px)}.art-slide-copy{max-width:310px;margin:0;color:#777782;font-size:13px;line-height:1.7}.art-slide.is-changing{opacity:.25;transform:translateX(8px)}
+    :root[data-theme="light"] .art-slide-copy{color:#656570}
     .art-title{font-size:47px;font-weight:950;letter-spacing:-.075em;line-height:.94;margin:38px 0 20px}
     .art-title span{color:var(--red)}
     .art-line{height:7px;width:75%;border-radius:8px;background:#292930;margin:10px 0}.art-line.short{width:49%}
@@ -385,10 +387,12 @@
         <div class="hero-art" aria-label="CreativeVox Media brand artwork">
           <div class="orbit"></div>
           <div class="art-card">
-            <div class="art-top"><span>CreativeVox Media</span><span class="dots"><i></i><i></i><i></i></span></div>
-            <div class="art-title">YOUR VISION.<br>OUR <span>DIGITAL EXPERTISE.</span></div>
-            <div class="art-line"></div><div class="art-line short"></div>
-            <div class="art-bottom"><span>Ideas into impact</span><span class="art-stamp">↗</span></div>
+            <div class="art-top"><span>CreativeVox Media</span><div class="dots" role="group" aria-label="Explore our brand"><button type="button" class="brand-dot is-active" aria-label="Slide 1: Our vision" aria-pressed="true"></button><button type="button" class="brand-dot" aria-label="Slide 2: Our mindset" aria-pressed="false"></button><button type="button" class="brand-dot" aria-label="Slide 3: Our promise" aria-pressed="false"></button></div></div>
+            <div class="art-slide" id="brand-slide" aria-live="polite">
+              <div class="art-title">YOUR VISION.<br>OUR <span>DIGITAL EXPERTISE.</span></div>
+              <p class="art-slide-copy">We turn ideas into thoughtful digital experiences for brands ready to move forward.</p>
+            </div>
+            <div class="art-bottom"><span id="brand-slide-label">Ideas into impact · 01/03</span><span class="art-stamp">↗</span></div>
           </div>
           <div class="floating-tag two"><b>↗</b> Built for growth</div>
         </div>
@@ -587,6 +591,35 @@
     </div>
   </footer>
   <script>
+    const brandSlides = [
+      {title:'YOUR VISION.<br>OUR <span>DIGITAL EXPERTISE.</span>',copy:'We turn ideas into thoughtful digital experiences for brands ready to move forward.',label:'Ideas into impact'},
+      {title:'CREATIVITY<br>WITH <span>PURPOSE.</span>',copy:'We believe good creative work starts with listening, curiosity and a clear understanding of each brand.',label:'Made with intention'},
+      {title:'A PARTNER<br>IN YOUR <span>PROGRESS.</span>',copy:'We value collaboration, clear communication and building relationships that grow with your ambitions.',label:'Built on partnership'}
+    ];
+    const brandCard = document.querySelector('.art-card');
+    const brandSlide = document.getElementById('brand-slide');
+    const brandSlideLabel = document.getElementById('brand-slide-label');
+    const brandDots = [...document.querySelectorAll('.brand-dot')];
+    let activeBrandSlide = 0;
+    function showBrandSlide(index){
+      activeBrandSlide=(index+brandSlides.length)%brandSlides.length;
+      const slide=brandSlides[activeBrandSlide];
+      brandSlide.classList.add('is-changing');
+      window.setTimeout(()=>{
+        brandSlide.querySelector('.art-title').innerHTML=slide.title;
+        brandSlide.querySelector('.art-slide-copy').textContent=slide.copy;
+        brandSlideLabel.textContent=slide.label+' · '+String(activeBrandSlide+1).padStart(2,'0')+'/03';
+        brandSlide.classList.remove('is-changing');
+      },120);
+      brandDots.forEach((dot,i)=>{dot.classList.toggle('is-active',i===activeBrandSlide);dot.setAttribute('aria-pressed',String(i===activeBrandSlide));});
+    }
+    brandDots.forEach((dot,i)=>dot.addEventListener('click',()=>showBrandSlide(i)));
+    let brandTouchStartX=0;
+    brandCard.addEventListener('touchstart',e=>{brandTouchStartX=e.changedTouches[0].screenX;},{passive:true});
+    brandCard.addEventListener('touchend',e=>{const delta=e.changedTouches[0].screenX-brandTouchStartX;if(Math.abs(delta)>45)showBrandSlide(activeBrandSlide+(delta<0?1:-1));},{passive:true});
+    let brandPointerStartX=0;
+    brandCard.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')brandPointerStartX=e.clientX;});
+    brandCard.addEventListener('pointerup',e=>{if(e.pointerType==='mouse'&&brandPointerStartX){const delta=e.clientX-brandPointerStartX;if(Math.abs(delta)>55)showBrandSlide(activeBrandSlide+(delta<0?1:-1));brandPointerStartX=0;}});
     document.getElementById('year').textContent = new Date().getFullYear();
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
