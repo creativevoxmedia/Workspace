@@ -293,14 +293,19 @@
     .insights-section{background:var(--panel);border-block:1px solid var(--line)}
     .insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .insight-card{padding:27px;border:1px solid var(--line);border-radius:13px;background:var(--bg);min-height:220px}
-    .approach-tabs{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 14px}
+    .approach-tabs{display:flex;flex-wrap:wrap;gap:9px;margin:0}
     .approach-tab{appearance:none;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--muted);padding:10px 15px;font-size:12px;font-weight:800;line-height:1.4;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
-    .approach-tab:hover,.approach-tab:focus-visible{border-color:var(--red2);color:var(--text)}
-    .approach-tab.is-active{background:#ff303b18;border-color:var(--red);color:var(--red2)}
-    .approach-panel{max-width:850px;min-height:185px;padding:25px 27px;border:1px solid var(--line);border-left:2px solid var(--red);border-radius:11px;background:linear-gradient(135deg,var(--panel2),var(--panel))}
-    .approach-panel h3{font-size:20px;letter-spacing:-.025em;margin:10px 0 7px}
-    .approach-panel p{max-width:700px;font-size:13px;color:var(--muted);margin:0;line-height:1.8}
-    @media(max-width:560px){.approach-tabs{gap:7px}.approach-tab{padding:9px 11px;font-size:11px}.approach-panel{padding:20px;min-height:190px}.approach-panel h3{font-size:18px}}
+    .approach-tab:hover,.approach-tab:focus-visible,.approach-tab[aria-expanded="true"]{border-color:var(--red2);color:var(--text)}
+    .approach-tab[aria-expanded="true"]{background:#ff303b18;color:var(--red2)}
+    .approach-dialog{width:min(650px,calc(100% - 28px));max-height:min(82vh,700px);overflow:auto;padding:0;border:1px solid var(--line);border-radius:15px;background:var(--panel);color:var(--text);box-shadow:0 28px 100px #0009}
+    .approach-dialog::backdrop{background:rgba(0,0,0,.76);backdrop-filter:blur(5px)}
+    .approach-dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:23px 26px;border-bottom:1px solid var(--line)}
+    .approach-dialog-head h2{font-size:clamp(24px,4vw,34px);margin-top:7px}
+    .approach-dialog-close{flex:0 0 36px;width:36px;height:36px;border:1px solid var(--line);border-radius:9px;background:var(--panel2);color:var(--text);font-size:24px;line-height:1;cursor:pointer}
+    .approach-dialog-body{padding:24px 26px 28px}
+    .approach-dialog-body h3{font-size:20px;letter-spacing:-.025em;margin:10px 0 8px}
+    .approach-dialog-body p{max-width:570px;color:var(--muted);font-size:14px;line-height:1.85;margin:0}
+    @media(max-width:560px){.approach-tabs{gap:7px}.approach-tab{padding:9px 11px;font-size:11px}.approach-dialog-head{padding:20px}.approach-dialog-body{padding:20px}.approach-dialog-body h3{font-size:18px}}
     .insight-card h3{margin-top:26px}
     @media(max-width:850px){.industry-grid,.insight-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:560px){.industry-grid,.insight-grid{grid-template-columns:1fr}.industry-card,.insight-card{min-height:0}}
@@ -476,16 +481,24 @@
           <div><div class="kicker">Our Approach</div><h2>Good digital work starts<br><span class="accent-text">with the right questions.</span></h2></div>
           <p class="section-intro">We understand your goals first, then choose a clear strategy, create purposeful work and improve it around your feedback.</p>
         </div>
-        <div class="approach-tabs" role="tablist" aria-label="Our approach">
-          <button class="approach-tab is-active" id="approach-tab-strategy" type="button" role="tab" aria-selected="true" aria-controls="approach-panel" data-approach="strategy">Strategy</button>
-          <button class="approach-tab" id="approach-tab-creative" type="button" role="tab" aria-selected="false" aria-controls="approach-panel" data-approach="creative" tabindex="-1">Creative</button>
-          <button class="approach-tab" id="approach-tab-growth" type="button" role="tab" aria-selected="false" aria-controls="approach-panel" data-approach="growth" tabindex="-1">Digital Growth</button>
-        </div>
-        <div class="approach-panel" id="approach-panel" role="tabpanel" aria-labelledby="approach-tab-strategy" tabindex="0">
-          <span class="insight-tag">01 / Strategy</span><h3>Understand before we create</h3><p>We learn about your business, audience and objectives before recommending a website, campaign or creative solution.</p>
+        <div class="approach-tabs" aria-label="Our approach">
+          <button class="approach-tab" type="button" data-approach="strategy">Strategy</button>
+          <button class="approach-tab" type="button" data-approach="creative">Creative</button>
+          <button class="approach-tab" type="button" data-approach="growth">Digital Growth</button>
         </div>
       </div>
     </section>
+    <dialog class="approach-dialog" id="approach-dialog" aria-labelledby="approach-dialog-title">
+      <div class="approach-dialog-head">
+        <div><div class="kicker">Our Approach</div><h2 id="approach-dialog-title">Strategy</h2></div>
+        <button class="approach-dialog-close" id="approach-dialog-close" type="button" aria-label="Close details">×</button>
+      </div>
+      <div class="approach-dialog-body">
+        <span class="insight-tag" id="approach-dialog-tag">01 / Strategy</span>
+        <h3 id="approach-dialog-subtitle">Understand before we create</h3>
+        <p id="approach-dialog-description">We learn about your business, audience and objectives before recommending a website, campaign or creative solution.</p>
+      </div>
+    </dialog>
 
     <section class="how-we-work" style="padding-top:20px" id="how-we-work">
       <div class="wrap">
@@ -778,41 +791,27 @@
     supportDialog.addEventListener("close", () => supportTabs.forEach(tab => tab.setAttribute("aria-expanded", "false")));
 
     const approachDetails = {
-      strategy: {tag:"01 / Strategy",title:"Understand before we create",description:"We learn about your business, audience and objectives before recommending a website, campaign or creative solution."},
-      creative: {tag:"02 / Creative execution",title:"Make every detail work",description:"From website experiences to social posts and videos, we create clear, consistent content shaped around your brand."},
-      growth: {tag:"03 / Digital growth",title:"Build consistency over time",description:"We help align your website and digital channels, review feedback and improve the work as your needs evolve."}
+      strategy: {title:"Strategy",tag:"01 / Strategy",subtitle:"Understand before we create",description:"We learn about your business, audience and objectives before recommending a website, campaign or creative solution."},
+      creative: {title:"Creative",tag:"02 / Creative execution",subtitle:"Make every detail work",description:"From website experiences to social posts and videos, we create clear, consistent content shaped around your brand."},
+      growth: {title:"Digital Growth",tag:"03 / Digital growth",subtitle:"Build consistency over time",description:"We help align your website and digital channels, review feedback and improve the work as your needs evolve."}
     };
+    const approachDialog = document.getElementById("approach-dialog");
     const approachTabs = [...document.querySelectorAll(".approach-tab")];
-    const approachPanel = document.getElementById("approach-panel");
-    function showApproach(key, moveFocus = false) {
+    function openApproachDetails(key, button) {
       const detail = approachDetails[key];
-      if (!detail || !approachPanel) return;
-      approachTabs.forEach(tab => {
-        const active = tab.dataset.approach === key;
-        tab.classList.toggle("is-active", active);
-        tab.setAttribute("aria-selected", String(active));
-        tab.tabIndex = active ? 0 : -1;
-        if (active) approachPanel.setAttribute("aria-labelledby", tab.id);
-      });
-      approachPanel.replaceChildren();
-      const tag = document.createElement("span"); tag.className = "insight-tag"; tag.textContent = detail.tag;
-      const title = document.createElement("h3"); title.textContent = detail.title;
-      const description = document.createElement("p"); description.textContent = detail.description;
-      approachPanel.append(tag, title, description);
-      if (moveFocus) approachTabs.find(tab => tab.dataset.approach === key)?.focus();
+      if (!detail || !approachDialog) return;
+      document.getElementById("approach-dialog-title").textContent = detail.title;
+      document.getElementById("approach-dialog-tag").textContent = detail.tag;
+      document.getElementById("approach-dialog-subtitle").textContent = detail.subtitle;
+      document.getElementById("approach-dialog-description").textContent = detail.description;
+      approachTabs.forEach(tab => tab.setAttribute("aria-expanded", String(tab === button)));
+      if (typeof approachDialog.showModal === "function") approachDialog.showModal();
+      else window.location.hash = "contact";
     }
-    approachTabs.forEach((tab, index) => {
-      tab.addEventListener("click", () => showApproach(tab.dataset.approach));
-      tab.addEventListener("keydown", event => {
-        let next = index;
-        if (event.key === "ArrowRight") next = (index + 1) % approachTabs.length;
-        else if (event.key === "ArrowLeft") next = (index - 1 + approachTabs.length) % approachTabs.length;
-        else if (event.key === "Home") next = 0;
-        else if (event.key === "End") next = approachTabs.length - 1;
-        else return;
-        event.preventDefault(); showApproach(approachTabs[next].dataset.approach, true);
-      });
-    });
+    approachTabs.forEach(button => button.addEventListener("click", () => openApproachDetails(button.dataset.approach, button)));
+    document.getElementById("approach-dialog-close").addEventListener("click", () => approachDialog.close());
+    approachDialog.addEventListener("click", event => { if (event.target === approachDialog) approachDialog.close(); });
+    approachDialog.addEventListener("close", () => approachTabs.forEach(tab => tab.setAttribute("aria-expanded", "false")));
 
     const processDetails = {
       discover: {step:"STEP 01",title:"Discover",description:"We learn about your business, audience, goals and requirements to understand what success looks like before recommending the right solution."},
