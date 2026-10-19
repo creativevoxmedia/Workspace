@@ -267,6 +267,20 @@
     .industry-card h3,.insight-card h3{font-size:19px;line-height:1.3;letter-spacing:-.035em;margin:23px 0 10px}
     .industry-card p,.insight-card p{font-size:13px;color:var(--muted);line-height:1.8;margin:0 0 18px}
     .industry-card .textlink{margin-top:auto;font-size:12px;font-weight:800}
+    .support-tabs{display:flex;flex-wrap:wrap;gap:9px;margin:0}
+    .support-tab{appearance:none;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--muted);padding:10px 15px;font-size:12px;font-weight:800;line-height:1.4;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+    .support-tab:hover,.support-tab:focus-visible,.support-tab[aria-expanded="true"]{border-color:var(--red2);color:var(--text)}
+    .support-tab[aria-expanded="true"]{background:#ff303b18;color:var(--red2)}
+    .support-dialog{width:min(650px,calc(100% - 28px));max-height:min(82vh,700px);overflow:auto;padding:0;border:1px solid var(--line);border-radius:15px;background:var(--panel);color:var(--text);box-shadow:0 28px 100px #0009}
+    .support-dialog::backdrop{background:rgba(0,0,0,.76);backdrop-filter:blur(5px)}
+    .support-dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:23px 26px;border-bottom:1px solid var(--line)}
+    .support-dialog-head h2{font-size:clamp(24px,4vw,34px);margin-top:7px}
+    .support-dialog-close{flex:0 0 36px;width:36px;height:36px;border:1px solid var(--line);border-radius:9px;background:var(--panel2);color:var(--text);font-size:24px;line-height:1;cursor:pointer}
+    .support-dialog-body{padding:24px 26px 28px}
+    .support-dialog-body h3{font-size:20px;letter-spacing:-.025em;margin:10px 0 8px}
+    .support-dialog-body p{max-width:570px;color:var(--muted);font-size:14px;line-height:1.85;margin:0}
+    .support-dialog-body .textlink{display:inline-flex;margin-top:18px;color:var(--red2);font-size:12px;font-weight:800}
+    @media(max-width:560px){.support-tabs{gap:7px}.support-tab{padding:9px 11px;font-size:11px}.support-dialog-head{padding:20px}.support-dialog-body{padding:20px}.support-dialog-body h3{font-size:18px}}
     .support-tabs{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 14px}
     .support-tab{appearance:none;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--muted);padding:10px 15px;font-size:12px;font-weight:800;line-height:1.4;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
     .support-tab:hover,.support-tab:focus-visible{border-color:var(--red2);color:var(--text)}
@@ -436,16 +450,25 @@
           <div><div class="kicker">Who we support</div><h2>Digital solutions for<br><span class="accent-text">businesses and creators.</span></h2></div>
           <p class="section-intro">Practical digital solutions for businesses and creators at different stages of growth—from launching a new idea to building a stronger online presence.</p>
         </div>
-        <div class="support-tabs" role="tablist" aria-label="Who we support">
-          <button class="support-tab is-active" id="support-tab-startups" type="button" role="tab" aria-selected="true" aria-controls="support-panel" data-support="startups">Startups & New Ventures</button>
-          <button class="support-tab" id="support-tab-local" type="button" role="tab" aria-selected="false" aria-controls="support-panel" data-support="local" tabindex="-1">Small & Local Businesses</button>
-          <button class="support-tab" id="support-tab-creators" type="button" role="tab" aria-selected="false" aria-controls="support-panel" data-support="creators" tabindex="-1">Brands, Creators & Influencers</button>
-        </div>
-        <div class="support-panel" id="support-panel" role="tabpanel" aria-labelledby="support-tab-startups" tabindex="0">
-          <span class="industry-number">01 / Startups & New Ventures</span><h3>Launch with confidence</h3><p>Build a strong foundation with a professional website, brand identity, engaging content and digital marketing that helps your business reach the right audience.</p><a href="#contact" class="textlink">Discuss Your Launch ↗</a>
+        <div class="support-tabs" aria-label="Who we support">
+          <button class="support-tab" type="button" data-support="startups">Startups & New Ventures</button>
+          <button class="support-tab" type="button" data-support="local">Small & Local Businesses</button>
+          <button class="support-tab" type="button" data-support="creators">Brands, Creators & Influencers</button>
         </div>
       </div>
     </section>
+    <dialog class="support-dialog" id="support-dialog" aria-labelledby="support-dialog-title">
+      <div class="support-dialog-head">
+        <div><div class="kicker">Who we support</div><h2 id="support-dialog-title">Startups & New Ventures</h2></div>
+        <button class="support-dialog-close" id="support-dialog-close" type="button" aria-label="Close details">×</button>
+      </div>
+      <div class="support-dialog-body">
+        <span class="industry-number" id="support-dialog-tag">01 / Startups & New Ventures</span>
+        <h3 id="support-dialog-subtitle">Launch with confidence</h3>
+        <p id="support-dialog-description">Build a strong foundation with a professional website, brand identity, engaging content and digital marketing that helps your business reach the right audience.</p>
+        <a href="#contact" class="textlink" id="support-dialog-cta">Discuss Your Launch ↗</a>
+      </div>
+    </dialog>
 
     <section class="insights-section" id="insights">
       <div class="wrap">
@@ -729,38 +752,30 @@
       local: {tag:"02 / Small & Local Businesses",title:"Reach more local customers",description:"Help more customers discover and trust your business with a professional website, consistent social media, engaging posts and practical digital marketing.",cta:"Grow Your Local Presence ↗"},
       creators: {tag:"03 / Growing Brands, Creators & Influencers",title:"Build a stronger digital presence",description:"Grow your brand or personal presence with engaging reels, AI and real-video editing, content creation and digital solutions designed to connect with your audience.",cta:"Explore Creative Solutions ↗"}
     };
+    const supportDialog = document.getElementById("support-dialog");
+    const supportDialogTitle = document.getElementById("support-dialog-title");
+    const supportDialogTag = document.getElementById("support-dialog-tag");
+    const supportDialogSubtitle = document.getElementById("support-dialog-subtitle");
+    const supportDialogDescription = document.getElementById("support-dialog-description");
+    const supportDialogCta = document.getElementById("support-dialog-cta");
     const supportTabs = [...document.querySelectorAll(".support-tab")];
-    const supportPanel = document.getElementById("support-panel");
-    function showSupport(key, moveFocus = false) {
+    function openSupportDetails(key, button) {
       const detail = supportDetails[key];
-      if (!detail || !supportPanel) return;
-      supportTabs.forEach(tab => {
-        const active = tab.dataset.support === key;
-        tab.classList.toggle("is-active", active);
-        tab.setAttribute("aria-selected", String(active));
-        tab.tabIndex = active ? 0 : -1;
-        if (active) supportPanel.setAttribute("aria-labelledby", tab.id);
-      });
-      supportPanel.replaceChildren();
-      const tag = document.createElement("span"); tag.className = "industry-number"; tag.textContent = detail.tag;
-      const title = document.createElement("h3"); title.textContent = detail.title;
-      const description = document.createElement("p"); description.textContent = detail.description;
-      const cta = document.createElement("a"); cta.className = "textlink"; cta.href = "#contact"; cta.textContent = detail.cta;
-      supportPanel.append(tag, title, description, cta);
-      if (moveFocus) supportTabs.find(tab => tab.dataset.support === key)?.focus();
+      if (!detail || !supportDialog) return;
+      supportDialogTitle.textContent = key === "creators" ? "Brands, Creators & Influencers" : key === "local" ? "Small & Local Businesses" : "Startups & New Ventures";
+      supportDialogTag.textContent = detail.tag;
+      supportDialogSubtitle.textContent = detail.title;
+      supportDialogDescription.textContent = detail.description;
+      supportDialogCta.textContent = detail.cta;
+      supportDialogCta.href = "#contact";
+      supportTabs.forEach(tab => tab.setAttribute("aria-expanded", String(tab === button)));
+      if (typeof supportDialog.showModal === "function") supportDialog.showModal();
+      else window.location.hash = "contact";
     }
-    supportTabs.forEach((tab, index) => {
-      tab.addEventListener("click", () => showSupport(tab.dataset.support));
-      tab.addEventListener("keydown", event => {
-        let next = index;
-        if (event.key === "ArrowRight") next = (index + 1) % supportTabs.length;
-        else if (event.key === "ArrowLeft") next = (index - 1 + supportTabs.length) % supportTabs.length;
-        else if (event.key === "Home") next = 0;
-        else if (event.key === "End") next = supportTabs.length - 1;
-        else return;
-        event.preventDefault(); showSupport(supportTabs[next].dataset.support, true);
-      });
-    });
+    supportTabs.forEach(button => button.addEventListener("click", () => openSupportDetails(button.dataset.support, button)));
+    document.getElementById("support-dialog-close").addEventListener("click", () => supportDialog.close());
+    supportDialog.addEventListener("click", event => { if (event.target === supportDialog) supportDialog.close(); });
+    supportDialog.addEventListener("close", () => supportTabs.forEach(tab => tab.setAttribute("aria-expanded", "false")));
 
     const approachDetails = {
       strategy: {tag:"01 / Strategy",title:"Understand before we create",description:"We learn about your business, audience and objectives before recommending a website, campaign or creative solution."},
