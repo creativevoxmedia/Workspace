@@ -162,6 +162,28 @@
     .service:hover .service-image{transform:scale(1.045);filter:saturate(1.08)}
     .service .service-icon,.service h3,.service p,.service .service-num{margin-left:25px;margin-right:25px}
     .service .service-icon{margin-top:22px}
+    .core-services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:26px 0 34px}
+    .core-service{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:20px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(145deg,var(--panel2),var(--panel))}
+    .core-service-number{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#ff303b18;color:var(--red2);font-size:11px;font-weight:900}
+    .core-service h3{margin:1px 0 7px;font-size:15px;line-height:1.35}
+    .core-service p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
+    .core-service>a{grid-column:2;color:var(--red2);font-size:11px;font-weight:850;margin-top:3px}
+    .core-service>a:hover{text-decoration:underline}
+    .service-list-heading{display:flex;align-items:center;gap:18px;margin:0 0 16px}
+    .service-list-heading .section-intro{margin:0}
+    .enquiry-form{margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+    .enquiry-form h3{margin:0 0 5px;font-size:17px}
+    .enquiry-form .form-note{margin:0 0 15px;color:var(--muted);font-size:11px;line-height:1.65}
+    .enquiry-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .enquiry-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+    .enquiry-field.full{grid-column:1/-1}
+    .enquiry-field label{font-size:11px;font-weight:750;color:var(--muted)}
+    .enquiry-field input,.enquiry-field select,.enquiry-field textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);font-size:13px}
+    .enquiry-field textarea{min-height:92px;resize:vertical}
+    .enquiry-field input:focus,.enquiry-field select:focus,.enquiry-field textarea:focus{outline:2px solid var(--red2);outline-offset:1px}
+    .enquiry-form .button{width:100%;margin-top:14px;cursor:pointer}
+    @media(max-width:850px){.core-services{grid-template-columns:1fr}.core-service{grid-template-columns:auto 1fr}.core-service>a{grid-column:2}}
+    @media(max-width:560px){.service-list-heading{display:block}.service-list-heading .section-intro{margin-top:7px}.enquiry-fields{grid-template-columns:1fr}.enquiry-field.full{grid-column:auto}}
     .services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .service{padding:27px 25px;border:1px solid var(--line);border-radius:13px;background:linear-gradient(150deg,#151519,#101013);transition:transform .2s,border-color .2s}
     .service:hover{transform:translateY(-4px);border-color:#ff303b80}
@@ -253,7 +275,13 @@
     .button:active,.linkedin-link:active{transform:translateY(1px)}
     @media(prefers-reduced-motion:reduce){.motion-ready .motion-reveal{opacity:1;transform:none;transition:none}.motion-ready .service-image,.motion-ready .work-image{transform:none;transition:none}.person:hover,.step:hover,.value:hover{transform:none}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-      .drive-video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#050507;overflow:hidden}\n    .drive-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}\n    .video-portfolio-card{min-height:0}\n    .video-portfolio-card .work-card-copy{padding-bottom:28px}\n    .video-portfolio-card .textlink{display:inline-flex;margin-top:16px;color:var(--red2);font-size:12px;font-weight:800}\n    @media(max-width:560px){.drive-video-frame{aspect-ratio:9/16}.video-portfolio-card .work-card-copy{padding:20px}}\n  </style>
+      .drive-video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#050507;overflow:hidden}
+    .drive-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .video-portfolio-card{min-height:0}
+    .video-portfolio-card .work-card-copy{padding-bottom:28px}
+    .video-portfolio-card .textlink{display:inline-flex;margin-top:16px;color:var(--red2);font-size:12px;font-weight:800}
+    @media(max-width:560px){.drive-video-frame{aspect-ratio:9/16}.video-portfolio-card .work-card-copy{padding:20px}}
+  </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 </head>
 <body>
@@ -302,6 +330,12 @@
     <section id="services">
       <div class="wrap">
         <div class="section-head services-heading-block"><div><div class="kicker services-kicker">What we do</div><h2 class="services-heading">Digital services that<br><span>move you forward.</span></h2></div><p class="section-intro services-intro">From your first online presence to your next campaign, we bring design, technology and content together under one roof.</p></div>
+        <div class="core-services" aria-label="Our three core services">
+          <article class="core-service"><span class="core-service-number">01</span><div><h3>Website Development</h3><p>Professional, responsive websites and landing pages for your business.</p></div><a href="#contact" aria-label="Enquire about website development">Enquire ↗</a></article>
+          <article class="core-service"><span class="core-service-number">02</span><div><h3>Social Media Marketing</h3><p>Consistent social presence, campaign planning and brand communication.</p></div><a href="#contact" aria-label="Enquire about social media marketing">Enquire ↗</a></article>
+          <article class="core-service"><span class="core-service-number">03</span><div><h3>Content Creation & Reel Editing</h3><p>Brand-aligned creative posts, short-form videos and content support.</p></div><a href="#contact" aria-label="Enquire about content creation and reel editing">Enquire ↗</a></article>
+        </div>
+        <div class="service-list-heading"><div class="kicker">Service details</div><p class="section-intro">Explore the individual services included in our core offerings.</p></div>
         <div class="services">
           <article class="service"><img class="service-image" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=85" alt="Website analytics dashboard" loading="lazy"><div class="service-icon">⌘</div><h3>Website Development</h3><p>Responsive, user-friendly websites designed to present your business clearly and help visitors take action.</p><span class="service-num">01 / DEVELOPMENT</span></article>
           <article class="service"><img class="service-image" src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=900&q=85" alt="Creative digital design" loading="lazy"><div class="service-icon">▧</div><h3>Website & Landing Page Design</h3><p>Modern layouts and focused landing pages that communicate your value and support your business goals.</p><span class="service-num">02 / DESIGN</span></article>
@@ -423,6 +457,20 @@
           <div class="contact-row"><span class="contact-icon">◷</span><div><small>Working together</small><strong>For businesses, startups & individuals</strong></div></div>
           <a class="button secondary" href="mailto:teamcreativevoxmedia@gmail.com?subject=Project%20Inquiry%20%7C%20CreativeVox%20Media&body=Hello%20CreativeVox%20Media%2C%0A%0AI%27m%20interested%20in%20your%20services.%20Please%20share%20more%20details.%0A%0AName%3A%20%0ABusiness%2FCompany%3A%20%0AService%20Required%3A%20%0ABudget%20(Optional)%3A%20%0AContact%20Number%3A%20%0A%0AThank%20you.">Discuss Your Project <span aria-hidden="true">↗</span></a>
           <a class="button" style="margin-top:12px;background:#167c4a" href="https://wa.me/919837693901?text=Hello%20CreativeVox%20Media%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" aria-label="Chat with CreativeVox Media on WhatsApp">Chat on WhatsApp <span aria-hidden="true">↗</span></a>
+          <form class="enquiry-form" id="enquiry-form">
+            <h3>Project enquiry</h3>
+            <p class="form-note">Complete the details and your email app will open with a ready-to-send enquiry. This form does not store submissions on the website.</p>
+            <div class="enquiry-fields">
+              <div class="enquiry-field"><label for="enquiry-name">Your name *</label><input id="enquiry-name" name="name" autocomplete="name" required></div>
+              <div class="enquiry-field"><label for="enquiry-email">Email address *</label><input id="enquiry-email" name="email" type="email" autocomplete="email" required></div>
+              <div class="enquiry-field full"><label for="enquiry-business">Business / company</label><input id="enquiry-business" name="business" autocomplete="organization"></div>
+              <div class="enquiry-field full"><label for="enquiry-service">Service required *</label><select id="enquiry-service" name="service" required><option value="">Choose a service</option><option>Website Development</option><option>Social Media Marketing</option><option>Content Creation & Reel Editing</option><option>Website & Landing Page Design</option><option>Creative Posts & Posters</option><option>Other / Not sure yet</option></select></div>
+              <div class="enquiry-field"><label for="enquiry-budget">Budget (optional)</label><select id="enquiry-budget" name="budget"><option value="">Select budget</option><option>Under ₹5,000</option><option>₹5,000–₹15,000</option><option>₹15,000–₹30,000</option><option>₹30,000+</option><option>Need guidance</option></select></div>
+              <div class="enquiry-field"><label for="enquiry-timeline">Timeline (optional)</label><input id="enquiry-timeline" name="timeline" placeholder="e.g. within 2 weeks"></div>
+              <div class="enquiry-field full"><label for="enquiry-details">Tell us about your project *</label><textarea id="enquiry-details" name="details" required placeholder="Your goal, requirements and any useful details"></textarea></div>
+            </div>
+            <button class="button" type="submit">Prepare Enquiry Email ↗</button>
+          </form>
         </div>
       </div>
     </section>
@@ -603,6 +651,33 @@
       const focusedCard = document.activeElement;
       if (focusedCard && focusedCard.matches('#services .service')) focusedCard.focus();
     });
+    const enquiryForm = document.getElementById('enquiry-form');
+    if (enquiryForm) {
+      enquiryForm.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!enquiryForm.reportValidity()) return;
+        const values = new FormData(enquiryForm);
+        const subject = 'Project Enquiry | CreativeVox Media | ' + values.get('service');
+        const body = [
+          'Hello CreativeVox Media,',
+          '',
+          'I would like to discuss a project.',
+          '',
+          'Name: ' + values.get('name'),
+          'Email: ' + values.get('email'),
+          'Business / Company: ' + (values.get('business') || 'Not provided'),
+          'Service Required: ' + values.get('service'),
+          'Budget: ' + (values.get('budget') || 'Not provided'),
+          'Timeline: ' + (values.get('timeline') || 'Not provided'),
+          '',
+          'Project Details:',
+          values.get('details'),
+          '',
+          'Please share the next steps.'
+        ].join('\n');
+        window.location.href = 'mailto:teamcreativevoxmedia@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      });
+    }
     const navToggle = document.getElementById('nav-toggle');
     const mainNav = document.getElementById('main-nav');
     navToggle.addEventListener('click', () => {
