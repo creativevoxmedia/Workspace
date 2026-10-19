@@ -218,6 +218,19 @@
     .work-card .work-foot{position:absolute;left:26px;bottom:22px;z-index:2;color:#ddd;font-size:11px;font-weight:800}
     .work-card.feature{background:var(--panel)}
     .work-card:after,.work-card.feature:before{display:none}
+    .leadership-accordion{border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg,var(--panel2),var(--panel));overflow:hidden}
+    .leadership-trigger{display:flex;align-items:center;gap:18px;padding:25px 28px;cursor:pointer;list-style:none}
+    .leadership-trigger::-webkit-details-marker{display:none}
+    .leadership-trigger-icon{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:14px;background:#ff303b1c;color:#ff656d;font-size:22px}
+    .leadership-trigger-copy{display:flex;flex:1;flex-direction:column;gap:3px}
+    .leadership-trigger-copy .kicker{margin:0}
+    .leadership-trigger-copy strong{font-size:18px;letter-spacing:-.02em}
+    .leadership-trigger-copy small{color:var(--muted);font-size:12px}
+    .leadership-trigger-action{display:flex;align-items:center;gap:12px;color:var(--red2);font-size:12px;font-weight:800}
+    .leadership-chevron{display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--line);border-radius:10px;font-size:20px;transition:transform .2s}
+    .leadership-accordion[open] .leadership-chevron{transform:rotate(45deg)}
+    .leadership-content{padding:0 28px 28px;border-top:1px solid var(--line)}
+    .leadership-content .section-head{padding-top:25px}
     .team{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .person{padding:23px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
     .person-initial{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#ff303b1c;color:#ff656d;font-weight:950;font-size:17px;margin-bottom:20px}
@@ -281,6 +294,7 @@
     .video-portfolio-card{min-height:0}
     .video-portfolio-card .work-card-copy{padding-bottom:28px}
     .video-portfolio-card .textlink{display:inline-flex;margin-top:16px;color:var(--red2);font-size:12px;font-weight:800}
+    @media(max-width:560px){.leadership-trigger{padding:20px;gap:12px}.leadership-trigger-icon{flex-basis:40px;width:40px;height:40px}.leadership-trigger-copy strong{font-size:15px}.leadership-trigger-copy small{font-size:11px}.leadership-trigger-label{display:none}.leadership-content{padding:0 16px 16px}.leadership-content .section-head{padding-top:20px}}
     @media(max-width:560px){.drive-video-frame{aspect-ratio:9/16}.video-portfolio-card .work-card-copy{padding:20px}}
   </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
@@ -489,15 +503,24 @@
 
     <section id="leadership">
       <div class="wrap">
-        <div class="section-head">
-          <div><div class="kicker">Meet the leadership</div><h2>The people behind<br>CreativeVox Media.</h2></div>
-          <p class="section-intro">The people guiding our creative vision, business direction and digital execution.</p>
-        </div>
-        <div class="team">
-          <article class="person"><div class="person-initial">FA</div><h3>Fazil Ali</h3><p>Founder</p><a class="linkedin-link" href="https://www.linkedin.com/in/fazil-ali-87426529b/" target="_blank" rel="noopener noreferrer" aria-label="View Fazil Ali's LinkedIn profile"><span class="linkedin-icon" aria-hidden="true">in</span> View LinkedIn Profile ↗</a></article>
-          <article class="person"><div class="person-initial">AF</div><h3>Arham Faiz</h3><p>Co-Founder</p><a class="linkedin-link" href="https://www.linkedin.com/in/arham-faiz-966070234/" target="_blank" rel="noopener noreferrer" aria-label="View Arham Faiz's LinkedIn profile"><span class="linkedin-icon" aria-hidden="true">in</span> View LinkedIn Profile ↗</a></article>
-          <article class="person"><div class="person-initial">AF</div><h3>Adeeba Faiz</h3><p>Executive Officer</p><a class="linkedin-link" href="https://www.linkedin.com/in/adeeba-faiz-697350276/" target="_blank" rel="noopener noreferrer" aria-label="View Adeeba Faiz's LinkedIn profile"><span class="linkedin-icon" aria-hidden="true">in</span> View LinkedIn Profile ↗</a></article>
-        </div>
+        <details class="leadership-accordion">
+          <summary class="leadership-trigger">
+            <span class="leadership-trigger-icon" aria-hidden="true">✦</span>
+            <span class="leadership-trigger-copy"><span class="kicker">Meet the leadership</span><strong>Leadership &amp; Founders</strong><small>Tap to discover the people behind CreativeVox Media.</small></span>
+            <span class="leadership-trigger-action"><span class="leadership-trigger-label">View team</span><span class="leadership-chevron" aria-hidden="true">＋</span></span>
+          </summary>
+          <div class="leadership-content">
+            <div class="section-head">
+              <div><div class="kicker">Our people</div><h2>The people behind<br>CreativeVox Media.</h2></div>
+              <p class="section-intro">The people guiding our creative vision, business direction and digital execution.</p>
+            </div>
+            <div class="team">
+              <article class="person"><div class="person-initial">FA</div><h3>Fazil Ali</h3><p>Founder</p><a class="linkedin-link" href="https://www.linkedin.com/in/fazil-ali-87426529b/" target="_blank" rel="noopener noreferrer" aria-label="View Fazil Ali's LinkedIn profile"><span class="linkedin-icon" aria-hidden="true">in</span> View LinkedIn Profile ↗</a></article>
+              <article class="person"><div class="person-initial">AF</div><h3>Arham Faiz</h3><p>Co-Founder</p><a class="linkedin-link" href="https://www.linkedin.com/in/arham-faiz-966070234/" target="_blank" rel="noopener noreferrer" aria-label="View Arham Faiz's LinkedIn profile"><span class="linkedin-icon" aria-hidden="true">in</span> View LinkedIn Profile ↗</a></article>
+              <article class="person"><div class="person-initial">AF</div><h3>Adeeba Faiz</h3><p>Executive Officer</p><a class="linkedin-link" href="https://www.linkedin.com/in/adeeba-faiz-697350276/" target="_blank" rel="noopener noreferrer" aria-label="View Adeeba Faiz's LinkedIn profile"><span class="linkedin-icon" aria-hidden="true">in</span> View LinkedIn Profile ↗</a></article>
+            </div>
+          </div>
+        </details>
       </div>
     </section>
   </main>
