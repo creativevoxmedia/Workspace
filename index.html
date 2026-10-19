@@ -250,12 +250,15 @@
     .linkedin-link{display:inline-flex;align-items:center;gap:7px;margin-top:17px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;color:var(--text);font-size:12px;font-weight:800;transition:border-color .2s,color .2s}
     .linkedin-link:hover{border-color:#0a66c2;color:#58a6f6}
     .linkedin-icon{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:3px;background:#0a66c2;color:#fff;font-size:11px;font-weight:900;line-height:1}
-    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    .step{padding:22px;border-top:2px solid #3a3a42;background:#121216}
-    .step:first-child{border-color:var(--red)}
-    .step b{font-size:11px;color:var(--red);letter-spacing:.12em}
-    .step h3{font-size:15px;margin:16px 0 7px}
-    .step p{font-size:12px;color:var(--muted);margin:0;line-height:1.8}
+    .process-tabs{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 12px}
+    .process-tab{appearance:none;border:1px solid var(--line);border-radius:7px;background:var(--panel);color:var(--muted);padding:8px 13px;font-size:11px;font-weight:850;letter-spacing:.02em;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+    .process-tab:hover,.process-tab:focus-visible{border-color:var(--red2);color:var(--text)}
+    .process-tab.is-active{background:#ff303b18;border-color:var(--red);color:var(--red2)}
+    .process-panel{max-width:720px;min-height:145px;padding:22px 24px;border:1px solid var(--line);border-left:2px solid var(--red);border-radius:10px;background:linear-gradient(135deg,var(--panel2),var(--panel))}
+    .process-panel-step{font-size:10px;color:var(--red2);letter-spacing:.12em}
+    .process-panel h3{font-size:17px;margin:9px 0 6px}
+    .process-panel p{max-width:620px;font-size:13px;color:var(--muted);margin:0;line-height:1.8}
+    @media(max-width:560px){.process-tabs{gap:6px}.process-tab{padding:7px 10px;font-size:10px}.process-panel{padding:18px;min-height:155px}}
     .accent-text{color:var(--red)}
     .industry-section{background:var(--bg);border-top:1px solid var(--line)}
     .industry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -438,14 +441,17 @@
       </div>
     </section>
 
-    <section style="padding-top:20px">
+    <section class="how-we-work" style="padding-top:20px" id="how-we-work">
       <div class="wrap">
         <div class="section-head"><div><div class="kicker">How we work</div><h2>Simple process.<br>Clear direction.</h2></div></div>
-        <div class="process">
-          <article class="step"><b>STEP 01</b><h3>Discover</h3><p>We learn about your business, audience and goals.</p></article>
-          <article class="step"><b>STEP 02</b><h3>Plan</h3><p>We define the right approach, deliverables and direction.</p></article>
-          <article class="step"><b>STEP 03</b><h3>Create</h3><p>We turn the agreed direction into a thoughtful digital solution.</p></article>
-          <article class="step"><b>STEP 04</b><h3>Refine</h3><p>We review the work and make improvements based on feedback.</p></article>
+        <div class="process-tabs" role="tablist" aria-label="Our project process">
+          <button class="process-tab is-active" id="process-tab-discover" type="button" role="tab" aria-selected="true" aria-controls="process-panel" data-process="discover">Discover</button>
+          <button class="process-tab" id="process-tab-plan" type="button" role="tab" aria-selected="false" aria-controls="process-panel" data-process="plan" tabindex="-1">Plan</button>
+          <button class="process-tab" id="process-tab-create" type="button" role="tab" aria-selected="false" aria-controls="process-panel" data-process="create" tabindex="-1">Create</button>
+          <button class="process-tab" id="process-tab-refine" type="button" role="tab" aria-selected="false" aria-controls="process-panel" data-process="refine" tabindex="-1">Refine</button>
+        </div>
+        <div class="process-panel" id="process-panel" role="tabpanel" aria-labelledby="process-tab-discover" tabindex="0">
+          <b class="process-panel-step">STEP 01</b><h3>Discover</h3><p>We learn about your business, audience, goals and requirements to understand what success looks like before recommending the right solution.</p>
         </div>
       </div>
     </section>
@@ -694,6 +700,44 @@
       if (event.target === videoCategoryDialog) videoCategoryDialog.close();
     });
     videoCategoryDialog.addEventListener('close', () => { aiVideoPopupPlayer.src = ''; });
+
+    const processDetails = {
+      discover: {step:"STEP 01",title:"Discover",description:"We learn about your business, audience, goals and requirements to understand what success looks like before recommending the right solution."},
+      plan: {step:"STEP 02",title:"Plan",description:"We define the project scope, deliverables, timeline and creative direction so everyone is aligned before work begins."},
+      create: {step:"STEP 03",title:"Create",description:"We bring the plan to life through websites, social content, creative designs or video editing tailored to your needs."},
+      refine: {step:"STEP 04",title:"Refine",description:"We review the work together, incorporate agreed feedback and prepare the final deliverables for handover."}
+    };
+    const processTabs = [...document.querySelectorAll(".process-tab")];
+    const processPanel = document.getElementById("process-panel");
+    function showProcessStep(key, moveFocus = false) {
+      const detail = processDetails[key];
+      if (!detail || !processPanel) return;
+      processTabs.forEach(tab => {
+        const active = tab.dataset.process === key;
+        tab.classList.toggle("is-active", active);
+        tab.setAttribute("aria-selected", String(active));
+        tab.tabIndex = active ? 0 : -1;
+        if (active) processPanel.setAttribute("aria-labelledby", tab.id);
+      });
+      processPanel.replaceChildren();
+      const step = document.createElement("b"); step.className = "process-panel-step"; step.textContent = detail.step;
+      const title = document.createElement("h3"); title.textContent = detail.title;
+      const description = document.createElement("p"); description.textContent = detail.description;
+      processPanel.append(step, title, description);
+      if (moveFocus) processTabs.find(tab => tab.dataset.process === key)?.focus();
+    }
+    processTabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => showProcessStep(tab.dataset.process));
+      tab.addEventListener("keydown", event => {
+        let next = index;
+        if (event.key === "ArrowRight") next = (index + 1) % processTabs.length;
+        else if (event.key === "ArrowLeft") next = (index - 1 + processTabs.length) % processTabs.length;
+        else if (event.key === "Home") next = 0;
+        else if (event.key === "End") next = processTabs.length - 1;
+        else return;
+        event.preventDefault(); showProcessStep(processTabs[next].dataset.process, true);
+      });
+    });
 
     const enquiryForm = document.getElementById('enquiry-form');
     if (enquiryForm) {
