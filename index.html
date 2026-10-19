@@ -267,6 +267,15 @@
     .industry-card h3,.insight-card h3{font-size:19px;line-height:1.3;letter-spacing:-.035em;margin:23px 0 10px}
     .industry-card p,.insight-card p{font-size:13px;color:var(--muted);line-height:1.8;margin:0 0 18px}
     .industry-card .textlink{margin-top:auto;font-size:12px;font-weight:800}
+    .support-tabs{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 14px}
+    .support-tab{appearance:none;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--muted);padding:10px 15px;font-size:12px;font-weight:800;line-height:1.4;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+    .support-tab:hover,.support-tab:focus-visible{border-color:var(--red2);color:var(--text)}
+    .support-tab.is-active{background:#ff303b18;border-color:var(--red);color:var(--red2)}
+    .support-panel{max-width:850px;min-height:185px;padding:25px 27px;border:1px solid var(--line);border-left:2px solid var(--red);border-radius:11px;background:linear-gradient(135deg,var(--panel2),var(--panel))}
+    .support-panel h3{font-size:20px;letter-spacing:-.025em;margin:10px 0 7px}
+    .support-panel p{max-width:700px;font-size:13px;color:var(--muted);margin:0;line-height:1.8}
+    .support-panel .textlink{display:inline-flex;margin-top:16px;color:var(--red2);font-size:12px;font-weight:800}
+    @media(max-width:560px){.support-tabs{gap:7px}.support-tab{padding:9px 11px;font-size:11px}.support-panel{padding:20px;min-height:190px}.support-panel h3{font-size:18px}}
     .insights-section{background:var(--panel);border-block:1px solid var(--line)}
     .insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .insight-card{padding:27px;border:1px solid var(--line);border-radius:13px;background:var(--bg);min-height:220px}
@@ -425,12 +434,15 @@
       <div class="wrap">
         <div class="section-head">
           <div><div class="kicker">Who we support</div><h2>Digital solutions for<br><span class="accent-text">businesses and creators.</span></h2></div>
-          <p class="section-intro">From startups and local businesses to growing brands and individual creators, we deliver practical digital solutions—from websites and social media to content creation and video editing—built around your goals.</p>
+          <p class="section-intro">Practical digital solutions for businesses and creators at different stages of growth—from launching a new idea to building a stronger online presence.</p>
         </div>
-        <div class="industry-grid">
-          <article class="industry-card"><span class="industry-number">01</span><h3>Startups & New Ventures</h3><p>Launch with confidence through a professional website, strong brand identity, engaging content and digital marketing that helps your business reach the right audience.</p><a href="#contact" class="textlink">Discuss Your Launch ↗</a></article>
-          <article class="industry-card"><span class="industry-number">02</span><h3>Small & Local Businesses</h3><p>Help more customers discover and trust your business with a professional website, consistent social media, engaging posts and practical digital marketing.</p><a href="#contact" class="textlink">Grow Your Local Presence ↗</a></article>
-          <article class="industry-card"><span class="industry-number">03</span><h3>Growing Brands, Creators & Influencers</h3><p>Build a stronger brand or personal presence with engaging reels, AI and real-video editing, content creation and digital solutions designed to connect with your audience.</p><a href="#contact" class="textlink">Explore Creative Solutions ↗</a></article>
+        <div class="support-tabs" role="tablist" aria-label="Who we support">
+          <button class="support-tab is-active" id="support-tab-startups" type="button" role="tab" aria-selected="true" aria-controls="support-panel" data-support="startups">Startups & New Ventures</button>
+          <button class="support-tab" id="support-tab-local" type="button" role="tab" aria-selected="false" aria-controls="support-panel" data-support="local" tabindex="-1">Small & Local Businesses</button>
+          <button class="support-tab" id="support-tab-creators" type="button" role="tab" aria-selected="false" aria-controls="support-panel" data-support="creators" tabindex="-1">Brands, Creators & Influencers</button>
+        </div>
+        <div class="support-panel" id="support-panel" role="tabpanel" aria-labelledby="support-tab-startups" tabindex="0">
+          <span class="industry-number">01 / Startups & New Ventures</span><h3>Launch with confidence</h3><p>Build a strong foundation with a professional website, brand identity, engaging content and digital marketing that helps your business reach the right audience.</p><a href="#contact" class="textlink">Discuss Your Launch ↗</a>
         </div>
       </div>
     </section>
@@ -711,6 +723,44 @@
       if (event.target === videoCategoryDialog) videoCategoryDialog.close();
     });
     videoCategoryDialog.addEventListener('close', () => { aiVideoPopupPlayer.src = ''; });
+
+    const supportDetails = {
+      startups: {tag:"01 / Startups & New Ventures",title:"Launch with confidence",description:"Build a strong foundation with a professional website, brand identity, engaging content and digital marketing that helps your business reach the right audience.",cta:"Discuss Your Launch ↗"},
+      local: {tag:"02 / Small & Local Businesses",title:"Reach more local customers",description:"Help more customers discover and trust your business with a professional website, consistent social media, engaging posts and practical digital marketing.",cta:"Grow Your Local Presence ↗"},
+      creators: {tag:"03 / Growing Brands, Creators & Influencers",title:"Build a stronger digital presence",description:"Grow your brand or personal presence with engaging reels, AI and real-video editing, content creation and digital solutions designed to connect with your audience.",cta:"Explore Creative Solutions ↗"}
+    };
+    const supportTabs = [...document.querySelectorAll(".support-tab")];
+    const supportPanel = document.getElementById("support-panel");
+    function showSupport(key, moveFocus = false) {
+      const detail = supportDetails[key];
+      if (!detail || !supportPanel) return;
+      supportTabs.forEach(tab => {
+        const active = tab.dataset.support === key;
+        tab.classList.toggle("is-active", active);
+        tab.setAttribute("aria-selected", String(active));
+        tab.tabIndex = active ? 0 : -1;
+        if (active) supportPanel.setAttribute("aria-labelledby", tab.id);
+      });
+      supportPanel.replaceChildren();
+      const tag = document.createElement("span"); tag.className = "industry-number"; tag.textContent = detail.tag;
+      const title = document.createElement("h3"); title.textContent = detail.title;
+      const description = document.createElement("p"); description.textContent = detail.description;
+      const cta = document.createElement("a"); cta.className = "textlink"; cta.href = "#contact"; cta.textContent = detail.cta;
+      supportPanel.append(tag, title, description, cta);
+      if (moveFocus) supportTabs.find(tab => tab.dataset.support === key)?.focus();
+    }
+    supportTabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => showSupport(tab.dataset.support));
+      tab.addEventListener("keydown", event => {
+        let next = index;
+        if (event.key === "ArrowRight") next = (index + 1) % supportTabs.length;
+        else if (event.key === "ArrowLeft") next = (index - 1 + supportTabs.length) % supportTabs.length;
+        else if (event.key === "Home") next = 0;
+        else if (event.key === "End") next = supportTabs.length - 1;
+        else return;
+        event.preventDefault(); showSupport(supportTabs[next].dataset.support, true);
+      });
+    });
 
     const approachDetails = {
       strategy: {tag:"01 / Strategy",title:"Understand before we create",description:"We learn about your business, audience and objectives before recommending a website, campaign or creative solution."},
