@@ -294,6 +294,8 @@
     .insights-section{background:var(--panel);border-block:1px solid var(--line)}
     .insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .insight-card{padding:27px;border:1px solid var(--line);border-radius:13px;background:var(--bg);min-height:220px}
+    .approach-tap-hint{margin:0 0 10px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);opacity:.82}
+    .approach-tap-hint span{display:inline-block;margin-left:4px;color:var(--text);opacity:.75}
     .approach-tabs{display:flex;flex-direction:column;align-items:stretch;gap:10px;margin:0}
     .approach-tab{appearance:none;width:100%;text-align:left;border:1px solid #454545;border-radius:9px;background:#292929;color:#fff;padding:14px 17px;font-size:14px;font-weight:800;line-height:1.45;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
     .approach-tab:hover,.approach-tab:focus-visible,.approach-tab[aria-expanded="true"]{background:#353535;border-color:var(--red2);color:#fff}
@@ -482,6 +484,7 @@
           <div><div class="kicker">Our Approach</div><h2>Good digital work starts<br><span class="accent-text">with the right questions.</span></h2></div>
           <p class="section-intro">We understand your goals first, then choose a clear strategy, create purposeful work and improve it around your feedback.</p>
         </div>
+        <p class="approach-tap-hint">Tap any option to explore <span aria-hidden="true">↗</span></p>
         <div class="approach-tabs" aria-label="Our approach">
           <button class="approach-tab" type="button" data-approach="strategy">Strategy</button>
           <button class="approach-tab" type="button" data-approach="creative">Creative</button>
