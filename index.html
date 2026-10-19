@@ -138,7 +138,26 @@
     .services-heading-block.is-visible .services-heading span:after{transform:scaleX(1);transition-delay:.35s}
     @keyframes servicesFadeUp{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
     .service-image{display:block;width:100%;height:190px;object-fit:cover;object-position:center;background:#18181d;border-bottom:1px solid var(--line);transition:transform .55s cubic-bezier(.2,.7,.2,1),filter .35s}
-    .service{padding:0 0 25px;overflow:hidden;position:relative}
+    .service{padding:0 0 25px;overflow:hidden;position:relative;cursor:pointer;transition:border-color .25s,transform .25s,box-shadow .25s}
+    .service:focus-visible{outline:2px solid var(--red2);outline-offset:4px}
+    .service:hover{box-shadow:0 16px 40px #0003}
+    .service .service-num{display:flex;align-items:center;justify-content:space-between}
+    .service .service-num:after{content:"VIEW DETAILS ↗";color:var(--red2);font-weight:900;letter-spacing:.08em}
+    .service-dialog{width:min(720px,calc(100% - 28px));max-height:min(85vh,780px);overflow:auto;padding:0;border:1px solid var(--line);border-radius:18px;background:var(--panel);color:var(--text);box-shadow:0 28px 100px #0009}
+    .service-dialog::backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(5px)}
+    .service-dialog-head{position:relative;min-height:190px;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(0deg,rgba(10,10,12,.96),rgba(10,10,12,.1)),var(--dialog-image) center/cover}
+    .service-dialog-head .kicker{color:#ff7b83}
+    .service-dialog-head h2{max-width:560px;margin-top:8px;font-size:clamp(28px,5vw,42px);color:#fff}
+    .dialog-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border:1px solid #ffffff55;border-radius:50%;background:#101013cc;color:white;font-size:23px;cursor:pointer}
+    .service-dialog-body{padding:26px 30px 30px}
+    .service-dialog-body>p{margin:0 0 20px;color:var(--muted);font-size:14px;line-height:1.85}
+    .service-dialog-body h3{margin:22px 0 10px;font-size:16px}
+    .service-detail-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:0;margin:0;list-style:none}
+    .service-detail-list li{padding:12px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel2);font-size:13px;line-height:1.6}
+    .service-detail-list li:before{content:"✓";color:var(--red2);font-weight:900;margin-right:8px}
+    .service-dialog-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .service-dialog-actions .button{min-height:44px}
+    @media(max-width:560px){.service-dialog-head{min-height:155px;padding:22px}.service-dialog-body{padding:22px 18px}.service-detail-list{grid-template-columns:1fr}.service .service-num:after{font-size:9px}}
     .service:before{content:"";position:absolute;inset:120px 0 auto;height:70px;background:linear-gradient(180deg,transparent,rgba(10,10,12,.28));pointer-events:none;z-index:1}
     .service:hover .service-image{transform:scale(1.045);filter:saturate(1.08)}
     .service .service-icon,.service h3,.service p,.service .service-num{margin-left:25px;margin-right:25px}
@@ -291,8 +310,13 @@
           <article class="service"><img class="service-image" src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=900&q=85" alt="Video editing timeline" loading="lazy"><div class="service-icon">▷</div><h3>Reel & Video Editing</h3><p>Short-form video editing for social platforms, designed to keep content engaging and on-brand.</p><span class="service-num">05 / VIDEO</span></article>
           <article class="service"><img class="service-image" src="https://images.unsplash.com/photo-1455390582262-044c4497b509?auto=format&fit=crop&w=900&q=85" alt="Content planning notebook" loading="lazy"><div class="service-icon">✎</div><h3>Content Creation</h3><p>Creative content ideas and copy to help businesses communicate with the right audience.</p><span class="service-num">06 / CONTENT</span></article>
         </div>
+        <p class="section-intro" style="margin:18px 0 0">Select any service card to explore our approach, deliverables and how we can get started.</p>
       </div>
     </section>
+    <dialog class="service-dialog" id="service-dialog" aria-labelledby="service-dialog-title">
+      <div class="service-dialog-head" id="service-dialog-head"><button class="dialog-close" type="button" id="service-dialog-close" aria-label="Close service details">×</button><div class="kicker">CreativeVox Media / Service Details</div><h2 id="service-dialog-title">Service details</h2></div>
+      <div class="service-dialog-body"><p id="service-dialog-intro"></p><h3>What we can do for you</h3><ul class="service-detail-list" id="service-dialog-deliverables"></ul><h3>How we work</h3><p id="service-dialog-process"></p><h3>What we need from you</h3><p id="service-dialog-inputs"></p><div class="service-dialog-actions"><a class="button" id="service-dialog-cta" href="#contact">Discuss this service ↗</a><button class="button secondary" type="button" id="service-dialog-dismiss">Close details</button></div></div>
+    </dialog>
 
     <section class="about" id="about">
       <div class="wrap about-grid">
@@ -461,6 +485,101 @@
     } else {
       motionTargets.forEach(element => element.classList.add('is-visible'));
     }
+    const serviceDetails = {
+      "Website Development": {
+        image:"https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85",
+        intro:"We build responsive business websites that explain what you offer, establish credibility and guide visitors toward contacting you. The exact scope is agreed before work begins.",
+        deliverables:["Business website pages and navigation","Responsive desktop, tablet and mobile layouts","Contact buttons, email links and WhatsApp CTA","Basic on-page SEO structure and metadata","Performance, link and form checks","Launch support and handover"],
+        process:"We discover your goals, agree the page structure and content, create the design, develop the site, review it with you, then make agreed refinements before launch.",
+        inputs:"Your business details, services, logo and brand assets, preferred domain/hosting access when needed, contact details, and any text or photos you want included."
+      },
+      "Website & Landing Page Design": {
+        image:"https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=85",
+        intro:"We design clear, modern website pages and focused landing pages around your audience and one primary goal, such as enquiries, bookings, sign-ups or product discovery.",
+        deliverables:["Page layout and visual direction","Mobile-first responsive design","Clear headings and calls to action","Brand-aligned colors, typography and imagery","Landing-page content structure","Design review and refinement"],
+        process:"We define the target audience and action, map the content hierarchy, design the page, review it with you, and prepare the approved design for development.",
+        inputs:"Your brand identity, audience, offer or campaign goal, required sections, reference websites you like, and the main action visitors should take."
+      },
+      "Social Media Marketing": {
+        image:"https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=1200&q=85",
+        intro:"We help your business maintain a consistent social presence with planned content, profile improvements and campaign ideas suited to your audience. Paid advertising or influencer costs are scoped separately.",
+        deliverables:["Profile and brand-presence review","Monthly content calendar proposal","Post and reel topic planning","Captions, hashtags and publishing support","Engagement and performance review","Campaign recommendations based on goals"],
+        process:"We review your current profiles, agree objectives and content pillars, plan a calendar, prepare content for approval, publish or hand over as agreed, and review performance.",
+        inputs:"Your social profile links, business goals, target audience, offers, brand assets, preferred posting frequency and access/permissions required for agreed tasks."
+      },
+      "Creative Posts & Posters": {
+        image:"https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+        intro:"We create brand-aligned graphics for promotions, announcements, offers and everyday social content so your message looks clear and consistent across platforms.",
+        deliverables:["Instagram and Facebook post designs","Promotional posters and offer creatives","Campaign or event announcement graphics","Brand-aligned colors and typography","Platform-ready image exports","Revision rounds agreed in the project scope"],
+        process:"We confirm the message, audience, platform and dimensions, create a visual direction, share a draft for feedback, then export the approved artwork.",
+        inputs:"Logo, exact text and offer details, required dimensions/platforms, preferred colors or references, and any product or campaign images."
+      },
+      "Reel & Video Editing": {
+        image:"https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=1200&q=85",
+        intro:"We edit short-form videos and reels for social platforms, shaping supplied footage into clear, engaging content that fits your brand voice.",
+        deliverables:["Short-form reel and video edits","Cuts, pacing and transitions","Text overlays and subtitles when supplied or agreed","Music and sound balancing using suitable assets","Basic color and framing adjustments","Platform-ready export formats"],
+        process:"We agree the goal and format, review the footage, prepare an edit, collect your feedback, then deliver the approved export within the agreed scope.",
+        inputs:"Raw footage, target platform and duration, key message or script, brand assets, reference style, and any required music or footage rights."
+      },
+      "Content Creation": {
+        image:"https://images.unsplash.com/photo-1455390582262-044c4497b509?auto=format&fit=crop&w=1200&q=85",
+        intro:"We develop practical content ideas and copy that help businesses communicate their value consistently across websites and social channels.",
+        deliverables:["Content pillars and topic ideas","Social captions and post copy","Website section and service-page copy","Campaign messaging and content hooks","Content calendar suggestions","Editing for clarity, tone and consistency"],
+        process:"We learn about your business and audience, define messaging themes, draft content, revise it with your feedback and prepare the approved copy for use.",
+        inputs:"Business background, services, target audience, tone of voice, key offers, facts that must be included and any existing brand guidelines."
+      }
+    };
+    const serviceDialog = document.getElementById('service-dialog');
+    const serviceDialogHead = document.getElementById('service-dialog-head');
+    const serviceDialogTitle = document.getElementById('service-dialog-title');
+    const serviceDialogIntro = document.getElementById('service-dialog-intro');
+    const serviceDialogDeliverables = document.getElementById('service-dialog-deliverables');
+    const serviceDialogProcess = document.getElementById('service-dialog-process');
+    const serviceDialogInputs = document.getElementById('service-dialog-inputs');
+    const serviceDialogCta = document.getElementById('service-dialog-cta');
+    function openServiceDetails(card){
+      const title = card.querySelector('h3')?.textContent.trim();
+      const details = serviceDetails[title];
+      if (!details) return;
+      serviceDialogTitle.textContent = title;
+      serviceDialogIntro.textContent = details.intro;
+      serviceDialogProcess.textContent = details.process;
+      serviceDialogInputs.textContent = details.inputs;
+      serviceDialogDeliverables.replaceChildren(...details.deliverables.map(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        return li;
+      }));
+      serviceDialogHead.style.setProperty('--dialog-image', 'url("' + details.image + '")');
+      serviceDialogCta.href = 'mailto:teamcreativevoxmedia@gmail.com?subject=' + encodeURIComponent('Service Inquiry: ' + title) + '&body=' + encodeURIComponent('Hello CreativeVox Media,\n\nI would like to discuss your ' + title + ' service.\n\nBusiness/Name: \nGoals: \nTimeline: \n\nPlease share the next steps.');
+      if (typeof serviceDialog.showModal === 'function') serviceDialog.showModal();
+      else window.location.hash = 'contact';
+    }
+    document.querySelectorAll('#services .service').forEach(card => {
+      card.setAttribute('role','button');
+      card.setAttribute('tabindex','0');
+      card.setAttribute('aria-haspopup','dialog');
+      card.setAttribute('aria-label','View details for ' + card.querySelector('h3').textContent.trim());
+      card.addEventListener('click', event => {
+        if (event.target.closest('a,button')) return;
+        openServiceDetails(card);
+      });
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openServiceDetails(card);
+        }
+      });
+    });
+    document.getElementById('service-dialog-close').addEventListener('click', () => serviceDialog.close());
+    document.getElementById('service-dialog-dismiss').addEventListener('click', () => serviceDialog.close());
+    serviceDialog.addEventListener('click', event => {
+      if (event.target === serviceDialog) serviceDialog.close();
+    });
+    serviceDialog.addEventListener('close', () => {
+      const focusedCard = document.activeElement;
+      if (focusedCard && focusedCard.matches('#services .service')) focusedCard.focus();
+    });
     const navToggle = document.getElementById('nav-toggle');
     const mainNav = document.getElementById('main-nav');
     navToggle.addEventListener('click', () => {
