@@ -798,18 +798,27 @@
     const videoCategoryDialog = document.getElementById('video-category-dialog');
     const videoCategoryDialogTitle = document.getElementById('video-category-dialog-title');
     const videoCategoryDialogClose = document.getElementById('video-category-dialog-close');
-    const aiVideoPopupPlayer = document.getElementById('ai-video-popup-player');
     const aiVideoContent = document.getElementById('ai-video-content');
     const realVideoContent = document.getElementById('real-video-content');
+    const videoCategoryFrames = videoCategoryDialog.querySelectorAll('.video-category-content iframe');
+    function stopAndResetCategoryVideos() {
+      videoCategoryFrames.forEach(frame => {
+        frame.src = '';
+      });
+    }
     document.querySelectorAll('.video-category-open').forEach(button => {
       button.addEventListener('click', () => {
         const category = button.dataset.videoCategory;
         const isAI = category === 'ai';
+        stopAndResetCategoryVideos();
         videoCategoryDialogTitle.textContent = isAI ? 'AI Videos' : 'Real Videos';
         aiVideoContent.hidden = !isAI;
         realVideoContent.hidden = isAI;
-        aiVideoPopupPlayer.src = '';
-        if (isAI) aiVideoPopupPlayer.src = aiVideoPopupPlayer.dataset.src;
+        const activeContent = isAI ? aiVideoContent : realVideoContent;
+        activeContent.querySelectorAll('iframe').forEach(frame => {
+          const videoUrl = frame.dataset.src || frame.getAttribute('src');
+          if (videoUrl) frame.src = videoUrl;
+        });
         if (typeof videoCategoryDialog.showModal === 'function') videoCategoryDialog.showModal();
       });
     });
@@ -817,7 +826,7 @@
     videoCategoryDialog.addEventListener('click', event => {
       if (event.target === videoCategoryDialog) videoCategoryDialog.close();
     });
-    videoCategoryDialog.addEventListener('close', () => { aiVideoPopupPlayer.src = ''; });
+    videoCategoryDialog.addEventListener('close', stopAndResetCategoryVideos);
 
     const supportDetails = {
       startups: {tag:"01 / Startups & New Ventures",title:"Launch with confidence",description:"Build a strong foundation with a professional website, brand identity, engaging content and digital marketing that helps your business reach the right audience.",cta:"Discuss Your Launch ↗"},
