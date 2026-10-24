@@ -97,13 +97,22 @@
       .navlinks a:not(.button){display:block;padding:10px 12px}
       .navlinks .button{margin-top:6px}
     }
-    .hero{position:relative;overflow:hidden;padding:105px 0 88px;border-bottom:1px solid var(--line)}
-    .hero:before{content:"";position:absolute;width:520px;height:520px;right:-80px;top:-100px;border-radius:50%;background:radial-gradient(circle,#ff303b22 0,transparent 68%);pointer-events:none}
-    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:55px;position:relative}
-    .eyebrow{display:inline-flex;align-items:center;gap:10px;color:#ff737b;text-transform:uppercase;font-size:11px;font-weight:850;letter-spacing:.18em}
-    .eyebrow:before{content:"";width:24px;height:2px;background:var(--red)}
-    h1{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(44px,6.7vw,82px);font-weight:850;letter-spacing:-.045em;line-height:1.1;margin:22px 0 26px;max-width:780px;text-wrap:balance}
-    h1 em{font-style:normal;color:var(--red)}
+    .hero{position:relative;isolation:isolate;overflow:hidden;padding:105px 0 88px;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 78% 42%,#ff303b12,transparent 43%),linear-gradient(115deg,#0a0a0c 0%,#101014 52%,#0a0a0c 100%)}
+    .hero:before{content:"";position:absolute;width:600px;height:600px;right:-100px;top:-120px;border-radius:50%;background:radial-gradient(circle,#ff303b30 0, #ff303b0b 36%,transparent 69%);filter:blur(8px);pointer-events:none;animation:heroGlow 8s ease-in-out infinite alternate;z-index:-1}
+    .hero:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(#ffffff12 1px,transparent 1px),linear-gradient(90deg,#ffffff12 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(90deg,transparent,#000 45%,#000 90%,transparent);z-index:-1}
+    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:55px;position:relative;perspective:1200px}
+    .hero-copy-block{position:relative;z-index:2}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;color:#ff858b;text-transform:uppercase;font-size:11px;font-weight:850;letter-spacing:.2em}
+    .eyebrow:before{content:"";width:24px;height:2px;background:var(--red);box-shadow:0 0 14px #ff303b99}
+    h1{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:clamp(44px,6.7vw,82px);font-weight:900;letter-spacing:-.055em;line-height:1.02;margin:22px 0 26px;max-width:780px;text-wrap:balance;text-shadow:0 3px 0 #ffffff08,0 14px 40px #000b;transform:perspective(900px) rotateX(2deg);transform-origin:left center}
+    h1 em{font-style:normal;color:var(--red);background:linear-gradient(100deg,#ff303b 5%,#ff858b 48%,#ff303b 90%);background-size:200% auto;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 5px 18px #ff303b35);animation:heroTextShine 7s linear infinite}
+    .hero .hero-copy{color:#c5c5ce}
+    .hero-art{transform-style:preserve-3d}
+    .art-card{transform:rotateY(-8deg) rotateX(3deg) rotate(2deg);box-shadow:0 35px 90px #000b,18px 18px 0 #ff303b0b,0 0 55px #ff303b12;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
+    .hero-art:hover .art-card{transform:rotateY(-2deg) rotateX(0) rotate(0) translateY(-5px);box-shadow:0 42px 100px #000c,0 0 65px #ff303b20}
+    .orbit{box-shadow:0 0 45px #ff303b0b}
+    @keyframes heroGlow{from{transform:translate3d(0,0,0) scale(.94);opacity:.7}to{transform:translate3d(-24px,18px,0) scale(1.08);opacity:1}}
+    @keyframes heroTextShine{to{background-position:200% center}}
     .hero-copy{max-width:550px;color:#b9b9c2;font-size:17px;line-height:1.8}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
     .mini-proof{display:flex;align-items:center;gap:14px;margin-top:42px;color:var(--muted);font-size:12px}
@@ -347,7 +356,8 @@
     .person:hover,.step:hover,.value:hover{transform:translateY(-3px);border-color:#ff303b65}
     .button,.linkedin-link,.theme-toggle{transition:transform .22s ease,border-color .22s ease,background-color .22s ease,color .22s ease}
     .button:active,.linkedin-link:active{transform:translateY(1px)}
-    @media(prefers-reduced-motion:reduce){.motion-ready .motion-reveal{opacity:1;transform:none;transition:none}.motion-ready .service-image,.motion-ready .work-image{transform:none;transition:none}.person:hover,.step:hover,.value:hover{transform:none}}
+    @media(max-width:850px){.hero:after{background-size:42px 42px}.hero-grid{perspective:none}.art-card{transform:rotate(1deg)}}
+    @media(prefers-reduced-motion:reduce){.hero:before,.hero h1 em{animation:none!important}.hero h1,.hero-art .art-card{transform:none!important}.hero-art:hover .art-card{transform:none!important}.motion-ready .motion-reveal{opacity:1;transform:none;transition:none}.motion-ready .service-image,.motion-ready .work-image{transform:none;transition:none}.person:hover,.step:hover,.value:hover{transform:none}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
       .drive-video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#050507;overflow:hidden}
     .drive-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -381,7 +391,7 @@
       <div class="wrap hero-grid">
         <div class="reveal">
           <div class="eyebrow">Your ideas. Our creative execution.</div>
-          <h1>Build your digital presence.<br><em>Move business forward.</em></h1>
+          <h1>Make Your Brand<br><em>Impossible to Ignore.</em></h1>
           <p class="hero-copy">We bring technology, design and digital marketing together to help businesses communicate clearly, connect with their audience and create a stronger online presence.</p>
           <div class="hero-actions">
             <a class="button" href="#contact">Start a Project <span aria-hidden="true">↗</span></a>
