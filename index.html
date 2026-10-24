@@ -519,6 +519,60 @@
     .brand-logo.logo-on-light{display:none}
     :root[data-theme="light"] .brand-logo.logo-on-dark{display:none}
     :root[data-theme="light"] .brand-logo.logo-on-light{display:block}
+  
+    /* ===== Services: cinematic depth cards (professional, restrained) ===== */
+    #services{position:relative;isolation:isolate;overflow:hidden}
+    #services:before{content:"";position:absolute;left:0;right:0;top:0;height:560px;z-index:-2;pointer-events:none;background:radial-gradient(ellipse 52% 72% at 50% 0%,rgba(255,48,59,.17),transparent 72%)}
+    #services:after{content:"";position:absolute;left:-12%;right:-12%;top:0;height:440px;z-index:-1;pointer-events:none;opacity:.55;transform:perspective(520px) rotateX(64deg);transform-origin:50% 0;background-image:linear-gradient(rgba(255,48,59,.20) 1px,transparent 1px),linear-gradient(90deg,rgba(255,48,59,.20) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:linear-gradient(180deg,#000,transparent 82%);mask-image:linear-gradient(180deg,#000,transparent 82%)}
+    :root[data-theme="light"] #services:before{background:radial-gradient(ellipse 52% 72% at 50% 0%,rgba(233,35,49,.09),transparent 72%)}
+    :root[data-theme="light"] #services:after{opacity:.35;background-image:linear-gradient(rgba(233,35,49,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(233,35,49,.16) 1px,transparent 1px)}
+    #services .services-heading-block{margin-bottom:46px}
+    #services .services-heading{margin-top:14px}
+    #services .services-kicker{margin:0}
+
+    .services{gap:22px}
+    .services .service{padding:0;border:0;border-radius:16px;background:none;overflow:visible;perspective:1000px;cursor:pointer;box-shadow:none}
+    .services .service:hover{transform:none;box-shadow:none;border-color:transparent}
+    .services .service:before{display:none}
+    :root[data-theme="light"] .services .service{background:none}
+    .service-inner{position:relative;display:flex;flex-direction:column;height:100%;border:1px solid var(--line);border-radius:16px;background:linear-gradient(155deg,#18181d,#0e0e12);box-shadow:0 18px 42px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.06);transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .55s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .4s}
+    .service.is-tilting .service-inner{transition:transform .09s linear,border-color .3s,box-shadow .4s}
+    .service:hover .service-inner,.service:focus-visible .service-inner{border-color:rgba(255,48,59,.55);box-shadow:0 36px 72px rgba(0,0,0,.58),0 0 52px rgba(255,48,59,.13),inset 0 1px 0 rgba(255,255,255,.08)}
+    :root[data-theme="light"] .service-inner{background:linear-gradient(155deg,#fff,#f3f3f6);box-shadow:0 14px 34px rgba(20,20,30,.10),inset 0 1px 0 #fff}
+    :root[data-theme="light"] .service:hover .service-inner,:root[data-theme="light"] .service:focus-visible .service-inner{box-shadow:0 30px 60px rgba(20,20,30,.16),0 0 40px rgba(233,35,49,.10)}
+
+    .service-media{position:relative;display:block;height:188px;overflow:hidden;border-radius:15px 15px 0 0;background:#18181d}
+    .service-media:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(10,10,12,.05) 30%,rgba(10,10,12,.62) 100%)}
+    .service-media .service-image{height:100%;border-bottom:0}
+    .service-index{position:absolute;top:14px;right:18px;font-size:38px;font-weight:900;letter-spacing:-.05em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.7);filter:drop-shadow(0 2px 8px rgba(0,0,0,.5));pointer-events:none;transform:translateZ(36px)}
+    .service-body{position:relative;display:flex;flex:1;flex-direction:column;padding:0 24px 22px;transform-style:preserve-3d}
+    .services .service .service-body>*{margin-left:0;margin-right:0}
+    .services .service .service-icon{width:52px;height:52px;margin-top:-26px;margin-bottom:0;border-radius:14px;font-size:22px;color:#fff;background:linear-gradient(145deg,#ff4954,#d9202c);border:1px solid rgba(255,255,255,.22);box-shadow:0 14px 28px rgba(255,48,59,.38),inset 0 1px 0 rgba(255,255,255,.3);transform:translateZ(52px);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+    .service:hover .service-icon{transform:translateZ(66px)}
+    .services .service h3{margin:20px 0 8px;font-size:19px;transform:translateZ(26px)}
+    .services .service p{font-size:13.5px;transform:translateZ(12px)}
+    .services .service .service-num{margin-top:auto;padding-top:20px;transform:translateZ(18px)}
+    .service-body>p{margin-bottom:20px}
+    .service-body .service-num{border-top:1px solid var(--line);padding-top:14px;margin-top:auto}
+    :root[data-theme="light"] .service-body .service-num{color:#8a8a95}
+    .service .service-num:after{opacity:.75;transition:opacity .3s,transform .3s}
+    .service:hover .service-num:after{opacity:1;transform:translateX(2px)}
+    .service-glare{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.11),transparent 46%);transform:translateZ(1px)}
+    :root[data-theme="light"] .service-glare{background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(255,48,59,.09),transparent 46%)}
+    .service:hover .service-glare{opacity:1}
+    .service:active .service-inner{transform:scale(.99)}
+
+    /* scroll reveal: cards rise out of depth, staggered by the existing motion delay */
+    .motion-ready .services .service.motion-reveal{opacity:0;transform:perspective(1000px) rotateX(14deg) translateY(38px);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--motion-delay,0ms)}
+    .motion-ready .services .service.motion-reveal.is-visible{opacity:1;transform:none}
+
+    @media(max-width:850px){.services{gap:18px}.service-media{height:170px}}
+    @media(max-width:560px){#services:after{height:300px}.service-media{height:176px}.service-body{padding:0 20px 20px}.service-index{font-size:32px}.service-inner{transform:none!important}}
+    @media(prefers-reduced-motion:reduce){
+      .motion-ready .services .service.motion-reveal{opacity:1;transform:none;transition:none}
+      .service-inner,.service-icon{transition:none!important;transform:none!important}
+      .services .service h3,.services .service p,.services .service .service-num,.service-index{transform:none}
+    }
   </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 </head>
@@ -632,14 +686,14 @@
 
     <section id="services">
       <div class="wrap">
-        <div class="kicker services-kicker" style="margin-bottom:18px">Our Services</div>
+        <div class="section-head services-heading-block"><div><div class="kicker services-kicker">Our Services</div><h2 class="services-heading">Six focused services,<br><span>one creative team.</span></h2></div><p class="section-intro services-intro">From websites to reels, every service is scoped around your goals. Tap any card to see what is included.</p></div>
         <div class="services">
-          <article class="service"><img class="service-image" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=85" alt="Website analytics dashboard" loading="lazy"><div class="service-icon">⌘</div><h3>Website Development</h3><p>Responsive, user-friendly websites designed to present your business clearly and help visitors take action.</p><span class="service-num">01 / DEVELOPMENT</span></article>
-          <article class="service"><img class="service-image" src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=900&q=85" alt="Creative digital design" loading="lazy"><div class="service-icon">▧</div><h3>Website & Landing Page Design</h3><p>Modern layouts and focused landing pages that communicate your value and support your business goals.</p><span class="service-num">02 / DESIGN</span></article>
-          <article class="service"><img class="service-image" src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=900&q=85" alt="Social media marketing" loading="lazy"><div class="service-icon">◉</div><h3>Social Media Marketing</h3><p>Consistent social media planning, page management and campaign support to strengthen your online presence.</p><span class="service-num">03 / MARKETING</span></article>
-          <article class="service"><img class="service-image" src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=85" alt="Graphic design creative" loading="lazy"><div class="service-icon">✳</div><h3>Creative Posts & Posters</h3><p>Brand-aligned social posts and promotional creatives that make your message clear and memorable.</p><span class="service-num">04 / CREATIVE</span></article>
-          <article class="service"><img class="service-image" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=900&q=85" alt="Video editing timeline" loading="lazy"><div class="service-icon">▷</div><h3>Reel & Video Editing</h3><p>Short-form video editing for social platforms, designed to keep content engaging and on-brand.</p><span class="service-num">05 / VIDEO</span></article>
-          <article class="service"><img class="service-image" src="https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&fit=crop&w=900&q=85" alt="Content planning notebook" loading="lazy"><div class="service-icon">✎</div><h3>Content Creation</h3><p>Creative content ideas and copy to help businesses communicate with the right audience.</p><span class="service-num">06 / CONTENT</span></article>
+          <article class="service"><div class="service-inner"><div class="service-media"><img class="service-image" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=85" alt="Website analytics dashboard" loading="lazy" width="900" height="600"></div><span class="service-index" aria-hidden="true">01</span><div class="service-body"><div class="service-icon" aria-hidden="true">⌘</div><h3>Website Development</h3><p>Responsive, user-friendly websites designed to present your business clearly and help visitors take action.</p><span class="service-num">01 / DEVELOPMENT</span></div><span class="service-glare" aria-hidden="true"></span></div></article>
+          <article class="service"><div class="service-inner"><div class="service-media"><img class="service-image" src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=900&q=85" alt="Creative digital design" loading="lazy" width="900" height="600"></div><span class="service-index" aria-hidden="true">02</span><div class="service-body"><div class="service-icon" aria-hidden="true">▧</div><h3>Website & Landing Page Design</h3><p>Modern layouts and focused landing pages that communicate your value and support your business goals.</p><span class="service-num">02 / DESIGN</span></div><span class="service-glare" aria-hidden="true"></span></div></article>
+          <article class="service"><div class="service-inner"><div class="service-media"><img class="service-image" src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=900&q=85" alt="Social media marketing" loading="lazy" width="900" height="600"></div><span class="service-index" aria-hidden="true">03</span><div class="service-body"><div class="service-icon" aria-hidden="true">◉</div><h3>Social Media Marketing</h3><p>Consistent social media planning, page management and campaign support to strengthen your online presence.</p><span class="service-num">03 / MARKETING</span></div><span class="service-glare" aria-hidden="true"></span></div></article>
+          <article class="service"><div class="service-inner"><div class="service-media"><img class="service-image" src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=85" alt="Graphic design creative" loading="lazy" width="900" height="600"></div><span class="service-index" aria-hidden="true">04</span><div class="service-body"><div class="service-icon" aria-hidden="true">✳</div><h3>Creative Posts & Posters</h3><p>Brand-aligned social posts and promotional creatives that make your message clear and memorable.</p><span class="service-num">04 / CREATIVE</span></div><span class="service-glare" aria-hidden="true"></span></div></article>
+          <article class="service"><div class="service-inner"><div class="service-media"><img class="service-image" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=900&q=85" alt="Video editing timeline" loading="lazy" width="900" height="600"></div><span class="service-index" aria-hidden="true">05</span><div class="service-body"><div class="service-icon" aria-hidden="true">▷</div><h3>Reel & Video Editing</h3><p>Short-form video editing for social platforms, designed to keep content engaging and on-brand.</p><span class="service-num">05 / VIDEO</span></div><span class="service-glare" aria-hidden="true"></span></div></article>
+          <article class="service"><div class="service-inner"><div class="service-media"><img class="service-image" src="https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&fit=crop&w=900&q=85" alt="Content planning notebook" loading="lazy" width="900" height="600"></div><span class="service-index" aria-hidden="true">06</span><div class="service-body"><div class="service-icon" aria-hidden="true">✎</div><h3>Content Creation</h3><p>Creative content ideas and copy to help businesses communicate with the right audience.</p><span class="service-num">06 / CONTENT</span></div><span class="service-glare" aria-hidden="true"></span></div></article>
         </div>
       </div>
     </section>
@@ -1228,6 +1282,37 @@
         aim(((e.clientX - r.left) / r.width - 0.5) * 18, -((e.clientY - r.top) / r.height - 0.5) * 11);
       });
       hero.addEventListener('pointerleave', function(){ aim(0, 0); });
+    })();
+  
+    // Services: gentle pointer tilt with a moving highlight (mouse only, off for reduced motion).
+    (function(){
+      const cards = document.querySelectorAll('#services .service');
+      if (!cards.length || !window.matchMedia) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      cards.forEach(function(card){
+        let raf = 0, px = 0, py = 0;
+        function apply(){
+          raf = 0;
+          const r = card.getBoundingClientRect();
+          const x = (px - r.left) / r.width, y = (py - r.top) / r.height;
+          card.style.setProperty('--ry', ((x - 0.5) * 11).toFixed(2) + 'deg');
+          card.style.setProperty('--rx', ((0.5 - y) * 8).toFixed(2) + 'deg');
+          card.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+          card.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+        }
+        card.addEventListener('pointerenter', function(e){ if (e.pointerType === 'mouse') card.classList.add('is-tilting'); });
+        card.addEventListener('pointermove', function(e){
+          if (e.pointerType !== 'mouse') return;
+          px = e.clientX; py = e.clientY;
+          if (!raf) raf = requestAnimationFrame(apply);
+        });
+        card.addEventListener('pointerleave', function(){
+          card.classList.remove('is-tilting');
+          card.style.setProperty('--rx', '0deg');
+          card.style.setProperty('--ry', '0deg');
+        });
+      });
     })();
   </script>
 </body>
