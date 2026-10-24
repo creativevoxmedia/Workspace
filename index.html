@@ -367,6 +367,154 @@
     .video-portfolio-card .textlink{display:inline-flex;margin-top:16px;color:var(--red2);font-size:12px;font-weight:800}
     @media(max-width:560px){.leadership-trigger{padding:20px;gap:12px}.leadership-trigger-icon{flex-basis:40px;width:40px;height:40px}.leadership-trigger-copy strong{font-size:15px}.leadership-trigger-copy small{font-size:11px}.leadership-trigger-label{display:none}.leadership-content{padding:0 16px 16px}.leadership-content .section-head{padding-top:20px}}
     @media(max-width:560px){.drive-video-frame{aspect-ratio:9/16}.video-portfolio-card .work-card-copy{padding:20px}}
+  
+    /* The hero is always dark, so keep its text tokens dark-theme even when the page is in light mode */
+    .hero{color:#f7f7f8;--text:#f7f7f8;--muted:#a4a4ad;--line:rgba(255,255,255,.11);--bg:#0a0a0c;--panel:#121216;--panel2:#18181d}
+    /* ===== Cinematic 3D hero: service objects floating in depth ===== */
+    .hero-art,.hero-art:hover{transform-style:flat;min-height:0;display:block;align-self:center}
+    .scene{position:relative;width:100%;height:580px;perspective:1100px;perspective-origin:50% 40%;isolation:isolate;user-select:none}
+    .scene:before{content:"";position:absolute;inset:-6% -12%;z-index:-2;pointer-events:none;background:radial-gradient(closest-side at 50% 50%,rgba(255,48,59,.24),transparent),radial-gradient(closest-side at 50% 88%,rgba(255,122,69,.16),transparent);animation:glowPulse 6s ease-in-out infinite alternate}
+    .floor{position:absolute;left:-30%;width:160%;bottom:-2%;height:50%;z-index:-1;pointer-events:none;transform:perspective(520px) rotateX(68deg);transform-origin:50% 100%;background-image:linear-gradient(rgba(255,48,59,.42) 1px,transparent 1px),linear-gradient(90deg,rgba(255,48,59,.42) 1px,transparent 1px);background-size:52px 52px;animation:floorMove 3.4s linear infinite;-webkit-mask-image:radial-gradient(ellipse at 50% 55%,#000 0,transparent 68%);mask-image:radial-gradient(ellipse at 50% 55%,#000 0,transparent 68%)}
+    .beam{position:absolute;inset:-25% -20%;z-index:4;pointer-events:none;mix-blend-mode:screen;background:linear-gradient(104deg,transparent 42%,rgba(255,120,110,.10) 50%,transparent 58%);animation:beamSweep 8s ease-in-out infinite}
+
+    .stage,.rings{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));will-change:transform}
+    .rings{z-index:-1;pointer-events:none}
+    .intro{position:absolute;inset:0;transform-style:preserve-3d;animation:dolly 1.9s cubic-bezier(.16,.8,.2,1) both}
+    .sway{position:absolute;inset:0;transform-style:preserve-3d;animation:sway 11s ease-in-out infinite alternate}
+
+    .ring{position:absolute;left:50%;top:50%;width:var(--s);height:var(--s);margin:calc(var(--s) / -2) 0 0 calc(var(--s) / -2);border-radius:50%;border:1px solid rgba(255,255,255,.16);pointer-events:none;transform:rotateX(var(--tx,72deg)) rotateY(var(--ty,0deg)) rotateZ(0deg);animation:ringSpin var(--t) linear infinite}
+    .ring:after{content:"";position:absolute;top:-4px;left:50%;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--red);box-shadow:0 0 16px 4px rgba(255,48,59,.75)}
+    .ring.r1{--s:450px;--tx:74deg;--t:15s}
+    .ring.r2{--s:372px;--tx:62deg;--ty:26deg;--t:21s;border-color:rgba(255,48,59,.38);animation-direction:reverse}
+    .ring.r3{--s:540px;--tx:80deg;--t:34s;border-style:dashed;border-color:rgba(255,255,255,.10)}
+    .ring.r3:after{background:#ff9a62;box-shadow:0 0 14px 3px rgba(255,154,98,.7)}
+
+    .core{position:absolute;inset:0;display:grid;place-items:center;transform-style:preserve-3d;pointer-events:none;animation:coreFloat 8s ease-in-out infinite}
+    .core:before{content:"";position:absolute;width:min(86%,318px);height:262px;border-radius:22px;background:var(--red);opacity:.28;filter:blur(26px);transform:translateZ(-30px)}
+    .scene .art-card,.hero-art:hover .scene .art-card{pointer-events:auto;width:min(86%,318px);min-height:262px;padding:24px;transform:none;border-color:#ffffff24;background:linear-gradient(145deg,#1d1d24f2,#0d0d11f7);box-shadow:0 40px 90px #000c,0 0 0 1px #ffffff10,0 0 60px #ff303b26}
+    .scene .art-title{font-size:clamp(28px,3vw,37px);margin:30px 0 16px}
+    .scene .art-bottom{margin-top:26px}
+    :root[data-theme="light"] .scene .art-card{background:linear-gradient(145deg,#1d1d24f2,#0d0d11f7);border-color:#ffffff24}
+    :root[data-theme="light"] .scene .art-top,:root[data-theme="light"] .scene .art-bottom{color:#aaa}
+    :root[data-theme="light"] .scene .art-slide-copy{color:#9a9aa6}
+
+    /* floating service objects */
+    .obj{position:absolute;left:var(--x);top:var(--y);display:block;color:#fff;text-decoration:none;transform-style:preserve-3d;transform:translateZ(var(--z));animation:flyIn 1.1s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(.55s + var(--d,0s))}
+    .obj:focus-visible{outline:2px solid var(--red2);outline-offset:8px;border-radius:16px}
+    .obj-body{display:block;position:relative;border-radius:16px;transform-style:preserve-3d;animation:bob var(--dur,6s) ease-in-out var(--d,0s) infinite;transition:filter .3s}
+    .obj-body:before{content:"";position:absolute;inset:0;border-radius:inherit;background:#000;opacity:.55;transform:translateZ(-16px) translate(8px,10px);filter:blur(6px);z-index:-1}
+    a.obj:hover .obj-body,a.obj:focus-visible .obj-body{animation-play-state:paused;filter:brightness(1.12) drop-shadow(0 0 22px rgba(255,48,59,.5))}
+    .glass{background:linear-gradient(145deg,rgba(36,36,44,.94),rgba(14,14,18,.97));border:1px solid rgba(255,255,255,.16);box-shadow:0 26px 60px rgba(0,0,0,.6),0 0 38px rgba(255,48,59,.14),inset 0 1px 0 rgba(255,255,255,.14)}
+    .obj-label{position:absolute;left:12px;bottom:-13px;padding:5px 10px;border-radius:999px;background:var(--red);color:#fff;font-size:9.5px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;white-space:nowrap;box-shadow:0 8px 22px rgba(255,48,59,.45);transform:translateZ(26px)}
+
+    /* website: code window */
+    .o-code .obj-body{width:178px;padding:13px 15px 22px}
+    .win-dots{display:flex;gap:5px}.win-dots i{width:7px;height:7px;border-radius:50%;background:#ff5f57}.win-dots i:nth-child(2){background:#febc2e}.win-dots i:nth-child(3){background:#28c840}
+    .code{display:block;margin-top:10px}
+    .code i{display:block;height:6px;width:var(--w);margin:8px 0;border-radius:4px;background:linear-gradient(90deg,#ff5962,#ff9a62);animation:typeLine 5.2s ease-out infinite;animation-delay:calc(var(--i) * .38s)}
+    .code i.ind{margin-left:14px;background:linear-gradient(90deg,#8f9bff,#5fd3ff)}
+    .code i:nth-child(4){background:linear-gradient(90deg,#d9d9e3,#8a8a98)}
+    .code i.cur:after{content:"";position:absolute;width:2px;height:12px;margin:-3px 0 0 6px;background:#fff;animation:blink 1s steps(2) infinite}
+    .code i.cur{position:relative}
+
+    /* reels: phone */
+    .o-reel .obj-body{width:106px;height:192px;padding:10px 9px;border-radius:20px}
+    .notch{display:block;width:34px;height:5px;margin:0 auto 8px;border-radius:4px;background:#000;opacity:.8}
+    .screen{display:grid;place-items:center;position:relative;overflow:hidden;height:128px;border-radius:12px;background:linear-gradient(160deg,#ff303b,#ff8a62 55%,#6a3cff)}
+    .screen:before{content:"";position:absolute;inset:-30% 0;background:repeating-linear-gradient(0deg,transparent 0 14px,rgba(255,255,255,.10) 14px 16px);animation:filmRoll 1.6s linear infinite}
+    .play{position:relative;width:0;height:0;margin-left:5px;border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent #fff;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4));animation:playPulse 2.2s ease-in-out infinite}
+    .timeline{display:block;height:4px;margin:12px 4px 0;border-radius:3px;background:rgba(255,255,255,.18);overflow:hidden}
+    .timeline b{display:block;height:100%;width:100%;border-radius:3px;background:var(--red);transform-origin:0 50%;animation:progress 5s linear infinite}
+
+    /* posters */
+    .o-poster .obj-body{width:124px;height:158px;padding:9px}
+    .poster{display:block;position:relative;overflow:hidden;width:100%;height:100%;border-radius:10px;background:linear-gradient(150deg,#ff303b 0%,#ff7b45 52%,#ffc15e 100%)}
+    .poster:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.35) 50%,transparent 65%);transform:translateX(-120%);animation:shimmer 4.4s ease-in-out infinite}
+    .pc{position:absolute;width:62px;height:62px;right:-12px;top:12px;border-radius:50%;background:rgba(255,255,255,.88);mix-blend-mode:overlay}
+    .pl{position:absolute;left:12px;height:7px;border-radius:4px;background:#fff}
+    .pl.l1{bottom:48px;width:70%}.pl.l2{bottom:34px;width:52%;opacity:.8}.pl.l3{bottom:20px;width:34%;opacity:.6}
+
+    /* social */
+    .o-social .obj-body{width:112px;height:78px;border-radius:22px 22px 22px 6px;display:grid;place-items:center}
+    .heart{color:var(--red);animation:heartBeat 1.6s ease-in-out infinite}
+    .bub{position:absolute;right:12px;bottom:12px;display:flex;gap:4px}.bub i{width:5px;height:5px;border-radius:50%;background:#aaa;animation:dotBounce 1.2s ease-in-out infinite}.bub i:nth-child(2){animation-delay:.15s}.bub i:nth-child(3){animation-delay:.3s}
+    .up{position:absolute;color:var(--red2);font-size:13px;opacity:0;pointer-events:none;transform:translateZ(18px);animation:heartUp 3.6s ease-out infinite}
+    .up.u1{left:22px;top:14px}.up.u2{left:64px;top:18px;animation-delay:1.2s;font-size:11px}.up.u3{left:88px;top:10px;animation-delay:2.2s;font-size:15px}
+
+    /* growth chart */
+    .o-chart .obj-body{width:146px;height:106px;padding:14px 14px 0}
+    .bars{display:flex;align-items:flex-end;gap:8px;height:100%;padding-bottom:12px}
+    .bars i{flex:1;height:var(--h);border-radius:5px 5px 2px 2px;background:linear-gradient(180deg,#ff5962,#ff303b 60%,#a3121c);box-shadow:0 0 14px rgba(255,48,59,.4);transform-origin:50% 100%;animation:barGrow 4.6s cubic-bezier(.3,.8,.3,1) infinite;animation-delay:calc(var(--i) * .16s)}
+
+    /* spinning brand cube */
+    .o-cube{width:56px;height:56px}
+    .cube{position:absolute;inset:0;transform-style:preserve-3d;animation:cubeSpin 14s linear infinite}
+    .cube .f{position:absolute;inset:0;display:grid;place-items:center;font-style:normal;font-weight:900;font-size:17px;color:#fff;border:1px solid rgba(255,255,255,.3);background:linear-gradient(145deg,rgba(255,48,59,.85),rgba(150,14,24,.92));box-shadow:inset 0 0 16px rgba(0,0,0,.35)}
+    .f1{transform:translateZ(28px)}.f2{transform:rotateY(180deg) translateZ(28px)}.f3{transform:rotateY(90deg) translateZ(28px)}.f4{transform:rotateY(-90deg) translateZ(28px)}.f5{transform:rotateX(90deg) translateZ(28px)}.f6{transform:rotateX(-90deg) translateZ(28px)}
+
+    .scene .floating-tag.two{left:3%;bottom:4px;top:auto;right:auto;transform:translateZ(130px);animation:flyIn 1.1s cubic-bezier(.2,.8,.2,1) 1.6s both;--z:130px;background:rgba(23,23,28,.94)}
+
+    /* drifting dust */
+    .pts{position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none}
+    .pt{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);border-radius:50%;background:#ff7b83;box-shadow:0 0 12px 2px rgba(255,48,59,.7);opacity:.75;transform:translateZ(var(--z));animation:drift var(--t) ease-in-out infinite alternate}
+
+    .scene.is-paused *{animation-play-state:paused!important}
+
+    @keyframes dolly{from{opacity:0;transform:translateZ(-420px) rotateY(-34deg) scale(.82)}to{opacity:1;transform:translateZ(0) rotateY(0) scale(1)}}
+    @keyframes sway{from{transform:rotateY(-8deg) rotateX(2deg)}to{transform:rotateY(8deg) rotateX(-1.5deg)}}
+    @keyframes coreFloat{0%,100%{transform:translateY(0) rotateY(-4deg)}50%{transform:translateY(-12px) rotateY(4deg)}}
+    @keyframes ringSpin{to{transform:rotateX(var(--tx,72deg)) rotateY(var(--ty,0deg)) rotateZ(360deg)}}
+    @keyframes flyIn{from{opacity:0;transform:translateZ(-420px) translateY(60px)}to{opacity:1;transform:translateZ(var(--z,0px))}}
+    @keyframes bob{0%,100%{transform:translateY(0) rotateX(var(--rx0,6deg)) rotateY(var(--ry0,-14deg)) rotateZ(var(--rz,0deg))}50%{transform:translateY(-18px) rotateX(calc(var(--rx0,6deg) * -.7)) rotateY(calc(var(--ry0,-14deg) * -.55)) rotateZ(calc(var(--rz,0deg) * -1))}}
+    @keyframes floorMove{to{background-position:0 52px}}
+    @keyframes beamSweep{0%,100%{transform:translateX(-26%)}50%{transform:translateX(26%)}}
+    @keyframes glowPulse{from{opacity:.65}to{opacity:1}}
+    @keyframes typeLine{0%{width:0}28%,86%{width:var(--w)}100%{width:0}}
+    @keyframes blink{50%{opacity:0}}
+    @keyframes filmRoll{to{transform:translateY(16px)}}
+    @keyframes playPulse{50%{transform:scale(1.16)}}
+    @keyframes progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+    @keyframes shimmer{0%,35%{transform:translateX(-120%)}70%,100%{transform:translateX(120%)}}
+    @keyframes heartBeat{0%,100%{transform:scale(1)}14%{transform:scale(1.25)}28%{transform:scale(1)}42%{transform:scale(1.18)}}
+    @keyframes dotBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    @keyframes heartUp{0%{opacity:0;transform:translateZ(18px) translateY(8px)}20%{opacity:1}100%{opacity:0;transform:translateZ(18px) translateY(-34px)}}
+    @keyframes barGrow{0%{transform:scaleY(.08)}35%,84%{transform:scaleY(1)}100%{transform:scaleY(.08)}}
+    @keyframes cubeSpin{from{transform:rotateX(-24deg) rotateY(0)}to{transform:rotateX(-24deg) rotateY(360deg)}}
+    @keyframes drift{from{translate:0 0}to{translate:var(--dx,10px) var(--dy,-26px)}}
+
+    @media(max-width:1000px){.scene{height:540px}}
+    @media(max-width:850px){
+      .hero-art{margin-top:6px}
+      .scene{height:500px;max-width:520px;margin-inline:auto}
+      .scene .art-card,.hero-art:hover .scene .art-card{width:min(78%,310px)}
+    }
+    @media(max-width:560px){
+      .scene{height:430px;perspective:900px}
+      .scene .art-card,.hero-art:hover .scene .art-card{width:min(76%,270px);min-height:228px;padding:20px}
+      .core:before{width:min(76%,270px);height:228px}
+      .scene .art-title{font-size:27px;margin:24px 0 12px}
+      .scene .art-slide-copy{font-size:12px}
+      .scene .art-bottom{margin-top:18px}
+      .obj{scale:.72;transform-origin:0 0}
+      .o-code{--x:-3%!important;--y:2%!important}
+      .o-social{--x:57%!important;--y:13%!important}
+      .o-reel{--x:81%!important;--y:44%!important}
+      .o-poster{--x:-2%!important;--y:55%!important}
+      .o-chart{--x:36%!important;--y:78%!important}
+      .o-cube{--x:72%!important;--y:1%!important}
+      .ring.r1{--s:340px}.ring.r2{--s:280px}.ring.r3{--s:410px}
+      .scene .floating-tag.two{left:-1%;bottom:0;padding:9px 11px;font-size:11px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .scene *,.scene *:before,.scene *:after{animation:none!important}
+      .intro{opacity:1}
+      .obj{opacity:1;transform:translateZ(var(--z,0px))}
+      .sway{transform:rotateY(-6deg) rotateX(1deg)}
+      .obj-body{transform:rotateX(var(--rx0,6deg)) rotateY(var(--ry0,-14deg)) rotateZ(var(--rz,0deg))}
+      .code i{width:var(--w)}
+      .bars i{transform:none}
+      .scene .floating-tag.two{opacity:1}
+    }
   </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 </head>
@@ -399,17 +547,81 @@
           </div>
           <div class="mini-proof"><div class="avatars"><span class="avatar">CV</span><span class="avatar">D</span><span class="avatar">+</span></div><span>Creative thinking. Practical digital solutions.</span></div>
         </div>
-        <div class="hero-art" aria-label="CreativeVox Media brand artwork">
-          <div class="orbit"></div>
-          <div class="art-card">
-            <div class="art-top"><span>CreativeVox Media</span><div class="dots" role="group" aria-label="Explore our brand"><button type="button" class="brand-dot is-active" aria-label="Slide 1: Our vision" aria-pressed="true"></button><button type="button" class="brand-dot" aria-label="Slide 2: Our mindset" aria-pressed="false"></button><button type="button" class="brand-dot" aria-label="Slide 3: Our promise" aria-pressed="false"></button></div></div>
-            <div class="art-slide" id="brand-slide" aria-live="polite">
-              <div class="art-title">YOUR VISION.<br>OUR <span>DIGITAL EXPERTISE.</span></div>
-              <p class="art-slide-copy">We turn ideas into thoughtful digital experiences for brands ready to move forward.</p>
+        <div class="hero-art" role="group" aria-label="CreativeVox Media services in 3D">
+          <div class="scene" id="hero-scene">
+            <div class="floor" aria-hidden="true"></div>
+            <div class="beam" aria-hidden="true"></div>
+            <div class="rings" aria-hidden="true"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div></div>
+            <div class="stage" id="hero-stage">
+              <div class="intro">
+                <div class="sway">
+                  <div class="core">
+                    <div class="art-card">
+                      <div class="art-top"><span>CreativeVox Media</span><div class="dots" role="group" aria-label="Explore our brand"><button type="button" class="brand-dot is-active" aria-label="Slide 1: Our vision" aria-pressed="true"></button><button type="button" class="brand-dot" aria-label="Slide 2: Our mindset" aria-pressed="false"></button><button type="button" class="brand-dot" aria-label="Slide 3: Our promise" aria-pressed="false"></button></div></div>
+                      <div class="art-slide" id="brand-slide" aria-live="polite">
+                        <div class="art-title">YOUR VISION.<br>OUR <span>DIGITAL EXPERTISE.</span></div>
+                        <p class="art-slide-copy">We turn ideas into thoughtful digital experiences for brands ready to move forward.</p>
+                      </div>
+                      <div class="art-bottom"><span id="brand-slide-label">Ideas into impact · 01/03</span><a class="art-stamp" href="#about" aria-label="Learn about CreativeVox Media">↗</a></div>
+                    </div>
+                  </div>
+
+                  <!-- Website Development -->
+                  <a class="obj o-code" href="#services" aria-label="Website Development" style="--x:-5%;--y:3%;--z:70px;--d:.05s;--dur:7s;--rx0:7deg;--ry0:-16deg;--rz:-2deg">
+                    <span class="obj-body glass">
+                      <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                      <span class="code" aria-hidden="true"><i style="--w:64%;--i:0"></i><i style="--w:86%;--i:1" class="ind"></i><i style="--w:52%;--i:2" class="ind"></i><i style="--w:74%;--i:3"></i><i style="--w:38%;--i:4" class="cur"></i></span>
+                      <span class="obj-label">Websites</span>
+                    </span>
+                  </a>
+
+                  <!-- Rotating brand cube -->
+                  <span class="obj o-cube" aria-hidden="true" style="--x:76%;--y:2%;--z:-20px;--d:.25s">
+                    <span class="cube"><i class="f f1">CV</i><i class="f f2">▷</i><i class="f f3">✎</i><i class="f f4">◉</i><i class="f f5">⌘</i><i class="f f6">✳</i></span>
+                  </span>
+
+                  <!-- Social Media Marketing -->
+                  <a class="obj o-social" href="#services" aria-label="Social Media Marketing" style="--x:63%;--y:17%;--z:120px;--d:.4s;--dur:5.4s;--rx0:-4deg;--ry0:14deg;--rz:3deg">
+                    <span class="obj-body glass">
+                      <svg class="heart" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.7 4.5 6.4 4.5c2 0 3.6 1 5.6 3.2 2-2.2 3.6-3.2 5.6-3.2 3.7 0 5.5 3.9 4 7.3C19.5 16.4 12 21 12 21z" fill="currentColor"/></svg>
+                      <span class="bub" aria-hidden="true"><i></i><i></i><i></i></span>
+                      <span class="up u1" aria-hidden="true">♥</span><span class="up u2" aria-hidden="true">♥</span><span class="up u3" aria-hidden="true">♥</span>
+                      <span class="obj-label">Social Media</span>
+                    </span>
+                  </a>
+
+                  <!-- Reel & Video Editing -->
+                  <a class="obj o-reel" href="#work" aria-label="Reel and Video Editing" style="--x:79%;--y:41%;--z:95px;--d:.55s;--dur:6.4s;--rx0:5deg;--ry0:-20deg;--rz:2deg">
+                    <span class="obj-body glass">
+                      <span class="notch" aria-hidden="true"></span>
+                      <span class="screen" aria-hidden="true"><span class="play"></span></span>
+                      <span class="timeline" aria-hidden="true"><b></b></span>
+                      <span class="obj-label">Reels &amp; Video</span>
+                    </span>
+                  </a>
+
+                  <!-- Creative Posts & Posters -->
+                  <a class="obj o-poster" href="#services" aria-label="Creative Posts and Posters" style="--x:-4%;--y:52%;--z:85px;--d:.7s;--dur:6.8s;--rx0:6deg;--ry0:18deg;--rz:-4deg">
+                    <span class="obj-body glass">
+                      <span class="poster" aria-hidden="true"><i class="pc"></i><i class="pl l1"></i><i class="pl l2"></i><i class="pl l3"></i></span>
+                      <span class="obj-label">Posts &amp; Posters</span>
+                    </span>
+                  </a>
+
+                  <!-- Digital Growth -->
+                  <a class="obj o-chart" href="#insights" aria-label="Digital Growth" style="--x:44%;--y:77%;--z:55px;--d:.85s;--dur:5.8s;--rx0:10deg;--ry0:-10deg;--rz:0deg">
+                    <span class="obj-body glass">
+                      <span class="bars" aria-hidden="true"><i style="--h:38%;--i:0"></i><i style="--h:56%;--i:1"></i><i style="--h:48%;--i:2"></i><i style="--h:76%;--i:3"></i><i style="--h:94%;--i:4"></i></span>
+                      <span class="obj-label">Digital Growth</span>
+                    </span>
+                  </a>
+
+                  <a class="floating-tag two" href="#work" aria-label="Explore our work"><b>↗</b> Built for growth</a>
+                  <div class="pts" id="hero-pts" aria-hidden="true"></div>
+                </div>
+              </div>
             </div>
-            <div class="art-bottom"><span id="brand-slide-label">Ideas into impact · 01/03</span><a class="art-stamp" href="#about" aria-label="Learn about CreativeVox Media">↗</a></div>
           </div>
-          <a class="floating-tag two" href="#work" aria-label="Explore our work"><b>↗</b> Built for growth</a>
         </div>
       </div>
     </section>
@@ -972,6 +1184,47 @@
       navToggle.setAttribute('aria-expanded', 'false');
       navToggle.textContent = 'Menu ☰';
     }));
+  
+    // Cinematic 3D hero: mouse parallax, floating dust, pause when off-screen.
+    (function(){
+      const hero = document.getElementById('home');
+      const scene = document.getElementById('hero-scene');
+      const stage = document.getElementById('hero-stage');
+      const pts = document.getElementById('hero-pts');
+      if (!hero || !scene || !stage) return;
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (pts && !reduce) {
+        const dust = [[8,18,-120,5],[22,70,-60,4],[34,8,40,3],[48,92,-90,5],[58,30,160,3],[70,84,-30,4],[86,22,60,5],[92,60,-140,3],[15,44,150,3],[40,50,-200,6],[66,12,-80,4],[80,76,100,3],[28,92,60,4],[52,4,-40,3]];
+        pts.innerHTML = dust.map(function(d, i){
+          return '<i class="pt" style="--x:' + d[0] + '%;--y:' + d[1] + '%;--z:' + d[2] + 'px;--s:' + d[3] + 'px;--t:' + (4 + (i % 5)) + 's;--dx:' + ((i % 2 ? 1 : -1) * (8 + i % 7)) + 'px;--dy:' + (-(18 + (i * 5) % 26)) + 'px;animation-delay:' + (-(i * 0.7)) + 's"></i>';
+        }).join('');
+      }
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function(entries){
+          entries.forEach(function(e){ scene.classList.toggle('is-paused', !e.isIntersecting); });
+        }, {threshold: 0.05}).observe(hero);
+      }
+
+      if (reduce || !(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches)) return;
+
+      let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
+      function frame(){
+        cx += (tx - cx) * 0.08;
+        cy += (ty - cy) * 0.08;
+        scene.style.setProperty('--rx', cy.toFixed(2) + 'deg');
+        scene.style.setProperty('--ry', cx.toFixed(2) + 'deg');
+        raf = (Math.abs(tx - cx) > 0.01 || Math.abs(ty - cy) > 0.01) ? requestAnimationFrame(frame) : 0;
+      }
+      function aim(x, y){ tx = x; ty = y; if (!raf) raf = requestAnimationFrame(frame); }
+      hero.addEventListener('pointermove', function(e){
+        if (e.pointerType !== 'mouse') return;
+        const r = hero.getBoundingClientRect();
+        aim(((e.clientX - r.left) / r.width - 0.5) * 18, -((e.clientY - r.top) / r.height - 0.5) * 11);
+      });
+      hero.addEventListener('pointerleave', function(){ aim(0, 0); });
+    })();
   </script>
 </body>
 </html>
