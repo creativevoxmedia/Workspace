@@ -515,6 +515,10 @@
       .bars i{transform:none}
       .scene .floating-tag.two{opacity:1}
     }
+    /* Transparent logo: light-ink version on dark theme, dark-ink version on light theme */
+    .brand-logo.logo-on-light{display:none}
+    :root[data-theme="light"] .brand-logo.logo-on-dark{display:none}
+    :root[data-theme="light"] .brand-logo.logo-on-light{display:block}
   </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 </head>
@@ -523,7 +527,7 @@
   <header>
     <div class="wrap nav">
       <a class="brand" href="#home" aria-label="CreativeVox Media home">
-        <img class="brand-logo" src="./CreativeVox%20Media%20Circular%20Logo.png?v=2" alt="CreativeVox Media circular logo" width="48" height="48">
+        <img class="brand-logo logo-on-dark" src="./logo-dark.png?v=3" alt="CreativeVox Media circular logo" width="58" height="58"><img class="brand-logo logo-on-light" src="./logo-light.png?v=3" alt="" width="58" height="58" aria-hidden="true">
         <span class="brand-name">Creative<span style="color:#ff303b">Vox</span> Media</span>
       </a>
       <div style="display:flex;align-items:center;gap:8px"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme"><span class="theme-toggle-icon" id="theme-icon" aria-hidden="true">☀</span><span id="theme-label">Light</span></button><button class="menu-btn" id="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">Menu ☰</button></div>
@@ -833,7 +837,7 @@
 
   <footer>
     <div class="wrap footer-inner">
-      <a class="brand footer-brand" href="#home" aria-label="CreativeVox Media home"><img class="brand-logo footer-logo" src="./CreativeVox%20Media%20Circular%20Logo.png?v=2" alt="CreativeVox Media circular logo" width="48" height="48"><span class="brand-name">Creative<span style="color:#ff303b">Vox</span> Media</span></a>
+      <a class="brand footer-brand" href="#home" aria-label="CreativeVox Media home"><img class="brand-logo footer-logo logo-on-dark" src="./logo-dark.png?v=3" alt="CreativeVox Media circular logo" width="58" height="58" loading="lazy"><img class="brand-logo footer-logo logo-on-light" src="./logo-light.png?v=3" alt="" width="58" height="58" loading="lazy" aria-hidden="true"><span class="brand-name">Creative<span style="color:#ff303b">Vox</span> Media</span></a>
       <span>© <span id="year">2026</span> CreativeVox Media. All rights reserved.</span>
       <div class="footer-links"><a href="#services">Services</a><a href="#about">About</a><a href="#leadership">Leadership</a><a href="#contact">Contact</a><a href="https://www.instagram.com/creativevox_media?mdxt=cGh4cHBic2NvcWlv&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on Instagram">Instagram ↗</a><a href="https://www.linkedin.com/company/creativevox-media/" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on LinkedIn">LinkedIn ↗</a><a href="mailto:teamcreativevoxmedia@gmail.com?subject=Project%20Inquiry%20%7C%20CreativeVox%20Media&body=Hello%20CreativeVox%20Media%2C%0A%0AI%27m%20interested%20in%20your%20services.%20Please%20share%20more%20details.%0A%0AName%3A%20%0ABusiness%2FCompany%3A%20%0AService%20Required%3A%20%0ABudget%20(Optional)%3A%20%0AContact%20Number%3A%20%0A%0AThank%20you.">Email</a></div>
     </div>
