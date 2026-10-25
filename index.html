@@ -679,6 +679,44 @@
       .work-grid .work-card h3,.work-grid .work-card .label,.work-grid .work-card p,.work-grid .work-card .work-foot,.work-grid .video-category-links{transform:none}
       .w3 .cl{width:var(--w)}
     }
+  
+    /* ===== Hero polish: stronger hierarchy, clearer CTAs, responsive 3D stage ===== */
+    .hero{padding:clamp(72px,8vw,112px) 0 clamp(62px,7vw,92px);background:radial-gradient(ellipse 38% 50% at 78% 42%,rgba(255,48,59,.19),transparent 72%),linear-gradient(115deg,#09090b 0%,#141116 55%,#0a0a0c 100%)}
+    .hero-grid{gap:clamp(28px,4.5vw,62px)}
+    .hero .hero-grid>.reveal:before{content:"STRATEGY  ·  DESIGN  ·  DIGITAL GROWTH";display:inline-flex;align-items:center;gap:8px;margin:0 0 8px;padding:8px 11px;border:1px solid rgba(255,72,82,.32);border-radius:999px;background:rgba(255,48,59,.08);color:#ff9ba0;font-size:10px;font-weight:850;letter-spacing:.14em}
+    .hero h1{max-width:700px;font-size:clamp(42px,6.1vw,76px);line-height:1.04;margin:19px 0 22px;text-shadow:0 10px 38px rgba(0,0,0,.45)}
+    .hero h1 em{filter:drop-shadow(0 6px 22px rgba(255,48,59,.28))}
+    .hero .hero-copy{max-width:525px;font-size:clamp(15px,1.4vw,17px);line-height:1.8;color:#d0cbd2}
+    .hero .hero-actions{gap:12px;margin-top:27px}
+    .hero .hero-actions .button{min-height:48px;padding:13px 18px;box-shadow:0 10px 28px rgba(255,48,59,.15)}
+    .hero .hero-actions .button.secondary{box-shadow:none;background:rgba(255,255,255,.025);backdrop-filter:blur(8px)}
+    .hero .mini-proof{gap:12px;margin-top:32px}
+    .hero .hero-art{min-width:0}
+    .hero-art .scene{height:clamp(420px,44vw,560px)}
+    .hero-art .art-card{border-color:rgba(255,255,255,.22);box-shadow:0 32px 90px rgba(0,0,0,.5),0 0 55px rgba(255,48,59,.11),inset 0 1px 0 rgba(255,255,255,.08)}
+    .hero-art .floating-tag{border-color:rgba(255,255,255,.24);backdrop-filter:blur(12px)}
+    @media(max-width:850px){
+      .hero{padding:68px 0 34px}
+      .hero-grid{grid-template-columns:1fr;gap:12px}
+      .hero .hero-grid>.reveal{max-width:680px}
+      .hero-art .scene{height:clamp(380px,95vw,500px)}
+      .hero .mini-proof{margin-top:24px}
+    }
+    @media(max-width:560px){
+      .hero{padding:54px 0 24px}
+      .hero .hero-grid>.reveal:before{font-size:9px;letter-spacing:.11em;padding:7px 9px}
+      .hero h1{font-size:clamp(39px,11vw,55px);line-height:1.03;letter-spacing:-.06em;margin:17px 0}
+      .hero .hero-copy{font-size:14px;line-height:1.75}
+      .hero .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+      .hero .hero-actions .button{padding:12px 10px;font-size:12px;min-height:46px}
+      .hero-art .scene{height:390px}
+      .hero-art .floating-tag{font-size:10px;padding:9px 10px}
+      .hero-art .floating-tag.one{right:0;top:26px}
+      .hero-art .floating-tag.two{left:0;bottom:22px}
+      .hero .mini-proof{font-size:11px;gap:9px}
+    }
+    @media(prefers-reduced-motion:reduce){.hero .hero-grid>.reveal:before{animation:none}.hero-art .scene{scroll-behavior:auto}}
+
   </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 </head>
