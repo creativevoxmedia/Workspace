@@ -97,6 +97,9 @@
       .navlinks a:not(.button){display:block;padding:10px 12px}
       .navlinks .button{margin-top:6px}
     }
+    .hero-three-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;opacity:.58;z-index:0}
+    .hero-art{position:relative}
+    .hero-art>.scene{position:relative;z-index:1}
     .hero{position:relative;isolation:isolate;overflow:hidden;padding:105px 0 88px;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 78% 42%,#ff303b12,transparent 43%),linear-gradient(115deg,#0a0a0c 0%,#101014 52%,#0a0a0c 100%)}
     .hero:before{content:"";position:absolute;width:600px;height:600px;right:-100px;top:-120px;border-radius:50%;background:radial-gradient(circle,#ff303b30 0, #ff303b0b 36%,transparent 69%);filter:blur(8px);pointer-events:none;animation:heroGlow 8s ease-in-out infinite alternate;z-index:-1}
     .hero:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(#ffffff12 1px,transparent 1px),linear-gradient(90deg,#ffffff12 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(90deg,transparent,#000 45%,#000 90%,transparent);z-index:-1}
@@ -712,6 +715,7 @@
           <div class="mini-proof"><div class="avatars"><span class="avatar">CV</span><span class="avatar">D</span><span class="avatar">+</span></div><span>Creative thinking. Practical digital solutions.</span></div>
         </div>
         <div class="hero-art" role="group" aria-label="CreativeVox Media services in 3D">
+          <canvas id="hero-three-canvas" class="hero-three-canvas" aria-hidden="true"></canvas>
           <div class="scene" id="hero-scene">
             <div class="floor" aria-hidden="true"></div>
             <div class="beam" aria-hidden="true"></div>
@@ -1457,6 +1461,92 @@
       new IntersectionObserver(function(entries){
         entries.forEach(function(e){ sec.classList.toggle('work-section-paused', !e.isIntersecting); });
       }, {threshold: 0}).observe(sec);
+    })();
+
+  </script>
+  <script type="module">
+    // Experimental Three.js hero atmosphere. Existing CSS artwork remains as the fallback.
+    (async function () {
+      const canvas = document.getElementById('hero-three-canvas');
+      const hero = document.querySelector('.hero');
+      if (!canvas || !hero ||
+          !window.matchMedia('(min-width: 700px)').matches ||
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+          !('WebGLRenderingContext' in window)) {
+        if (canvas) canvas.hidden = true;
+        return;
+      }
+      try {
+        const THREE = await import('https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js');
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: 'low-power' });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.35));
+        renderer.setClearColor(0x000000, 0);
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 100);
+        camera.position.z = 12;
+        const group = new THREE.Group();
+        scene.add(group);
+
+        const count = 180;
+        const positions = new Float32Array(count * 3);
+        const colors = new Float32Array(count * 3);
+        for (let i = 0; i < count; i++) {
+          positions[i * 3] = (Math.random() - 0.5) * 18;
+          positions[i * 3 + 1] = (Math.random() - 0.5) * 9;
+          positions[i * 3 + 2] = (Math.random() - 0.5) * 7;
+          const red = Math.random() > 0.7;
+          colors[i * 3] = red ? 1 : 0.65;
+          colors[i * 3 + 1] = red ? 0.16 : 0.65;
+          colors[i * 3 + 2] = red ? 0.23 : 0.75;
+        }
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        const material = new THREE.PointsMaterial({ size: 0.045, vertexColors: true, transparent: true, opacity: 0.7, sizeAttenuation: true });
+        const particles = new THREE.Points(geometry, material);
+        group.add(particles);
+
+        const ringGeometry = new THREE.TorusGeometry(2.4, 0.009, 4, 96);
+        const ringMaterial = new THREE.MeshBasicMaterial({ color: 0xff303b, transparent: true, opacity: 0.2 });
+        const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+        ring.position.set(3.1, 0, -1.4);
+        ring.rotation.set(0.7, 0.3, -0.25);
+        group.add(ring);
+
+        let active = true, raf = 0;
+        function resize() {
+          const rect = hero.getBoundingClientRect();
+          renderer.setSize(Math.max(1, rect.width), Math.max(1, rect.height), false);
+          camera.aspect = Math.max(1, rect.width) / Math.max(1, rect.height);
+          camera.updateProjectionMatrix();
+        }
+        const observer = new IntersectionObserver(entries => {
+          active = entries[0].isIntersecting;
+          if (active && !raf) raf = requestAnimationFrame(render);
+        });
+        observer.observe(hero);
+        const resizeObserver = new ResizeObserver(resize);
+        resizeObserver.observe(hero);
+        resize();
+        function render(time) {
+          raf = 0;
+          if (!active) return;
+          const t = time * 0.00015;
+          particles.rotation.y = t;
+          particles.rotation.x = Math.sin(t) * 0.03;
+          ring.rotation.z = t * 0.55;
+          renderer.render(scene, camera);
+          raf = requestAnimationFrame(render);
+        }
+        raf = requestAnimationFrame(render);
+        window.addEventListener('pagehide', () => {
+          observer.disconnect(); resizeObserver.disconnect();
+          if (raf) cancelAnimationFrame(raf);
+          geometry.dispose(); material.dispose(); ringGeometry.dispose(); ringMaterial.dispose(); renderer.dispose();
+        }, { once: true });
+      } catch (_) {
+        canvas.hidden = true;
+      }
     })();
   </script>
 </body>
