@@ -544,14 +544,15 @@
     .service-media{position:relative;display:block;height:188px;overflow:hidden;border-radius:15px 15px 0 0;background:#18181d}
     .service-media:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(10,10,12,.05) 30%,rgba(10,10,12,.62) 100%)}
     .service-media .service-image{height:100%;border-bottom:0}
-    .service-index{position:absolute;top:14px;right:18px;font-size:38px;font-weight:900;letter-spacing:-.05em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.7);filter:drop-shadow(0 2px 8px rgba(0,0,0,.5));pointer-events:none;transform:translateZ(36px)}
+    .service-index{position:absolute;top:14px;right:18px;font-size:38px;font-weight:900;letter-spacing:-.05em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.7);filter:drop-shadow(0 2px 8px rgba(0,0,0,.5));pointer-events:none;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
     .service-body{position:relative;display:flex;flex:1;flex-direction:column;padding:0 24px 22px;transform-style:preserve-3d}
     .services .service .service-body>*{margin-left:0;margin-right:0}
     .services .service .service-icon{width:52px;height:52px;margin-top:-26px;margin-bottom:0;border-radius:14px;font-size:22px;color:#fff;background:linear-gradient(145deg,#ff4954,#d9202c);border:1px solid rgba(255,255,255,.22);box-shadow:0 14px 28px rgba(255,48,59,.38),inset 0 1px 0 rgba(255,255,255,.3);transform:translateZ(52px);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
     .service:hover .service-icon{transform:translateZ(66px)}
-    .services .service h3{margin:20px 0 8px;font-size:19px;transform:translateZ(26px)}
-    .services .service p{font-size:13.5px;transform:translateZ(12px)}
-    .services .service .service-num{margin-top:auto;padding-top:20px;transform:translateZ(18px)}
+    .service:hover h3,.service:focus-visible h3{transform:translateZ(22px)}.service:hover p,.service:focus-visible p{transform:translateZ(10px)}.service:hover .service-num,.service:focus-visible .service-num{transform:translateZ(14px)}.service:hover .service-index{transform:translateZ(36px)}
+    .services .service h3{margin:20px 0 8px;font-size:19px;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+    .services .service p{font-size:13.5px;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+    .services .service .service-num{margin-top:auto;padding-top:20px;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
     .service-body>p{margin-bottom:20px}
     .service-body .service-num{border-top:1px solid var(--line);padding-top:14px;margin-top:auto}
     :root[data-theme="light"] .service-body .service-num{color:#8a8a95}
@@ -572,6 +573,111 @@
       .motion-ready .services .service.motion-reveal{opacity:1;transform:none;transition:none}
       .service-inner,.service-icon{transition:none!important;transform:none!important}
       .services .service h3,.services .service p,.services .service .service-num,.service-index{transform:none}
+    }
+  
+    /* ===== Our Work: cinematic 3D scene cards ===== */
+    #work{position:relative;isolation:isolate;overflow:hidden}
+    #work:before{content:"";position:absolute;left:0;right:0;top:0;height:560px;z-index:-2;pointer-events:none;background:radial-gradient(ellipse 46% 64% at 88% 0%,rgba(255,48,59,.16),transparent 72%),radial-gradient(ellipse 34% 50% at 6% 30%,rgba(255,122,69,.07),transparent 70%)}
+    #work:after{content:"";position:absolute;left:-12%;right:-12%;bottom:0;height:380px;z-index:-1;pointer-events:none;opacity:.5;transform:perspective(520px) rotateX(-64deg);transform-origin:50% 100%;background-image:linear-gradient(rgba(255,48,59,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(255,48,59,.18) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:linear-gradient(0deg,#000,transparent 80%);mask-image:linear-gradient(0deg,#000,transparent 80%)}
+    :root[data-theme="light"] #work:before{background:radial-gradient(ellipse 46% 64% at 88% 0%,rgba(233,35,49,.09),transparent 72%)}
+    :root[data-theme="light"] #work:after{opacity:.3;background-image:linear-gradient(rgba(233,35,49,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(233,35,49,.15) 1px,transparent 1px)}
+
+    .work-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+    .work-grid .work-card{min-height:0;padding:0;border:0;border-radius:16px;background:none;overflow:visible;perspective:1000px;isolation:auto}
+    .work-inner{position:relative;display:flex;flex-direction:column;height:100%;border:1px solid var(--line);border-radius:16px;background:linear-gradient(155deg,#18181d,#0e0e12);box-shadow:0 18px 42px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.06);transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .55s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .4s}
+    .work-card.is-tilting .work-inner{transition:transform .09s linear,border-color .3s,box-shadow .4s}
+    .work-card:hover .work-inner,.work-card:focus-within .work-inner{border-color:rgba(255,48,59,.55);box-shadow:0 36px 72px rgba(0,0,0,.58),0 0 52px rgba(255,48,59,.13),inset 0 1px 0 rgba(255,255,255,.08)}
+    :root[data-theme="light"] .work-inner{background:linear-gradient(155deg,#fff,#f3f3f6);box-shadow:0 14px 34px rgba(20,20,30,.10),inset 0 1px 0 #fff}
+    :root[data-theme="light"] .work-card:hover .work-inner,:root[data-theme="light"] .work-card:focus-within .work-inner{box-shadow:0 30px 60px rgba(20,20,30,.16),0 0 40px rgba(233,35,49,.10)}
+    .work-grid .work-card-copy{display:flex;flex:1;flex-direction:column;background:none;padding:22px 26px 22px;transform-style:preserve-3d}
+    :root[data-theme="light"] .work-grid .work-card-copy{background:none}
+    .work-grid .work-card h3{margin:12px 0 10px;font-size:24px;line-height:1.15;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+    .work-grid .work-card .label{display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+    .work-grid .work-card p{max-width:none;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+    .work-grid .work-card .work-foot{position:static;margin-top:auto;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);letter-spacing:.1em;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+    .work-grid .work-card p{margin-bottom:18px}
+    .work-grid .video-category-links{margin:0 0 20px;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+    .work-card:hover h3,.work-card:focus-within h3{transform:translateZ(20px)}.work-card:hover .label{transform:translateZ(12px)}.work-card:hover p{transform:translateZ(8px)}.work-card:hover .work-foot{transform:translateZ(14px)}.work-card:hover .video-category-links{transform:translateZ(16px)}
+    .work-glare{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.10),transparent 46%);transform:translateZ(1px)}
+    :root[data-theme="light"] .work-glare{background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(255,48,59,.08),transparent 46%)}
+    .work-card:hover .work-glare{opacity:1}
+
+    /* shared 3D stage */
+    .work-stage{--w-bg:#22222a;--w-bg2:#2c2c36;--w-line:rgba(255,255,255,.14);--w-ink:#d9d9e3;--w-dim:rgba(255,255,255,.16);position:relative;height:212px;overflow:hidden;border-radius:15px 15px 0 0;perspective:760px;perspective-origin:50% 40%;background:radial-gradient(ellipse 80% 70% at 50% 108%,rgba(255,48,59,.26),transparent 68%),linear-gradient(180deg,#15151b,#0b0b0f)}
+    .work-stage:before{content:"";position:absolute;left:-20%;right:-20%;bottom:-6px;height:96px;opacity:.5;transform:perspective(260px) rotateX(64deg);transform-origin:50% 100%;background-image:linear-gradient(rgba(255,48,59,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,48,59,.4) 1px,transparent 1px);background-size:26px 26px;animation:stageFloor 3.2s linear infinite;-webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
+    :root[data-theme="light"] .work-stage{--w-bg:#fff;--w-bg2:#eceef3;--w-line:rgba(20,20,30,.13);--w-ink:#2a2a33;--w-dim:rgba(20,20,30,.12);background:radial-gradient(ellipse 80% 70% at 50% 108%,rgba(233,35,49,.16),transparent 68%),linear-gradient(180deg,#eef0f5,#e2e5ec)}
+    .ws3d{position:absolute;left:50%;top:0;width:340px;height:100%;margin-left:-170px;transform-style:preserve-3d}
+    .ws-web .ws3d{transform:rotateX(12deg) rotateY(-24deg);animation:wsSwayA 9s ease-in-out infinite alternate}
+    .ws-social .ws3d{transform:rotateX(10deg) rotateY(-16deg);animation:wsSwayB 9s ease-in-out infinite alternate}
+    .ws-video .ws3d{transform:rotateX(10deg) rotateY(-22deg);animation:wsSwayA 10s ease-in-out infinite alternate}
+    .work-stage .win,.work-stage .post,.work-stage .vf,.work-stage .tl,.work-stage .cal{position:absolute;border-radius:10px;background:var(--w-bg);border:1px solid var(--w-line);box-shadow:0 18px 34px rgba(0,0,0,.42)}
+    :root[data-theme="light"] .work-stage .win,:root[data-theme="light"] .work-stage .post,:root[data-theme="light"] .work-stage .vf,:root[data-theme="light"] .work-stage .tl,:root[data-theme="light"] .work-stage .cal{box-shadow:0 16px 30px rgba(20,20,40,.16)}
+
+    /* websites */
+    .win{overflow:hidden;animation:stageFloat 6.5s ease-in-out infinite}
+    .win .wbar{display:flex;gap:4px;padding:7px 9px;border-bottom:1px solid var(--w-line)}
+    .win .wbar i{width:6px;height:6px;border-radius:50%;background:#ff5f57}.win .wbar i:nth-child(2){background:#febc2e}.win .wbar i:nth-child(3){background:#28c840}
+    .w1{left:98px;top:20px;width:196px;height:118px;transform:translateZ(-64px);background:var(--w-bg2);animation-delay:-2s}
+    .w1 .blk{display:block;height:8px;margin:12px 12px 0;border-radius:4px;background:var(--w-dim)}.w1 .blk.b2{width:55%}
+    .w2{left:42px;top:44px;width:208px;height:130px;transform:translateZ(0);animation-delay:-.6s}
+    .hero-blk{display:block;height:44px;margin:10px;border-radius:7px;background:linear-gradient(120deg,#ff303b,#ff8a62)}
+    .cards3{display:flex;gap:7px;margin:0 10px}.cards3 i{flex:1;height:30px;border-radius:6px;background:var(--w-bg2);border:1px solid var(--w-line)}
+    .w3{left:178px;top:106px;width:142px;height:76px;padding:11px 12px;transform:translateZ(64px);animation-delay:-3.4s;background:#101015;border-color:rgba(255,255,255,.16)}
+    .w3 .cl{display:block;height:5px;width:var(--w);margin:7px 0;border-radius:3px;background:linear-gradient(90deg,#ff5962,#ff9a62);animation:typeLine 5s ease-out infinite;animation-delay:calc(var(--i) * .35s)}
+    .w3 .cl.alt{margin-left:10px;background:linear-gradient(90deg,#8f9bff,#5fd3ff)}
+    .cur{position:absolute;left:246px;top:150px;transform:translateZ(96px);filter:drop-shadow(0 5px 8px rgba(0,0,0,.5));animation:curMove 6s ease-in-out infinite}
+
+    /* social */
+    .cal{left:36px;top:18px;width:196px;height:104px;padding:12px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px;transform:translateZ(-62px);background:var(--w-bg2);animation:stageFloat 7s ease-in-out infinite -1.5s}
+    .cal i{border-radius:4px;background:var(--w-dim)}.cal i.on{background:linear-gradient(135deg,#ff4954,#d9202c)}
+    .post{width:94px;height:128px;padding:8px;display:flex;flex-direction:column;gap:7px;animation:stageFloat 6s ease-in-out infinite}
+    .p1{left:64px;top:48px;transform:translateZ(8px) rotateZ(-9deg);animation-delay:-1s}
+    .p3{left:196px;top:46px;transform:translateZ(14px) rotateZ(9deg);animation-delay:-2.6s}
+    .p2{left:130px;top:34px;transform:translateZ(54px);animation-delay:-.3s}
+    .phead{display:flex;align-items:center;gap:6px}.av{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,#ff4954,#ff9a62)}.ln{height:4px;flex:1;border-radius:3px;background:var(--w-dim)}
+    .img{display:block;flex:1;border-radius:6px}
+    .img.g1{background:linear-gradient(150deg,#5a6bff,#2d2f7a)}.img.g2{background:linear-gradient(150deg,#ff4954,#ff9a62)}.img.g3{background:linear-gradient(150deg,#27c2a6,#1c5c7a)}
+    .act{display:flex;gap:6px}.act i{width:10px;height:10px;border-radius:50%;background:var(--w-dim)}.act i.liked{background:var(--red);box-shadow:0 0 8px rgba(255,48,59,.7);animation:likePulse 2.4s ease-in-out infinite}
+    .chip{position:absolute;left:218px;top:30px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;color:#fff;background:linear-gradient(145deg,#ff4954,#d9202c);box-shadow:0 10px 22px rgba(255,48,59,.5);transform:translateZ(90px);animation:chipPop 3.6s ease-in-out infinite}
+
+    /* video */
+    .vf{width:222px;height:126px;overflow:hidden;animation:stageFloat 7s ease-in-out infinite}
+    .vf.va{left:50px;top:26px;transform:translateZ(8px)}
+    .vf.vb{left:84px;top:14px;transform:translateZ(-56px);opacity:.65;background:var(--w-bg2);animation-delay:-2.4s}
+    .vscreen{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(150deg,#ff303b,#ff8a62 55%,#6a3cff)}
+    .vscreen:before{content:"";position:absolute;inset:-20% 0;background:repeating-linear-gradient(0deg,transparent 0 14px,rgba(255,255,255,.09) 14px 16px);animation:filmRoll 1.8s linear infinite}
+    .vplay{position:relative;width:0;height:0;margin-left:5px;border-style:solid;border-width:13px 0 13px 21px;border-color:transparent transparent transparent #fff;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4));animation:playPulse 2.4s ease-in-out infinite}
+    .tl{left:40px;top:162px;width:262px;height:30px;padding:5px;display:flex;gap:4px;transform:translateZ(54px);background:#101015;overflow:hidden}
+    .tl .clip{height:100%;border-radius:4px}.c1{flex:3;background:linear-gradient(90deg,#ff4954,#d9202c)}.c2{flex:2;background:linear-gradient(90deg,#5a6bff,#3a3fb0)}.c3{flex:3;background:linear-gradient(90deg,#27c2a6,#1c7a7a)}.c4{flex:2;background:linear-gradient(90deg,#ff9a62,#e0602c)}
+    .tl .head{position:absolute;top:0;bottom:0;left:6px;width:2px;background:#fff;box-shadow:0 0 10px rgba(255,255,255,.9);animation:playhead 6s linear infinite}
+    .fstrip{position:absolute;left:290px;top:22px;width:34px;height:142px;border-radius:5px;transform:translateZ(-22px);background:#0b0b0e;border:1px solid rgba(255,255,255,.12);background-image:repeating-linear-gradient(180deg,transparent 0 9px,rgba(255,255,255,.4) 9px 15px),repeating-linear-gradient(180deg,transparent 0 9px,rgba(255,255,255,.4) 9px 15px);background-size:5px 100%,5px 100%;background-position:3px 0,calc(100% - 3px) 0;background-repeat:repeat-y;animation:stripRoll 2.4s linear infinite}
+    :root[data-theme="light"] .fstrip{background-color:#2a2a33}
+
+    .work-section-paused .work-stage *,.work-section-paused .work-stage:before{animation-play-state:paused!important}
+
+    /* scroll reveal: same restrained rise as the services cards */
+    .motion-ready .work-grid .work-card.motion-reveal{opacity:0;transform:perspective(1000px) rotateX(14deg) translateY(38px);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--motion-delay,0ms)}
+    .motion-ready .work-grid .work-card.motion-reveal.is-visible{opacity:1;transform:none}
+
+    @keyframes stageFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}
+    @keyframes stageFloor{to{background-position:0 26px}}
+    @keyframes wsSwayA{from{transform:rotateX(12deg) rotateY(-30deg)}to{transform:rotateX(10deg) rotateY(-16deg)}}
+    @keyframes wsSwayB{from{transform:rotateX(10deg) rotateY(-22deg)}to{transform:rotateX(8deg) rotateY(-9deg)}}
+    @keyframes curMove{0%,100%{translate:0 0}40%{translate:-54px -22px}70%{translate:-20px 8px}}
+    @keyframes likePulse{0%,100%{transform:scale(1)}15%{transform:scale(1.5)}30%{transform:scale(1)}}
+    @keyframes chipPop{0%,100%{translate:0 0;scale:1}50%{translate:0 -8px;scale:1.08}}
+    @keyframes playhead{from{left:6px}to{left:252px}}
+    @keyframes stripRoll{to{background-position:3px 15px,calc(100% - 3px) 15px}}
+
+    @media(max-width:1000px){.work-grid{grid-template-columns:1fr;max-width:560px;margin-inline:auto}}
+    @media(max-width:420px){.ws3d{scale:.88}}
+    @media(max-width:560px){#work:after{height:260px}.work-inner{transform:none!important}.work-grid .work-card-copy{padding:20px}}
+    @media(prefers-reduced-motion:reduce){
+      .motion-ready .work-grid .work-card.motion-reveal{opacity:1;transform:none;transition:none}
+      .work-inner{transition:none!important;transform:none!important}
+      .work-stage *,.work-stage:before,.ws3d{animation:none!important}
+      .work-grid .work-card h3,.work-grid .work-card .label,.work-grid .work-card p,.work-grid .work-card .work-foot,.work-grid .video-category-links{transform:none}
+      .w3 .cl{width:var(--w)}
     }
   </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
@@ -707,15 +813,43 @@
         <div class="section-head"><div><div class="kicker work-kicker">Our Work</div><h2>Ideas made for the<br>digital world.</h2></div><p class="section-intro">Explore our work across website development, social media marketing and video editing.</p></div>
         <div class="work-grid">
           <article class="work-card">
-            <div class="work-card-copy"><span class="label">01 / Websites</span><h3>Website<br>Development</h3><p>Explore website projects, landing pages and digital experiences created for businesses.</p><span class="work-foot">WEBSITE DEVELOPMENT ↗</span></div>
+            <div class="work-inner">
+              <div class="work-stage ws-web" aria-hidden="true"><div class="ws3d">
+                <div class="win w1"><span class="wbar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span></div>
+                <div class="win w2"><span class="wbar"><i></i><i></i><i></i></span><span class="hero-blk"></span><span class="cards3"><i></i><i></i><i></i></span></div>
+                <div class="win w3"><span class="cl" style="--w:72%;--i:0"></span><span class="cl alt" style="--w:88%;--i:1"></span><span class="cl" style="--w:54%;--i:2"></span><span class="cl alt" style="--w:66%;--i:3"></span></div>
+                <svg class="cur" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.6L9.8 19z" fill="#fff" stroke="#0a0a0c" stroke-width="1.4" stroke-linejoin="round"/></svg>
+              </div></div>
+              <div class="work-card-copy"><span class="label">01 / Websites</span><h3>Website<br>Development</h3><p>Explore website projects, landing pages and digital experiences created for businesses.</p><span class="work-foot">WEBSITE DEVELOPMENT ↗</span></div>
+              <span class="work-glare" aria-hidden="true"></span>
+            </div>
           </article>
           <article class="work-card">
-            <div class="work-card-copy"><span class="label">02 / Social</span><h3>Social Media<br>Marketing</h3><p>Explore social media campaigns, content calendars, brand creatives and marketing projects.</p><span class="work-foot">SOCIAL MEDIA MARKETING ↗</span></div>
+            <div class="work-inner">
+              <div class="work-stage ws-social" aria-hidden="true"><div class="ws3d">
+                <div class="cal"><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i></div>
+                <div class="post p1"><span class="phead"><span class="av"></span><span class="ln"></span></span><span class="img g1"></span><span class="act"><i></i><i></i><i></i></span></div>
+                <div class="post p3"><span class="phead"><span class="av"></span><span class="ln"></span></span><span class="img g3"></span><span class="act"><i></i><i></i><i></i></span></div>
+                <div class="post p2"><span class="phead"><span class="av"></span><span class="ln"></span></span><span class="img g2"></span><span class="act"><i class="liked"></i><i></i><i></i></span></div>
+                <span class="chip"><svg viewBox="0 0 24 24" width="13" height="13"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.7 4.5 6.4 4.5c2 0 3.6 1 5.6 3.2 2-2.2 3.6-3.2 5.6-3.2 3.7 0 5.5 3.9 4 7.3C19.5 16.4 12 21 12 21z" fill="currentColor"/></svg></span>
+              </div></div>
+              <div class="work-card-copy"><span class="label">02 / Social</span><h3>Social Media<br>Marketing</h3><p>Explore social media campaigns, content calendars, brand creatives and marketing projects.</p><span class="work-foot">SOCIAL MEDIA MARKETING ↗</span></div>
+              <span class="work-glare" aria-hidden="true"></span>
+            </div>
           </article>
           <article class="work-card">
-            <div class="work-card-copy"><span class="label">03 / Video</span><h3>Video<br>Editing</h3><p>Choose the type of video work you want to explore: AI-generated videos or real-footage edits.</p>
-              <div class="video-category-links"><button type="button" class="textlink video-category-open" data-video-category="ai">AI Videos ↗</button><button type="button" class="textlink video-category-open" data-video-category="real">Real Videos ↗</button></div>
-              <span class="work-foot">VIDEO EDITING ↗</span>
+            <div class="work-inner">
+              <div class="work-stage ws-video" aria-hidden="true"><div class="ws3d">
+                <div class="vf vb"></div>
+                <div class="vf va"><span class="vscreen"><span class="vplay"></span></span></div>
+                <div class="tl"><span class="clip c1"></span><span class="clip c2"></span><span class="clip c3"></span><span class="clip c4"></span><span class="head"></span></div>
+                <div class="fstrip"></div>
+              </div></div>
+              <div class="work-card-copy"><span class="label">03 / Video</span><h3>Video<br>Editing</h3><p>Choose the type of video work you want to explore: AI-generated videos or real-footage edits.</p>
+                <div class="video-category-links"><button type="button" class="textlink video-category-open" data-video-category="ai">AI Videos ↗</button><button type="button" class="textlink video-category-open" data-video-category="real">Real Videos ↗</button></div>
+                <span class="work-foot">VIDEO EDITING ↗</span>
+              </div>
+              <span class="work-glare" aria-hidden="true"></span>
             </div>
           </article>
         </div>
@@ -1285,8 +1419,8 @@
     })();
   
     // Services: gentle pointer tilt with a moving highlight (mouse only, off for reduced motion).
-    (function(){
-      const cards = document.querySelectorAll('#services .service');
+    function initCardTilt(selector){
+      const cards = document.querySelectorAll(selector);
       if (!cards.length || !window.matchMedia) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -1313,6 +1447,16 @@
           card.style.setProperty('--ry', '0deg');
         });
       });
+    }
+    initCardTilt('#services .service');
+    initCardTilt('#work .work-card');
+    // Pause the Our Work scene animations while the section is off-screen.
+    (function(){
+      const sec = document.getElementById('work');
+      if (!sec || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ sec.classList.toggle('work-section-paused', !e.isIntersecting); });
+      }, {threshold: 0}).observe(sec);
     })();
   </script>
 </body>
