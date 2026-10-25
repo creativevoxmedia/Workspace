@@ -36,6 +36,7 @@
     "priceRange": "Contact for pricing"
   }
   </script>
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/addons/"}}</script>
   <style>
     :root{color-scheme:dark;--bg:#0a0a0c;--panel:#121216;--panel2:#18181d;--text:#f7f7f8;--muted:#a4a4ad;--line:rgba(255,255,255,.11);--red:#ff303b;--red2:#ff5962;--max:1160px}
     :root[data-theme="light"]{color-scheme:light;--bg:#f7f7f9;--panel:#ffffff;--panel2:#f0f0f3;--text:#18181c;--muted:#62626d;--line:rgba(20,20,30,.14);--red:#e92331;--red2:#d8202d}
@@ -679,6 +680,10 @@
       .work-grid .work-card h3,.work-grid .work-card .label,.work-grid .work-card p,.work-grid .work-card .work-foot,.work-grid .video-category-links{transform:none}
       .w3 .cl{width:var(--w)}
     }
+    /* Three.js layer behind the hero (added by js/hero-three.js on capable desktops) */
+    .hero-gl{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.6s ease}
+    .hero-gl.is-on{opacity:1}
+    .hero.three-on .rings,.hero.three-on .pts{display:none}
   </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 </head>
@@ -1457,6 +1462,28 @@
       new IntersectionObserver(function(entries){
         entries.forEach(function(e){ sec.classList.toggle('work-section-paused', !e.isIntersecting); });
       }, {threshold: 0}).observe(sec);
+    })();
+      // Premium WebGL layer (Three.js) for the hero. Lazy-loaded after the page is idle, desktop only;
+    // phones, reduced-motion, data-saver and browsers without WebGL keep the lightweight CSS scene.
+    (function(){
+      const hero = document.getElementById('home');
+      const art = hero && hero.querySelector('.hero-art');
+      if (!hero || !art || !window.matchMedia) return;
+      const mq = function(q){ return window.matchMedia(q).matches; };
+      if (mq('(prefers-reduced-motion: reduce)') || !mq('(min-width: 900px)') || !mq('(hover: hover) and (pointer: fine)')) return;
+      if (navigator.connection && navigator.connection.saveData) return;
+      try {
+        const probe = document.createElement('canvas');
+        if (!(probe.getContext('webgl2') || probe.getContext('webgl'))) return;
+      } catch (e) { return; }
+      function boot(){
+        import('./js/hero-three.js')
+          .then(function(m){ return m.mountHeroScene({hero: hero, anchor: art}); })
+          .then(function(ctrl){ if (ctrl) hero.classList.add('three-on'); })
+          .catch(function(err){ console.warn('3D layer skipped:', err); });
+      }
+      if (document.readyState === 'complete') setTimeout(boot, 300);
+      else window.addEventListener('load', function(){ setTimeout(boot, 300); }, {once: true});
     })();
   </script>
 </body>
