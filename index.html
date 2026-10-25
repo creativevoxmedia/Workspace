@@ -1313,7 +1313,7 @@
         },
         {
           id:'fazil', initial:'FA', name:'Fazil Ali Portfolio', type:'Personal portfolio website',
-          url:'', host:'fazilaliprofile / portfolio', source:'https://github.com/fazilaliprofile/portfolio',
+          url:'https://fazilaliprofile.github.io/portfolio/', host:'fazilaliprofile.github.io/portfolio', source:'https://github.com/fazilaliprofile/portfolio',
           headline:'Business Analyst Portfolio', glow:'rgba(80,140,255,.34)',
           desc:'A professional portfolio for a Business Analyst working in data, market research and business development.',
           points:['Sections for About, Experience, Skills & Analytics, Featured Projects, Education and Certifications','A separate Research Dashboard page','MONDAY, a personal AI assistant page','Clean, content-first layout'],
@@ -1337,7 +1337,6 @@
         const tags=el('div','web-tags'); p.tags.forEach(t=>tags.appendChild(el('span',null,t))); info.appendChild(tags);
         const act=el('div','web-actions');
         if(p.url) act.appendChild(link(p.url,'Visit live site ↗','button'));
-        if(p.source) act.appendChild(link(p.source,'View source ↗','button secondary'));
         info.appendChild(act);
         detail.append(br,info);
       }
