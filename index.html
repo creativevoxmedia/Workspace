@@ -685,7 +685,42 @@
     .hero-gl{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.6s ease}
     .hero-gl.is-on{opacity:1}
     .hero.three-on .rings,.hero.three-on .pts{display:none}
-  </style>
+  
+    /* ===== Website Development projects popup ===== */
+    .work-card-web{cursor:pointer}
+    .web-dialog{width:min(900px,calc(100% - 28px));max-height:min(90vh,880px);overflow:auto;padding:0;border:1px solid var(--line);border-radius:18px;background:var(--panel);color:var(--text);box-shadow:0 28px 100px #0009}
+    .web-dialog::backdrop{background:rgba(0,0,0,.76);backdrop-filter:blur(5px)}
+    .web-dialog-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:24px 28px;border-bottom:1px solid var(--line);position:relative}
+    .web-dialog-head h2{font-size:clamp(25px,4vw,36px);margin-top:7px}
+    .web-dialog-head .dialog-close{position:static;flex:none}
+    .web-dialog-body{padding:22px 28px 28px}
+    .web-picker{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+    .web-pick{display:flex;align-items:center;gap:10px;padding:10px 16px 10px 12px;border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--text);font:inherit;font-size:13px;font-weight:750;cursor:pointer;transition:border-color .25s,background-color .25s}
+    .web-pick i{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:8px;background:linear-gradient(145deg,#ff4954,#d9202c);color:#fff;font-style:normal;font-size:12px;font-weight:900}
+    .web-pick:hover{border-color:var(--red)}
+    .web-pick[aria-selected="true"]{border-color:var(--red);background:rgba(255,48,59,.10)}
+    .web-detail{display:grid;grid-template-columns:1.15fr 1fr;gap:26px;align-items:start}
+    .browser{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#0c0c10;box-shadow:0 18px 44px rgba(0,0,0,.4)}
+    .browser-bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#18181d;border-bottom:1px solid #26262d}
+    .browser-bar i{width:9px;height:9px;border-radius:50%;background:#44444d}
+    .browser-bar i:first-child{background:#ff5f57}.browser-bar i:nth-child(2){background:#febc2e}.browser-bar i:nth-child(3){background:#28c840}
+    .browser-url{margin-left:8px;flex:1;min-width:0;padding:4px 10px;border-radius:6px;background:#0c0c10;color:#9a9aa6;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .browser-screen{position:relative;aspect-ratio:16/10;padding:8% 9%;display:flex;flex-direction:column;justify-content:center;gap:10px;color:#f7f7f8;background:radial-gradient(ellipse 70% 70% at 70% 30%,var(--g1,rgba(255,48,59,.35)),transparent 70%),#0c0c10}
+    .browser-screen b{font-size:clamp(15px,2.4vw,24px);line-height:1.15;letter-spacing:-.02em;max-width:80%}
+    .browser-screen small{color:#a4a4ad;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800}
+    .browser-screen span{display:block;height:7px;border-radius:4px;background:rgba(255,255,255,.14)}
+    .browser-screen span:nth-of-type(1){width:62%}.browser-screen span:nth-of-type(2){width:46%}
+    .browser-screen em{align-self:flex-start;margin-top:4px;padding:6px 12px;border-radius:7px;background:var(--red);font-style:normal;font-size:10px;font-weight:800}
+    .web-info .kicker{margin-bottom:8px}
+    .web-info h3{font-size:22px;margin:0 0 10px}
+    .web-info p{color:var(--muted);font-size:13.5px;line-height:1.75;margin:0 0 14px}
+    .web-info ul{margin:0 0 18px;padding-left:18px;color:var(--text);font-size:13px;line-height:1.8}
+    .web-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+    .web-tags span{padding:4px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:11px;font-weight:750}
+    .web-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .web-cta{margin-top:24px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+    @media(max-width:700px){.web-detail{grid-template-columns:1fr}.web-dialog-head{padding:22px 18px}.web-dialog-body{padding:18px}}
+</style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 </head>
 <body>
@@ -818,7 +853,7 @@
       <div class="wrap">
         <div class="section-head"><div><div class="kicker work-kicker">Our Work</div><h2>Ideas made for the<br>digital world.</h2></div><p class="section-intro">Explore our work across website development, social media marketing and video editing.</p></div>
         <div class="work-grid">
-          <article class="work-card">
+          <article class="work-card work-card-web" id="work-web-card">
             <div class="work-inner">
               <div class="work-stage ws-web" aria-hidden="true"><div class="ws3d">
                 <div class="win w1"><span class="wbar"><i></i><i></i><i></i></span><span class="blk b1"></span><span class="blk b2"></span></div>
@@ -826,7 +861,8 @@
                 <div class="win w3"><span class="cl" style="--w:72%;--i:0"></span><span class="cl alt" style="--w:88%;--i:1"></span><span class="cl" style="--w:54%;--i:2"></span><span class="cl alt" style="--w:66%;--i:3"></span></div>
                 <svg class="cur" viewBox="0 0 24 24" width="26" height="26"><path d="M4 2l15 9-6.5 1.6L9.8 19z" fill="#fff" stroke="#0a0a0c" stroke-width="1.4" stroke-linejoin="round"/></svg>
               </div></div>
-              <div class="work-card-copy"><span class="label">01 / Websites</span><h3>Website<br>Development</h3><p>Explore website projects, landing pages and digital experiences created for businesses.</p><span class="work-foot">WEBSITE DEVELOPMENT ↗</span></div>
+              <div class="work-card-copy"><span class="label">01 / Websites</span><h3>Website<br>Development</h3><p>Explore website projects, landing pages and digital experiences created for businesses.</p><div class="video-category-links"><button type="button" class="textlink web-projects-open">View Projects ↗</button></div>
+                <span class="work-foot">WEBSITE DEVELOPMENT ↗</span></div>
               <span class="work-glare" aria-hidden="true"></span>
             </div>
           </article>
@@ -898,6 +934,18 @@
             </article>
           </div>
         </section>
+      </div>
+    </dialog>
+
+    <dialog class="web-dialog" id="web-dialog" aria-labelledby="web-dialog-title">
+      <div class="web-dialog-head">
+        <div><div class="kicker">Our Work / Website Development</div><h2 id="web-dialog-title">Website Projects</h2></div>
+        <button class="dialog-close" type="button" id="web-dialog-close" aria-label="Close website projects">×</button>
+      </div>
+      <div class="web-dialog-body">
+        <div class="web-picker" id="web-picker" role="tablist" aria-label="Choose a project"></div>
+        <div class="web-detail" id="web-detail" role="tabpanel" aria-live="polite"></div>
+        <div class="web-cta"><span>Want a website like this for your business?</span><a class="button" href="#contact" id="web-dialog-cta">Start a Project <span aria-hidden="true">↗</span></a></div>
       </div>
     </dialog>
 
@@ -1251,6 +1299,61 @@
       if (event.target === videoCategoryDialog) videoCategoryDialog.close();
     });
     videoCategoryDialog.addEventListener('close', stopAndResetCategoryVideos);
+
+    // Website Development: project popup (add new projects to this list)
+    (function(){
+      const projects = [
+        {
+          id:'creativevox', initial:'CV', name:'CreativeVox Media Website', type:'Agency website · Our own site',
+          url:'https://creativevoxmedia.github.io/Workspace/', host:'creativevoxmedia.github.io/Workspace', source:'https://github.com/creativevoxmedia/Workspace',
+          headline:'Creative that makes your brand stand out.', glow:'rgba(255,48,59,.38)',
+          desc:'Our own agency website: a fast single-page site that presents services, work and process clearly and makes it easy to start a project.',
+          points:['Cinematic 3D hero built with Three.js, with a lightweight CSS fallback','Interactive service and work cards with detail popups','Dark and light themes, responsive on mobile, optional interface sounds','Hosted on GitHub Pages: no build step, quick to load'],
+          tags:['HTML','CSS','JavaScript','Three.js','Responsive']
+        },
+        {
+          id:'fazil', initial:'FA', name:'Fazil Ali Portfolio', type:'Personal portfolio website',
+          url:'', host:'fazilaliprofile / portfolio', source:'https://github.com/fazilaliprofile/portfolio',
+          headline:'Business Analyst Portfolio', glow:'rgba(80,140,255,.34)',
+          desc:'A professional portfolio for a Business Analyst working in data, market research and business development.',
+          points:['Sections for About, Experience, Skills & Analytics, Featured Projects, Education and Certifications','A separate Research Dashboard page','MONDAY, a personal AI assistant page','Clean, content-first layout'],
+          tags:['HTML','CSS','JavaScript','Portfolio']
+        }
+      ];
+      const dlg=document.getElementById('web-dialog'), picker=document.getElementById('web-picker'), detail=document.getElementById('web-detail');
+      if(!dlg||!picker||!detail) return;
+      function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!=null)n.textContent=text;return n;}
+      function link(href,label,cls){const a=el('a',cls,label);a.href=href;a.target='_blank';a.rel='noopener noreferrer';return a;}
+      function show(id){
+        const p=projects.find(x=>x.id===id)||projects[0];
+        picker.querySelectorAll('.web-pick').forEach(b=>b.setAttribute('aria-selected',b.dataset.id===p.id?'true':'false'));
+        detail.textContent='';
+        const br=el('div','browser'); br.style.setProperty('--g1',p.glow);
+        const bar=el('div','browser-bar'); bar.append(el('i'),el('i'),el('i'),el('div','browser-url',p.host)); br.appendChild(bar);
+        const sc=el('div','browser-screen'); sc.append(el('small',null,p.name),el('b',null,p.headline),el('span'),el('span'),el('em',null,'Get in touch')); br.appendChild(sc);
+        const info=el('div','web-info');
+        info.append(el('div','kicker',p.type),el('h3',null,p.name),el('p',null,p.desc));
+        const ul=el('ul'); p.points.forEach(t=>ul.appendChild(el('li',null,t))); info.appendChild(ul);
+        const tags=el('div','web-tags'); p.tags.forEach(t=>tags.appendChild(el('span',null,t))); info.appendChild(tags);
+        const act=el('div','web-actions');
+        if(p.url) act.appendChild(link(p.url,'Visit live site ↗','button'));
+        if(p.source) act.appendChild(link(p.source,'View source ↗','button secondary'));
+        info.appendChild(act);
+        detail.append(br,info);
+      }
+      projects.forEach(p=>{
+        const b=el('button','web-pick'); b.type='button'; b.dataset.id=p.id; b.setAttribute('role','tab');
+        b.append(el('i',null,p.initial),document.createTextNode(p.name));
+        b.addEventListener('click',()=>show(p.id)); picker.appendChild(b);
+      });
+      function open(){ show(projects[0].id); if(typeof dlg.showModal==='function') dlg.showModal(); }
+      document.querySelectorAll('.web-projects-open').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();open();}));
+      const card=document.getElementById('work-web-card');
+      if(card) card.addEventListener('click',e=>{ if(e.target.closest('a,button')) return; open(); });
+      document.getElementById('web-dialog-close').addEventListener('click',()=>dlg.close());
+      document.getElementById('web-dialog-cta').addEventListener('click',()=>dlg.close());
+      dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
+    })();
 
     const supportDetails = {
       startups: {tag:"01 / Startups & New Ventures",title:"Launch with confidence",description:"Build a strong foundation with a professional website, brand identity, engaging content and digital marketing that helps your business reach the right audience.",cta:"Discuss Your Launch ↗"},
