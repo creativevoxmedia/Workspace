@@ -63,6 +63,7 @@
     .theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:8px 11px;border:1px solid var(--line);border-radius:9px;background:transparent;color:var(--text);font-size:12px;font-weight:800;white-space:nowrap;cursor:pointer}
     .theme-toggle:hover{border-color:var(--red)}
     .theme-toggle-icon{font-size:16px;line-height:1}
+    @media(max-width:560px){.sound-toggle .sound-label{display:none}.sound-toggle{padding:8px 9px}}
     @media(max-width:850px){.theme-toggle{align-self:flex-start;margin:6px 0 0 10px}}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth;scroll-padding-top:86px}
@@ -1486,5 +1487,6 @@
       else window.addEventListener('load', function(){ setTimeout(boot, 300); }, {once: true});
     })();
   </script>
+  <script src="./js/sound.js?v=1" defer></script>
 </body>
 </html>
