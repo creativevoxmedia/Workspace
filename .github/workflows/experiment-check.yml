@@ -1,0 +1,45 @@
+name: Experiment HTML checks
+on:
+  push:
+    branches: [experiment-work-space]
+    paths:
+      - 'experiment/index.html'
+      - '.github/workflows/experiment-check.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'experiment/index.html'
+jobs:
+  html-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Check experiment HTML structure
+        run: |
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import re
+          p = Path('experiment/index.html')
+          html = p.read_text(encoding='utf-8')
+          class Check(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.ids=set(); self.links=[]; self.tags=[]
+              def handle_starttag(self, tag, attrs):
+                  self.tags.append(tag)
+                  a=dict(attrs)
+                  if 'id' in a: self.ids.add(a['id'])
+                  if tag == 'a' and a.get('href','').startswith('#'): self.links.append(a['href'][1:])
+          c=Check(); c.feed(html); c.close()
+          assert html.lower().lstrip().startswith('<!doctype html>'), 'Missing HTML5 doctype'
+          assert '<meta name="viewport"' in html, 'Missing responsive viewport meta'
+          assert '<title>' in html and '</title>' in html, 'Missing page title'
+          for section in ('services','work','process','contact'):
+              assert section in c.ids, f'Missing required section: {section}'
+          for target in c.links:
+              assert target in c.ids, f'Broken in-page anchor: #{target}'
+          assert re.search(r'@media\s*\(max-width:\s*700px\)', html), 'Missing mobile responsive CSS'
+          assert 'bootstrap@5.3.8' in html, 'Expected stable Bootstrap 5.3.8 CDN reference not found'
+          print('PASS: HTML structure, required sections, in-page links, responsive CSS and Bootstrap reference')
+          PY
