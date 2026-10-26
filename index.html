@@ -885,7 +885,7 @@
                 <span class="chip">↗</span>
               </div></div>
               <div class="work-card-copy"><span class="label">03 / Campaign Strategy</span><h3>Performance<br>Marketing</h3><p>Explore campaign blueprints for Meta Ads, Google Ads, lead generation and e-commerce sales—covering objectives, audience strategy, creative direction and measurement.</p>
-                <div class="video-category-links"><a class="textlink" href="#performance-campaign-blueprints">Explore Campaigns ↗</a></div>
+                <div class="video-category-links"><button type="button" class="textlink" id="performance-campaigns-open">Explore Campaigns ↗</button></div>
                 <span class="work-foot">PERFORMANCE MARKETING ↗</span></div>
               <span class="work-glare" aria-hidden="true"></span>
             </div>
@@ -907,7 +907,7 @@
           </article>
         </div>
 
-        <section id="performance-campaign-blueprints" class="performance-blueprints" aria-labelledby="performance-blueprints-title" style="margin-top:34px">
+        <dialog id="performance-campaigns-dialog" class="video-category-dialog" aria-labelledby="performance-blueprints-title"><div class="video-category-dialog-head"><div><div class="kicker">Our Work / Performance Marketing</div><h2 id="performance-blueprints-title">Campaign blueprints.</h2></div><button type="button" class="dialog-close" id="performance-campaigns-close" aria-label="Close campaign blueprints">×</button></div><div class="video-category-dialog-body"><section class="performance-blueprints" aria-labelledby="performance-blueprints-title" style="margin-top:10px">
           <div class="section-head"><div><div class="kicker">Performance Marketing</div><h2 id="performance-blueprints-title">Campaign blueprints.</h2></div><p class="section-intro">Explore sample campaign concepts, the strategy behind each plan and the metrics used to evaluate performance.</p></div>
           <div class="real-video-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px">
             <article class="real-video-project" style="padding:18px;border:1px solid var(--line);border-radius:18px"><div style="min-height:120px;border-radius:12px;padding:18px;background:linear-gradient(135deg,#26141b,#8b263b);display:flex;flex-direction:column;justify-content:space-between;color:white"><span style="font-size:10px;letter-spacing:.16em">SAMPLE AD CONCEPT / 01</span><strong style="font-size:24px">Make your next move.</strong><span style="font-size:11px">Product-led creative · Clear CTA</span></div><span class="label" style="display:block;margin-top:16px">01 / Meta Ads</span><h3 style="font-size:19px;margin:8px 0">Product & Brand Campaign</h3><p>Audience segments, creative angles, ad copy variations and a structured testing plan for awareness, traffic, leads or sales.</p><p style="margin-top:10px"><strong>Measure:</strong> reach, CTR, CPC and conversions.</p><button type="button" class="textlink performance-project-open" data-project="meta" style="margin-top:14px">View Project Plan ↗</button></article>
@@ -917,7 +917,7 @@
           </div>
           <p style="margin-top:16px;color:var(--muted);font-size:13px">These are illustrative campaign concepts, not claimed client results. Performance figures will be added only when supported by campaign data.</p>
           <a class="button" style="margin-top:8px;background:#167c4a" href="https://wa.me/918077851657?text=Hello%20CreativeVox%20Media%2C%20I%27d%20like%20to%20discuss%20a%20performance%20marketing%20campaign." target="_blank" rel="noopener noreferrer">Discuss a Campaign on WhatsApp ↗</a>
-        </section>
+        </section></div></dialog>
         <dialog id="performance-project-dialog" class="service-dialog" aria-labelledby="performance-project-title">
           <div class="service-dialog-head"><button class="dialog-close" type="button" id="performance-project-close" aria-label="Close campaign plan">×</button><div class="kicker">CreativeVox Media / Campaign Plan</div><h2 id="performance-project-title">Campaign plan</h2></div>
           <div class="service-dialog-body"><p id="performance-project-summary"></p><h3>Strategy outline</h3><ul id="performance-project-strategy" class="service-detail-list"></ul><h3>Creative direction</h3><p id="performance-project-creative"></p><h3>Measurement plan</h3><ul id="performance-project-metrics" class="service-detail-list"></ul><div class="service-dialog-actions"><a class="button" href="https://wa.me/918077851657?text=Hello%20CreativeVox%20Media%2C%20I%27d%20like%20to%20discuss%20a%20performance%20marketing%20campaign." target="_blank" rel="noopener noreferrer">Discuss on WhatsApp ↗</a><button class="button secondary" type="button" id="performance-project-dismiss">Close</button></div></div>
@@ -1156,6 +1156,10 @@
       applyTheme(nextTheme);
     });
 
+    const performanceCampaignsDialog = document.getElementById('performance-campaigns-dialog');
+    document.getElementById('performance-campaigns-open')?.addEventListener('click',()=>performanceCampaignsDialog?.showModal());
+    document.getElementById('performance-campaigns-close')?.addEventListener('click',()=>performanceCampaignsDialog?.close());
+    performanceCampaignsDialog?.addEventListener('click',event=>{if(event.target===performanceCampaignsDialog)performanceCampaignsDialog.close();});
     const performanceProjectDialog = document.getElementById('performance-project-dialog');
     const performanceProjectData = {
       meta:{title:'Meta Ads — Product & Brand Campaign',summary:'Goal: introduce a product or offer to a relevant audience and guide interested people toward the next step.',strategy:['Choose one primary objective: awareness, traffic, leads or sales.','Define audience segments using location, interests and available customer insights.','Test distinct creative hooks and copy variations with a controlled budget.','Review conversion signals before reallocating spend.'],creative:'Sample direction: a product-led visual, one clear customer benefit, concise copy and a single call to action. Final creative should reflect the actual product and brand.',metrics:['Reach and frequency','CTR and CPC','Landing-page views and conversion rate','Cost per lead or acquisition, depending on the goal.']},
