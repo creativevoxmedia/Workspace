@@ -719,6 +719,16 @@
     .web-actions{display:flex;gap:10px;flex-wrap:wrap}
     .web-cta{margin-top:24px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:13px}
     @media(max-width:700px){.web-detail{grid-template-columns:1fr}.web-dialog-head{padding:22px 18px}.web-dialog-body{padding:18px}}
+
+    /* Hero refinement: keep the orbital rings and main brand card only. */
+    .hero .floor,
+    .hero .beam,
+    .hero .obj,
+    .hero .floating-tag,
+    .hero .pts { display:none !important; }
+    .hero .ring::after { display:none !important; }
+    .hero .scene::before { background:none !important; animation:none !important; }
+    .hero .core::before { display:none !important; }
 </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 </head>
