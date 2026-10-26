@@ -206,12 +206,7 @@ export function mountHeroScene({ hero, anchor }) {
     rig.scale.setScalar(0.72 + 0.28 * ease);
 
     rings.forEach(r => { r.spin.rotation.z += dt * r.speed; });
-    solids.forEach(s => {
-      s.arm.rotation.z += dt * s.speed;
-      s.mesh.rotation.x += dt * s.spin[0];
-      s.mesh.rotation.y += dt * s.spin[1];
-      s.mesh.rotation.z += dt * s.spin[2];
-    });
+
 
     streak.material.opacity = 0.42 + Math.sin(t * 0.9) * 0.1;
     streakCore.material.opacity = 0.4 + Math.sin(t * 1.3 + 1) * 0.12;
