@@ -722,6 +722,25 @@
 
     /* Hero refinement: hide only the decorative rotating cube; preserve rings and other hero visuals. */
     .hero .o-cube { display:none !important; }
+
+/* Free Content Studio homepage promotion */
+.content-studio-promo{padding:clamp(64px,9vw,116px) 0;background:radial-gradient(ellipse at 80% 45%,rgba(255,48,59,.13),transparent 42%),#101014;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+.content-studio-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(34px,7vw,90px);align-items:center}
+.content-studio-copy h2{font-size:clamp(2.2rem,5vw,4.1rem);line-height:1.05;letter-spacing:-.045em;margin:16px 0}
+.content-studio-copy h2 span,.cs-preview-title span{color:var(--red,#ff303b)}
+.content-studio-copy>p{max-width:570px;color:var(--muted,#aaaab5);line-height:1.8}
+.content-studio-points{list-style:none;padding:0;margin:24px 0;display:grid;gap:11px;color:var(--text,#f5f5f6)}
+.content-studio-cta{display:inline-flex;gap:12px;align-items:center;margin-top:8px}
+.content-studio-preview{border:1px solid #34343c;border-radius:22px;padding:clamp(20px,3vw,30px);background:linear-gradient(145deg,#1b1b21,#101014);box-shadow:0 28px 80px #0005;transform:rotate(1deg)}
+.cs-preview-top{display:flex;align-items:center;gap:6px;padding-bottom:20px;border-bottom:1px solid #34343c}
+.cs-dot{width:8px;height:8px;border-radius:50%;background:#5b5b64}.cs-dot:first-child{background:#ff535b}
+.cs-preview-label{margin-left:auto;color:#aaaab5;font-size:.66rem;font-weight:800;letter-spacing:1.3px}
+.cs-preview-kicker{margin-top:28px;color:#ff747b;font-size:.7rem;font-weight:800;letter-spacing:2px}
+.cs-preview-title{font-size:clamp(2rem,4vw,3rem);font-weight:850;line-height:1.05;letter-spacing:-.04em;margin:10px 0 24px}
+.cs-preview-card{padding:16px;margin-top:12px;border:1px solid #363640;border-radius:13px;background:#131318;display:grid;gap:5px}
+.cs-preview-card>span{color:#ff747b;font-size:.65rem;font-weight:800;letter-spacing:1.2px}.cs-preview-card strong{font-size:1rem}.cs-preview-card small{color:#aaaab5;line-height:1.5}
+.cs-preview-card-alt{margin-left:22px}.cs-preview-foot{font-size:.62rem;letter-spacing:1.5px;color:#898993;margin-top:22px}
+@media(max-width:760px){.content-studio-inner{grid-template-columns:1fr}.content-studio-preview{transform:none}.content-studio-promo{padding:64px 0}.content-studio-copy h2{font-size:clamp(2.2rem,10vw,3.2rem)}}
 </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 </head>
@@ -735,7 +754,7 @@
       </a>
       <div style="display:flex;align-items:center;gap:8px"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme"><span class="theme-toggle-icon" id="theme-icon" aria-hidden="true">☀</span><span id="theme-label">Light</span></button><button class="menu-btn" id="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">Menu ☰</button></div>
       <nav class="navlinks" id="main-nav" aria-label="Main navigation">
-        <a href="#services">Services</a><a href="#industries">Who We Support</a><a href="#work">Our Work</a><a href="#insights">Our Approach</a><a href="#about">About</a><a href="#leadership">Leadership</a><a href="https://www.instagram.com/creativevox_media?mdxt=cGh4cHBic2NvcWlv&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on Instagram">Instagram ↗</a><a href="https://www.linkedin.com/company/creativevox-media/" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on LinkedIn">LinkedIn ↗</a>
+        <a href="#services">Services</a><a href="#industries">Who We Support</a><a href="#work">Our Work</a><a href="#insights">Our Approach</a><a href="#about">About</a><a href="#leadership">Leadership</a><a href="content-studio.html">Free Content Studio ↗</a><a href="https://www.instagram.com/creativevox_media?mdxt=cGh4cHBic2NvcWlv&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on Instagram">Instagram ↗</a><a href="https://www.linkedin.com/company/creativevox-media/" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on LinkedIn">LinkedIn ↗</a>
         <a class="button" href="#contact">Let's Talk <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
@@ -849,6 +868,24 @@
       <div class="service-dialog-body"><p id="service-dialog-intro"></p><h3>What we can do for you</h3><ul class="service-detail-list" id="service-dialog-deliverables"></ul><h3>How we work</h3><p id="service-dialog-process"></p><h3>What we need from you</h3><p id="service-dialog-inputs"></p><div class="service-dialog-actions"><a class="button" id="service-dialog-cta" href="#contact">Discuss this service ↗</a><button class="button secondary" type="button" id="service-dialog-dismiss">Close details</button></div></div>
     </dialog>
 
+    <section id="content-studio-promo" class="content-studio-promo">
+      <div class="wrap content-studio-inner">
+        <div class="content-studio-copy">
+          <div class="kicker">A free tool by CreativeVox Media</div>
+          <h2>Never run out of <span>content ideas.</span></h2>
+          <p>Tell us about your business and your goal. Get five practical Instagram post and Reel ideas to help you plan your next piece of content.</p>
+          <ul class="content-studio-points"><li>✓ Quick ideas for your industry</li><li>✓ Goals for engagement, leads, sales or awareness</li><li>✓ Free to try, no sign-up required</li></ul>
+          <a class="button content-studio-cta" href="content-studio.html">Try the Free Content Studio <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="content-studio-preview" aria-label="Content Studio preview" role="img">
+          <div class="cs-preview-top"><span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-preview-label">CREATIVEVOX AI STUDIO</span></div>
+          <div class="cs-preview-kicker">YOUR NEXT BIG IDEA</div><div class="cs-preview-title">Create with<br><span>purpose.</span></div>
+          <div class="cs-preview-card"><span>01 / REEL IDEA</span><strong>Behind the Scenes</strong><small>Show how your business brings value to customers.</small></div>
+          <div class="cs-preview-card cs-preview-card-alt"><span>02 / POST IDEA</span><strong>Myth vs. Fact</strong><small>Turn a common customer question into useful content.</small></div>
+          <div class="cs-preview-foot">YOUR IDEAS. OUR CREATIVE EXECUTION.</div>
+        </div>
+      </div>
+    </section>
     <section id="work">
       <div class="wrap">
         <div class="section-head"><div><div class="kicker work-kicker">Our Work</div><h2>Ideas made for the<br>digital world.</h2></div><p class="section-intro">Explore our website, social media, video and performance marketing work, including campaign strategies and creative breakdowns.</p></div>
