@@ -131,31 +131,7 @@ export function mountHeroScene({ hero, anchor }) {
     rings.push({ spin, speed: d.speed });
   });
 
-  // premium solids: lacquered red, graphite chrome and brushed silver
-  const lacquer = new THREE.MeshPhysicalMaterial({ color: 0xff2a36, metalness: 0.35, roughness: 0.2, clearcoat: 1, clearcoatRoughness: 0.08, envMapIntensity: 1.15 });
-  const graphite = new THREE.MeshStandardMaterial({ color: 0x7d808f, metalness: 1, roughness: 0.2, envMapIntensity: 1.25 });
-  const silver = new THREE.MeshStandardMaterial({ color: 0xdadce6, metalness: 1, roughness: 0.24, envMapIntensity: 1.2 });
-  const solids = [];
-  [
-    { geo: new THREE.IcosahedronGeometry(0.58, 0), mat: graphite, r: 3.35, tilt: [1.05, 0.0], speed: 0.14, phase: 0.2, spin: [0.5, 0.7, 0.2] },
-    { geo: new THREE.TorusGeometry(0.4, 0.15, 40, 80), mat: lacquer, r: 4.0, tilt: [0.82, 0.45], speed: -0.1, phase: 2.4, spin: [0.6, 0.3, 0.1] },
-    { geo: new RoundedBoxGeometry(0.8, 0.8, 0.8, 6, 0.14), mat: graphite, r: 4.6, tilt: [1.22, -0.35], speed: 0.065, phase: 4.1, spin: [0.3, 0.55, 0.25] },
-    { geo: new THREE.OctahedronGeometry(0.52, 0), mat: silver, r: 4.0, tilt: [0.82, 0.45], speed: -0.1, phase: 5.2, spin: [0.4, 0.6, 0.5] },
-    { geo: new THREE.SphereGeometry(0.32, 56, 56), mat: lacquer, r: 3.35, tilt: [1.05, 0.0], speed: 0.14, phase: 3.6, spin: [0.1, 0.2, 0.1] },
-    { geo: new THREE.DodecahedronGeometry(0.46, 0), mat: lacquer, r: 4.6, tilt: [1.22, -0.35], speed: 0.065, phase: 1.3, spin: [0.45, 0.35, 0.4] }
-  ].forEach(d => {
-    const tilt = new THREE.Group();
-    tilt.rotation.set(d.tilt[0], d.tilt[1], 0);
-    const arm = new THREE.Group();
-    arm.rotation.z = d.phase;
-    tilt.add(arm);
-    const mesh = new THREE.Mesh(d.geo, d.mat);
-    mesh.position.set(d.r, 0, 0);
-    arm.add(mesh);
-    rig.add(tilt);
-    solids.push({ arm, mesh, speed: d.speed, spin: d.spin });
-  });
-
+  // Decorative orbiting solids removed; keep the orbital rings and light beads.
   // depth particles: white dust and warm embers spread over the whole hero
   function makePoints(count, color, size, opacity, riseMin, riseMax) {
     const pos = new Float32Array(count * 3);
