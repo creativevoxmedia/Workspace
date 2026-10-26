@@ -22,25 +22,83 @@
 <div class="field"><label for="business">Business or brand name</label><input id="business" placeholder="e.g. Fresh Bloom Studio" maxlength="70" required></div>
 <div class="field"><label for="type">Business type</label><select id="type"><option value="general">Select your industry</option><option>Clothing & Fashion</option><option>Beauty & Salon</option><option>Food & Cafe</option><option>Fitness & Wellness</option><option>Education & Coaching</option><option>Real Estate</option><option>Professional Services</option><option>E-commerce</option><option>Local Business</option><option>Creator / Personal Brand</option></select></div>
 <div class="field full"><label for="goal">What do you want to achieve?</label><select id="goal"><option value="engagement">More engagement and followers</option><option value="leads">More enquiries and leads</option><option value="sales">More sales</option><option value="awareness">Build brand awareness</option></select></div>
-</div><button class="btn mainbtn" type="submit">Generate My Content Ideas ✨</button><p class="hint">Free to use. No sign-up required. Ideas are generated from built-in templates, with no external AI API.</p></form>
-<div id="results" aria-live="polite"><div class="resulthead"><h2 id="resultTitle">Ideas for your brand</h2><button class="linkbtn" id="copyBtn" type="button">Copy ideas</button></div><div class="ideas" id="ideas"></div><div class="cta"><h3>Want us to create this content for you?</h3><p>CreativeVox Media can help with social media marketing, creative posts, professional reels and website development.</p><div class="links"><a class="linkbtn primary" href="https://wa.me/918077851657?text=Hi%20CreativeVox%20Media%2C%20I%20want%20help%20with%20content%20for%20my%20brand." target="_blank" rel="noopener">Discuss your project on WhatsApp ↗</a><a class="linkbtn" href="mailto:teamcreativevoxmedia@gmail.com?subject=Content%20Creation%20Enquiry">Email our team</a></div></div></div>
+</div><button class="btn mainbtn" type="submit">Generate My Content Ideas ✨</button><p class="hint">Free to use. No sign-up required. Each click creates a fresh combination of topics, formats, hooks and goal-based CTAs.</p></form>
+<div id="results" aria-live="polite"><div class="resulthead"><h2 id="resultTitle">Ideas for your brand</h2><button class="linkbtn" id="copyBtn" type="button">Copy ideas</button></div><p class="hint" id="freshnessNote" aria-live="polite">Generate ideas for a fresh combination.</p><div class="ideas" id="ideas"></div><div class="cta"><h3>Want us to create this content for you?</h3><p>CreativeVox Media can help with social media marketing, creative posts, professional reels and website development.</p><div class="links"><a class="linkbtn primary" href="https://wa.me/918077851657?text=Hi%20CreativeVox%20Media%2C%20I%20want%20help%20with%20content%20for%20my%20brand." target="_blank" rel="noopener">Discuss your project on WhatsApp ↗</a><a class="linkbtn" href="mailto:teamcreativevoxmedia@gmail.com?subject=Content%20Creation%20Enquiry">Email our team</a></div></div></div>
 </section><footer>Your ideas. Our creative execution. · CreativeVox Media</footer></main>
 <script>
 const pools={
-general:[["Behind the Scenes","Show how your product or service comes to life. Add three short clips and a simple voiceover."],["Myth vs. Fact","Share one common misconception in your industry and explain the truth in a quick carousel."],["3 Quick Tips","Teach your audience three small things they can use today. Keep each tip short and specific."],["Customer Question","Answer a question customers frequently ask. Use the question as the opening hook."],["The Story Behind Your Brand","Explain why you started, what you believe in, and who you help."] ],
-"Clothing & Fashion":[["3 Ways to Style One Outfit","Create a quick Reel showing three looks using one clothing item."],["New Arrival Spotlight","Show fabric, fit, close-up details and one clear reason to choose the item."],["Style Mistakes to Avoid","Share three useful styling tips in a saveable carousel."],["Outfit of the Day","Build a look around a trend, occasion or customer need."],["How It Looks vs. How It Feels","Use close-up visuals and honest details to help shoppers imagine the product."]],
-"Beauty & Salon":[["Before-and-After Reveal","Show a transformation with good lighting and client permission."],["One-Minute Beauty Tip","Teach one easy beauty or hair-care tip with on-screen steps."],["Service Spotlight","Walk viewers through one service, its process and who it may suit."],["Common Beauty Myth","Correct a popular misconception in a simple talking-head Reel."],["Client Experience","Share a short testimonial or review with permission."]],
-"Food & Cafe":[["Made Fresh Today","Capture preparation, close-ups and the final serving in a quick Reel."],["Meet the Menu Favourite","Introduce a popular item and explain what makes it special."],["Behind the Counter","Show a short, satisfying look at how an order is prepared."],["This or That Poll","Compare two menu favourites and invite followers to vote."],["A Day at Our Cafe","Create a mini visual tour of the atmosphere, team and signature item."]],
-"Fitness & Wellness":[["Form Tip Friday","Demonstrate one beginner-friendly technique and a common mistake to avoid."],["A Realistic Routine","Share a simple routine your audience can adapt to their own level."],["Myth vs. Fact","Address a common fitness misconception carefully and accurately."],["Progress Beyond the Scale","Highlight consistency, strength, energy or another non-scale milestone."],["Quick Exercise Demo","Show a short movement tutorial with clear safety cues."]],
-"Education & Coaching":[["Explain It Simply","Break down one confusing concept using a relatable example."],["3 Exam or Work Tips","Offer three practical steps your audience can save and revisit."],["Common Mistake","Explain one frequent mistake and how to improve it."],["Mini Lesson Reel","Teach one useful idea in under 30 seconds."],["Frequently Asked Question","Answer a question potential students or clients often ask."]],
-"Real Estate":[["Property Feature Tour","Highlight three useful features in a short walkthrough."],["Buyer Checklist","Share a checklist of questions to ask before choosing a property."],["Neighbourhood Spotlight","Show nearby amenities and explain who might find the area useful."],["Real Estate Myth","Clarify a common property misconception without making guarantees."],["Behind the Listing","Show how you prepare a property for a viewing."]],
-"Professional Services":[["Problem-Solution Reel","Describe a common client problem and outline how your service helps."],["3 Things to Check","Share a useful checklist related to your area of expertise."],["Meet the Team","Introduce a team member and the work they do for clients."],["Client Journey","Explain your process from first enquiry to final delivery."],["FAQ Carousel","Answer five common questions in clear, jargon-free language."]],
-"E-commerce":[["Product in Action","Show the product solving a real, everyday problem."],["Unboxing Experience","Capture packaging, details and first impressions."],["How to Choose","Help customers compare options based on their needs."],["Top 3 Product Benefits","Focus on practical benefits rather than vague claims."],["Customer Review Spotlight","Turn an authentic review into a visual post with permission."]],
-"Local Business":[["Meet Your Local Team","Introduce the people behind the business and what they do."],["A Day in the Business","Show a short behind-the-scenes sequence."],["Local Customer FAQ","Answer a question people in your area frequently ask."],["Service in 20 Seconds","Show the process, result and how to enquire."],["Community Spotlight","Feature a local collaboration, event or customer story with permission."]],
-"Creator / Personal Brand":[["What I Wish I Knew Earlier","Share one lesson from your journey and how it changed your approach."],["My Work Process","Show how you plan, create or deliver your work."],["3 Tools I Use","Recommend useful tools and explain what each helps you do."],["A Common Mistake","Share a lesson learned and a practical alternative."],["Answer a Follower Question","Turn a real audience question into a short helpful video."]]
+general:["Behind the Scenes","Myth vs. Fact","3 Quick Tips","Customer Question","The Story Behind Your Brand","Mistake to Avoid","A Mini Tutorial","Before-and-After Process","Customer POV","One Thing Nobody Tells You"],
+"Clothing & Fashion":["3 Ways to Style One Outfit","New Arrival Spotlight","Style Mistakes to Avoid","Outfit of the Day","How It Looks vs. How It Feels","Build a Look Around One Colour","Occasion-Based Outfit Guide","Fabric and Fit Close-Up","Wardrobe Essentials","Style Challenge"],
+"Beauty & Salon":["Before-and-After Reveal","One-Minute Beauty Tip","Service Spotlight","Common Beauty Myth","Client Experience","Get-Ready-With-Me","Product or Tool Breakdown","What to Expect at an Appointment","Routine Mistakes to Avoid","Beauty FAQ"],
+"Food & Cafe":["Made Fresh Today","Meet the Menu Favourite","Behind the Counter","This or That Poll","A Day at Our Cafe","Ingredient Spotlight","Chef's Quick Tip","How to Enjoy Our Signature Item","Customer Favourite","A Foodie Mini Tour"],
+"Fitness & Wellness":["Form Tip Friday","A Realistic Routine","Myth vs. Fact","Progress Beyond the Scale","Quick Exercise Demo","Beginner Mistakes","Workout Setup Tour","One Habit to Build","Recovery and Rest Tip","Ask the Coach"],
+"Education & Coaching":["Explain It Simply","3 Exam or Work Tips","Common Mistake","Mini Lesson Reel","Frequently Asked Question","A Concept in 30 Seconds","Step-by-Step Guide","Myth vs. Fact","A Learner's Checklist","One Skill to Practise"],
+"Real Estate":["Property Feature Tour","Buyer Checklist","Neighbourhood Spotlight","Real Estate Myth","Behind the Listing","Questions to Ask Before a Visit","Small Space, Smart Use","Property Feature Close-Up","Viewing-Day Checklist","Local Area Guide"],
+"Professional Services":["Problem-Solution Reel","3 Things to Check","Meet the Team","Client Journey","FAQ Carousel","A Common Industry Myth","How Our Process Works","Mistake That Costs Time","A Quick Expert Tip","What to Prepare Before Enquiring"],
+"E-commerce":["Product in Action","Unboxing Experience","How to Choose","Top 3 Product Benefits","Customer Review Spotlight","One Product, Three Uses","Detail Close-Up","Gift or Use-Case Guide","Frequently Asked Product Question","Packing an Order"],
+"Local Business":["Meet Your Local Team","A Day in the Business","Local Customer FAQ","Service in 20 Seconds","Community Spotlight","Our Most Asked Question","Behind-the-Scenes Tour","Meet the Owner","How to Get Started","Local Problem, Practical Solution"],
+"Creator / Personal Brand":["What I Wish I Knew Earlier","My Work Process","3 Tools I Use","A Common Mistake","Answer a Follower Question","Myth vs. Reality","A Lesson from This Week","How I Plan My Content","My First Step vs. Now","A Quick Skill Breakdown"]
 };
-const goals={engagement:"Invite people to save, share or comment with their own experience.",leads:"Finish with a clear invitation to message you for details or a consultation.",sales:"Show the product or service benefit and make the next step easy.",awareness:"Use a strong opening hook and make the brand name memorable."};
-const form=document.getElementById('ideaForm'), results=document.getElementById('results'), ideas=document.getElementById('ideas');
-form.addEventListener('submit',e=>{e.preventDefault();const name=document.getElementById('business').value.trim();if(!name)return;const type=document.getElementById('type').value;const goal=document.getElementById('goal').value;const source=pools[type]||pools.general;const chosen=[...source].sort(()=>Math.random()-.5).slice(0,5);document.getElementById('resultTitle').textContent='5 content ideas for '+name;ideas.innerHTML='';chosen.forEach((item,i)=>{const article=document.createElement('article');article.className='idea';const tag=document.createElement('div');tag.className='tag';tag.textContent=(i%2===0?'Reel idea':'Post / carousel');const h=document.createElement('h3');h.textContent=(i+1)+'. '+item[0];const p=document.createElement('p');p.textContent=item[1]+' '+goals[goal];article.append(tag,h,p);ideas.append(article)});results.style.display='block';results.scrollIntoView({behavior:'smooth',block:'start'});});
-document.getElementById('copyBtn').addEventListener('click',async()=>{const text=document.getElementById('resultTitle').textContent+'\n\n'+[...ideas.querySelectorAll('.idea')].map(x=>x.innerText).join('\n\n');const b=document.getElementById('copyBtn');try{await navigator.clipboard.writeText(text);b.textContent='Copied ✓'}catch(e){const area=document.createElement('textarea');area.value=text;document.body.append(area);area.select();document.execCommand('copy');area.remove();b.textContent='Copied ✓'}setTimeout(()=>b.textContent='Copy ideas',1800)});
+const goals={
+engagement:{cta:"Ask your audience to comment with their experience, save the post, or share it with a friend.",formats:["A quick Reel with on-screen text","A swipeable carousel","A question-led story sequence","A short talking-head video","A before-and-after post"]},
+leads:{cta:"Invite interested viewers to message you for details or a consultation.",formats:["A problem-and-solution Reel","A checklist carousel","A short FAQ video","A service walkthrough","A client-journey post"]},
+sales:{cta:"Highlight one clear benefit and invite viewers to enquire or place an order.",formats:["A product demonstration Reel","A benefit-led carousel","A use-case video","A comparison post","A close-up showcase"]},
+awareness:{cta:"Make the brand name memorable and encourage viewers to follow for more useful content.",formats:["A hook-first Reel","A behind-the-scenes video","A founder introduction","A visual story carousel","A quick educational post"]}
+};
+const angles=[
+"Open with the question: “Have you ever wondered about this?”",
+"Start with a surprising but accurate fact about your business category.",
+"Show the process in three quick steps, then explain the value of each step.",
+"Use a customer point of view: show the problem, the choice, and the outcome.",
+"Build the idea around one common question a potential customer may ask.",
+"Use a simple “before you decide” checklist to help the audience make a better choice.",
+"Compare a common misconception with a practical explanation.",
+"Show one small detail that demonstrates care, quality, or expertise.",
+"Use a short story: challenge, approach, and takeaway.",
+"Share three useful tips that viewers can save and revisit.",
+"Show a behind-the-scenes moment and explain why it matters to customers.",
+"Invite the audience to choose between two options relevant to your business."
+];
+const form=document.getElementById('ideaForm'),results=document.getElementById('results'),ideas=document.getElementById('ideas');
+let previousSignature="";
+function shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+function pickDifferent(source,count,avoid){let list=shuffle(source);if(avoid){const filtered=list.filter(x=>!avoid.has(x));if(filtered.length>=count)list=filtered}return list.slice(0,count)}
+form.addEventListener('submit',e=>{
+ e.preventDefault();
+ const name=document.getElementById('business').value.trim();
+ if(!name)return;
+ const type=document.getElementById('type').value;
+ const goal=document.getElementById('goal').value;
+ const source=pools[type]||pools.general, goalData=goals[goal]||goals.engagement;
+ let selected=[],signature="";
+ for(let attempt=0;attempt<5;attempt++){
+  const topics=pickDifferent(source,5);
+  const selectedAngles=pickDifferent(angles,5);
+  const selectedFormats=pickDifferent(goalData.formats,5);
+  selected=topics.map((topic,i)=>({topic,angle:selectedAngles[i],format:selectedFormats[i]}));
+  signature=selected.map(x=>x.topic+"|"+x.angle+"|"+x.format).join(";");
+  if(signature!==previousSignature)break;
+ }
+ previousSignature=signature;
+ document.getElementById('resultTitle').textContent='Fresh content ideas for '+name;
+ ideas.innerHTML='';
+ selected.forEach((item,i)=>{
+  const article=document.createElement('article');article.className='idea';
+  const tag=document.createElement('div');tag.className='tag';tag.textContent=item.format;
+  const h=document.createElement('h3');h.textContent=(i+1)+'. '+item.topic;
+  const p=document.createElement('p');p.textContent=item.angle+' Tailor the examples to '+name+' and your audience. '+goalData.cta;
+  article.append(tag,h,p);ideas.append(article);
+ });
+ results.style.display='block';
+ const freshness=document.getElementById('freshnessNote');
+ if(freshness)freshness.textContent='A new mix of ideas was created for this click. Generate again for another variation.';
+ results.scrollIntoView({behavior:'smooth',block:'start'});
+});
+document.getElementById('copyBtn').addEventListener('click',async()=>{
+ const text=document.getElementById('resultTitle').textContent+'\n\n'+[...ideas.querySelectorAll('.idea')].map(x=>x.innerText).join('\n\n');
+ const b=document.getElementById('copyBtn');
+ try{await navigator.clipboard.writeText(text);b.textContent='Copied ✓'}
+ catch(e){const area=document.createElement('textarea');area.value=text;document.body.append(area);area.select();document.execCommand('copy');area.remove();b.textContent='Copied ✓'}
+ setTimeout(()=>b.textContent='Copy ideas',1800);
+});
 </script></body></html>
