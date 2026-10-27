@@ -65,27 +65,36 @@ async function getText(url) {
   }
 }
 
+function trafficNum(t) {
+  const m = String(t || '').replace(/,/g, '').match(/([\d.]+)\s*([KM]?)/i);
+  if (!m) return 0;
+  const n = parseFloat(m[1]) || 0;
+  const u = m[2].toUpperCase();
+  return u === 'M' ? n * 1e6 : u === 'K' ? n * 1e3 : n;
+}
+
+// Third-party links inside Google Trends can point to spam or hacked pages, so we never
+// pass them on. We only return the topic, its traffic band and our own Google News search link.
 async function fetchTrending() {
   const xml = await getText('https://trends.google.com/trending/rss?geo=' + GEO);
   const out = [];
   for (const it of items(xml)) {
     const title = tag(it, 'title');
-    if (!title || SENSITIVE.test(title)) continue;
+    if (!title || title.length > 80 || SENSITIVE.test(title)) continue;
     const nb = it.match(/<ht:news_item>[\s\S]*?<\/ht:news_item>/i);
-    const nItem = nb ? nb[0] : '';
-    const newsTitle = tag(nItem, 'ht:news_item_title');
+    const newsTitle = nb ? tag(nb[0], 'ht:news_item_title') : '';
     if (newsTitle && SENSITIVE.test(newsTitle)) continue;
+    const traffic = tag(it, 'ht:approx_traffic');
     out.push({
       title,
-      traffic: tag(it, 'ht:approx_traffic'),
+      traffic,
+      n: trafficNum(traffic),
       pubDate: tag(it, 'pubDate'),
-      newsTitle,
-      newsUrl: safeUrl(tag(nItem, 'ht:news_item_url')),
-      newsSource: tag(nItem, 'ht:news_item_source')
+      searchUrl: 'https://news.google.com/search?q=' + encodeURIComponent(title) + '&hl=en-IN&gl=IN&ceid=IN:en'
     });
-    if (out.length >= 8) break;
   }
-  return out;
+  out.sort((a, b) => b.n - a.n);
+  return out.slice(0, 8).map(({ n, ...rest }) => rest);
 }
 
 async function fetchNews(query, days) {
@@ -102,7 +111,7 @@ async function fetchNews(query, days) {
     if (source && title.endsWith(' - ' + source)) title = title.slice(0, -(source.length + 3));
     if (!title || SENSITIVE.test(title)) continue;
     const url = safeUrl(tag(it, 'link'));
-    if (!url) continue;
+    if (!url || new URL(url).hostname !== 'news.google.com') continue;
     out.push({ title, source, url, pubDate: tag(it, 'pubDate') });
     if (out.length >= 6) break;
   }

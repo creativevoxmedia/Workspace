@@ -86,20 +86,7 @@ async function loadLive(name,type,topic){
 function renderLive(d,name,topic){
  const frag=document.createDocumentFragment();
  const when=new Date(d.fetchedAt).toLocaleString([],{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
- frag.append(el('h3','sec','Trending in India right now'),el('p','sub','Real Google searches trending today. Use only the ones that fit '+name+' and your audience. Fetched '+when+'.'));
- const tl=el('div','live-list');
- if(d.ok&&d.ok.trending&&d.trending.length){
-  d.trending.slice(0,6).forEach(t=>{
-   const c=el('article','live-item');
-   c.append(el('div','tag','Trending'+(t.traffic?' · '+t.traffic+' searches':'')),el('h4','',t.title));
-   if(t.newsTitle)c.append(el('p','','In the news: '+t.newsTitle+(t.newsSource?' ('+t.newsSource+')':'')));
-   c.append(el('p','','Idea: if it fits your brand, make a quick Reel or post that connects “'+t.title+'” to '+name+'.'));
-   if(t.newsUrl)c.append(link(t.newsUrl,'Read the story ↗'));
-   tl.append(c);
-  });
- }else tl.append(el('div','live-status',d.ok&&d.ok.trending?'No suitable trending topics right now.':'Trending topics could not be loaded right now.'));
- frag.append(tl);
- frag.append(el('h3','sec',topic?'Latest news about “'+topic+'”':'Latest news for your industry'),el('p','sub',topic?'Recent headlines from the last '+d.newsDays+' days.':'Recent headlines from the last '+d.newsDays+' days, to spark timely content.'));
+ frag.append(el('h3','sec',topic?'Latest news about “'+topic+'”':'Latest news for your industry'),el('p','sub','Real headlines from the last '+d.newsDays+' days, fetched '+when+'. Use them to make timely content.'));
  const nl=el('div','live-list');
  if(d.ok&&d.ok.news&&d.news.length){
   d.news.forEach(n=>{
@@ -109,7 +96,18 @@ function renderLive(d,name,topic){
   });
  }else nl.append(el('div','live-status',d.ok&&d.ok.news?'No recent news found for this search. Try a different keyword.':'News could not be loaded right now.'));
  frag.append(nl);
- frag.append(el('p','hint','Sources: '+((d.sources&&d.sources.trending)||'Google Trends')+' and '+((d.sources&&d.sources.news)||'Google News')+'.'));
+ frag.append(el('h3','sec','Trending searches right now'),el('p','sub','The most searched topics today across all categories. Use only the ones that genuinely fit '+name+' and your audience.'));
+ const tl=el('div','live-list');
+ if(d.ok&&d.ok.trending&&d.trending.length){
+  d.trending.slice(0,5).forEach(t=>{
+   const c=el('article','live-item');
+   c.append(el('div','tag','Trending'+(t.traffic?' · '+t.traffic+' searches':'')),el('h4','',t.title),el('p','','If it fits your brand, connect “'+t.title+'” to '+name+' in a quick Reel or post.'));
+   if(t.searchUrl)c.append(link(t.searchUrl,'See the news on this ↗'));
+   tl.append(c);
+  });
+ }else tl.append(el('div','live-status',d.ok&&d.ok.trending?'No suitable trending topics right now.':'Trending topics could not be loaded right now.'));
+ frag.append(tl);
+ frag.append(el('p','hint','Sources: '+((d.sources&&d.sources.news)||'Google News')+' and '+((d.sources&&d.sources.trending)||'Google Trends')+'.'));
  live.replaceChildren(frag);
 }
 const form=document.getElementById('ideaForm'),results=document.getElementById('results'),ideas=document.getElementById('ideas');
