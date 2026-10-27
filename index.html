@@ -684,7 +684,15 @@
     .hero-gl{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.6s ease}
     .hero-gl.is-on{opacity:1}
     .hero.three-on .rings,.hero.three-on .pts{display:none}
-  
+    /* Real 3D service objects (js/hero-objects.js). The old CSS cards stay only as clickable labels. */
+    .hero-gl-front{position:absolute;z-index:6;pointer-events:none;opacity:0;transition:opacity .9s ease}
+    .hero-gl-front.is-on{opacity:1}
+    .hero.objects-on .obj-body{animation:none;background:none;border-color:transparent;box-shadow:none;transition:none}
+    .hero.objects-on .obj-body:before{display:none}
+    .hero.objects-on .obj-body>*:not(.obj-label){visibility:hidden}
+    .hero.objects-on a.obj:hover .obj-body,.hero.objects-on a.obj:focus-visible .obj-body{filter:none}
+    .hero.objects-on .obj-label{bottom:-26px}
+
     /* ===== Website Development projects popup ===== */
     .work-card-web{cursor:pointer}
     .web-dialog{width:min(900px,calc(100% - 28px));max-height:min(90vh,880px);overflow:auto;padding:0;border:1px solid var(--line);border-radius:18px;background:var(--panel);color:var(--text);box-shadow:0 28px 100px #0009}
@@ -1700,6 +1708,10 @@
           .then(function(m){ return m.mountHeroScene({hero: hero, anchor: art}); })
           .then(function(ctrl){ if (ctrl) hero.classList.add('three-on'); })
           .catch(function(err){ console.warn('3D layer skipped:', err); });
+        import('./js/hero-objects.js')
+          .then(function(m){ return m.mountHeroObjects({hero: hero, art: art, scene: document.getElementById('hero-scene')}); })
+          .then(function(ctrl){ if (ctrl) hero.classList.add('objects-on'); })
+          .catch(function(err){ console.warn('3D objects skipped:', err); });
       }
       if (document.readyState === 'complete') setTimeout(boot, 300);
       else window.addEventListener('load', function(){ setTimeout(boot, 300); }, {once: true});
