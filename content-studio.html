@@ -11,6 +11,7 @@
 .hero{text-align:center;padding:52px 0 28px}.eyebrow{color:#ff858b;font-size:.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(2.1rem,6vw,4rem);line-height:1.05;letter-spacing:-.05em;margin:14px 0}.hero h1 span{color:var(--red)}.hero p{max-width:580px;color:var(--muted);margin:0 auto}
 .card{background:rgba(21,21,25,.94);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,34px);box-shadow:0 24px 90px #0005}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field.full{grid-column:1/-1}label{display:block;font-size:.88rem;font-weight:700;margin-bottom:8px}input,select{width:100%;background:#0e0e12;color:var(--text);border:1px solid #383842;border-radius:12px;padding:14px;font:inherit;outline:none}input:focus,select:focus{border-color:var(--red);box-shadow:0 0 0 3px #ff3d4624}.btn{border:0;border-radius:12px;background:var(--red);color:#fff;padding:15px 20px;font:inherit;font-weight:800;cursor:pointer;transition:transform .15s,background .15s}.btn:hover{background:#ff5961;transform:translateY(-1px)}.mainbtn{width:100%;margin-top:20px}.hint{color:var(--muted);font-size:.82rem;margin:10px 0 0}
 #results{display:none;margin-top:26px}.resulthead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.resulthead h2{margin:0;font-size:1.4rem}.ideas{display:grid;grid-template-columns:1fr 1fr;gap:12px}.idea{padding:18px;border:1px solid var(--line);background:#101014;border-radius:15px}.tag{font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:#ff858b;font-weight:800}.idea h3{font-size:1rem;margin:7px 0}.idea p{color:var(--muted);font-size:.91rem;margin:0}.cta{margin-top:20px;padding:24px;border:1px solid #512328;background:linear-gradient(120deg,#291013,#171114);border-radius:17px}.cta h3{margin:0 0 6px}.cta p{margin:0 0 16px;color:var(--muted)}.links{display:flex;gap:10px;flex-wrap:wrap}.linkbtn{display:inline-block;text-decoration:none;color:white;border:1px solid #555;padding:10px 14px;border-radius:10px;font-weight:750;font-size:.9rem}.linkbtn.primary{background:var(--red);border-color:var(--red)}footer{text-align:center;color:#858590;font-size:.83rem;margin-top:30px}button:focus-visible,a:focus-visible{outline:3px solid #ff858b;outline-offset:3px}
+.live{margin:0 0 6px}.live .sec,.sec-evergreen{font-size:1.05rem;margin:20px 0 4px}.live .sub{color:var(--muted);font-size:.82rem;margin:0 0 12px}.live-list{display:grid;gap:10px}.live-item{padding:15px 17px;border:1px solid var(--line);background:#101014;border-radius:14px}.live-item h4{margin:5px 0 7px;font-size:1rem}.live-item p{margin:0 0 7px;color:var(--muted);font-size:.88rem}.live-item a{color:#ff858b;font-weight:700;font-size:.84rem;text-decoration:none}.live-item a:hover{text-decoration:underline}.live-status{padding:14px 16px;border:1px dashed #3a3a44;border-radius:14px;color:var(--muted);font-size:.9rem}
 @media(max-width:620px){.grid,.ideas{grid-template-columns:1fr}.hero{padding-top:38px}.field.full{grid-column:auto}.resulthead{align-items:flex-start;flex-direction:column}}
 </style>
 </head>
@@ -22,8 +23,10 @@
 <div class="field"><label for="business">Business or brand name</label><input id="business" placeholder="e.g. Fresh Bloom Studio" maxlength="70" required></div>
 <div class="field"><label for="type">Business type</label><select id="type"><option value="general">Select your industry</option><option>Clothing & Fashion</option><option>Beauty & Salon</option><option>Food & Cafe</option><option>Fitness & Wellness</option><option>Education & Coaching</option><option>Real Estate</option><option>Professional Services</option><option>E-commerce</option><option>Local Business</option><option>Creator / Personal Brand</option></select></div>
 <div class="field full"><label for="goal">What do you want to achieve?</label><select id="goal"><option value="engagement">More engagement and followers</option><option value="leads">More enquiries and leads</option><option value="sales">More sales</option><option value="awareness">Build brand awareness</option></select></div>
-</div><button class="btn mainbtn" type="submit">Generate My Content Ideas ✨</button><p class="hint">Free to use. No sign-up required. Each click creates a fresh combination of topics, formats, hooks and goal-based CTAs.</p></form>
-<div id="results" aria-live="polite"><div class="resulthead"><h2 id="resultTitle">Ideas for your brand</h2><button class="linkbtn" id="copyBtn" type="button">Copy ideas</button></div><p class="hint" id="freshnessNote" aria-live="polite">Generate ideas for a fresh combination.</p><div class="ideas" id="ideas"></div><div class="cta"><h3>Want us to create this content for you?</h3><p>CreativeVox Media can help with social media marketing, creative posts, professional reels and website development.</p><div class="links"><a class="linkbtn primary" href="https://wa.me/918077851657?text=Hi%20CreativeVox%20Media%2C%20I%20want%20help%20with%20content%20for%20my%20brand." target="_blank" rel="noopener">Discuss your project on WhatsApp ↗</a><a class="linkbtn" href="mailto:teamcreativevoxmedia@gmail.com?subject=Content%20Creation%20Enquiry">Email our team</a></div></div></div>
+<div class="field full"><label for="topic">Search a topic or keyword (optional)</label><input id="topic" placeholder="e.g. wedding season, summer collection" maxlength="60"></div>
+
+</div><button class="btn mainbtn" type="submit">Generate My Content Ideas ✨</button><p class="hint">Free to use. No sign-up required. You get live trending topics and recent news fetched when you click, plus built-in evergreen content ideas.</p></form>
+<div id="results" aria-live="polite"><div class="resulthead"><h2 id="resultTitle">Ideas for your brand</h2><button class="linkbtn" id="copyBtn" type="button">Copy ideas</button></div><p class="hint" id="freshnessNote" aria-live="polite">Generate ideas for a fresh combination.</p><div class="live" id="live"></div><h3 class="sec-evergreen">Evergreen idea starters</h3><p class="hint" style="margin:0 0 12px">Built-in content formats that work any day. These are templates, not live data.</p><div class="ideas" id="ideas"></div><div class="cta"><h3>Want us to create this content for you?</h3><p>CreativeVox Media can help with social media marketing, creative posts, professional reels and website development.</p><div class="links"><a class="linkbtn primary" href="https://wa.me/918077851657?text=Hi%20CreativeVox%20Media%2C%20I%20want%20help%20with%20content%20for%20my%20brand." target="_blank" rel="noopener">Discuss your project on WhatsApp ↗</a><a class="linkbtn" href="mailto:teamcreativevoxmedia@gmail.com?subject=Content%20Creation%20Enquiry">Email our team</a></div></div></div>
 </section><footer>Your ideas. Our creative execution. · CreativeVox Media</footer></main>
 <script>
 const pools={
@@ -59,6 +62,54 @@ const angles=[
 "Show a behind-the-scenes moment and explain why it matters to customers.",
 "Invite the audience to choose between two options relevant to your business."
 ];
+const API=location.hostname.endsWith('github.io')?'https://mediaworkspace.vercel.app/api/trends':'/api/trends';
+const live=document.getElementById('live');
+let liveReq=0;
+function el(t,cls,text){const n=document.createElement(t);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n}
+function link(href,text){const a=document.createElement('a');a.href=href;a.target='_blank';a.rel='noopener noreferrer';a.textContent=text;return a}
+function ago(d){const t=Date.parse(d);if(!t)return '';const m=Math.max(1,Math.round((Date.now()-t)/60000));if(m<60)return m+' min ago';const h=Math.round(m/60);if(h<24)return h+' h ago';return Math.round(h/24)+' d ago'}
+async function loadLive(name,type,topic){
+ const id=++liveReq;
+ live.replaceChildren(el('div','live-status','Fetching live trends and news…'));
+ try{
+  const qs=new URLSearchParams({type:type});if(topic)qs.set('q',topic);
+  const r=await fetch(API+'?'+qs.toString());
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  const d=await r.json();
+  if(id!==liveReq)return;
+  renderLive(d,name,topic);
+ }catch(e){
+  if(id!==liveReq)return;
+  live.replaceChildren(el('div','live-status','Live trends could not be loaded right now, so we are not showing anything here instead of guessing. Please try again in a minute.'));
+ }
+}
+function renderLive(d,name,topic){
+ const frag=document.createDocumentFragment();
+ const when=new Date(d.fetchedAt).toLocaleString([],{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+ frag.append(el('h3','sec',topic?'Latest news about “'+topic+'”':'Latest news for your industry'),el('p','sub','Real headlines from the last '+d.newsDays+' days, fetched '+when+'. Use them to make timely content.'));
+ const nl=el('div','live-list');
+ if(d.ok&&d.ok.news&&d.news.length){
+  d.news.forEach(n=>{
+   const c=el('article','live-item');
+   c.append(el('div','tag',[n.source,ago(n.pubDate)].filter(Boolean).join(' · ')||'News'),el('h4','',n.title),link(n.url,'Read the story ↗'));
+   nl.append(c);
+  });
+ }else nl.append(el('div','live-status',d.ok&&d.ok.news?'No recent news found for this search. Try a different keyword.':'News could not be loaded right now.'));
+ frag.append(nl);
+ frag.append(el('h3','sec','Trending searches right now'),el('p','sub','The most searched topics today across all categories. Use only the ones that genuinely fit '+name+' and your audience.'));
+ const tl=el('div','live-list');
+ if(d.ok&&d.ok.trending&&d.trending.length){
+  d.trending.slice(0,5).forEach(t=>{
+   const c=el('article','live-item');
+   c.append(el('div','tag','Trending'+(t.traffic?' · '+t.traffic+' searches':'')),el('h4','',t.title),el('p','','If it fits your brand, connect “'+t.title+'” to '+name+' in a quick Reel or post.'));
+   if(t.searchUrl)c.append(link(t.searchUrl,'See the news on this ↗'));
+   tl.append(c);
+  });
+ }else tl.append(el('div','live-status',d.ok&&d.ok.trending?'No suitable trending topics right now.':'Trending topics could not be loaded right now.'));
+ frag.append(tl);
+ frag.append(el('p','hint','Sources: '+((d.sources&&d.sources.news)||'Google News')+' and '+((d.sources&&d.sources.trending)||'Google Trends')+'.'));
+ live.replaceChildren(frag);
+}
 const form=document.getElementById('ideaForm'),results=document.getElementById('results'),ideas=document.getElementById('ideas');
 let previousSignature="";
 function shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
@@ -69,6 +120,7 @@ form.addEventListener('submit',e=>{
  if(!name)return;
  const type=document.getElementById('type').value;
  const goal=document.getElementById('goal').value;
+ const topic=document.getElementById('topic').value.trim();
  const source=pools[type]||pools.general, goalData=goals[goal]||goals.engagement;
  let selected=[],signature="";
  for(let attempt=0;attempt<5;attempt++){
@@ -90,12 +142,13 @@ form.addEventListener('submit',e=>{
   article.append(tag,h,p);ideas.append(article);
  });
  results.style.display='block';
+ loadLive(name,type,topic);
  const freshness=document.getElementById('freshnessNote');
- if(freshness)freshness.textContent='A new mix of ideas was created for this click. Generate again for another variation.';
+ if(freshness)freshness.textContent='Trends and news below were fetched just now. The evergreen ideas are a fresh mix on every click.';
  results.scrollIntoView({behavior:'smooth',block:'start'});
 });
 document.getElementById('copyBtn').addEventListener('click',async()=>{
- const text=document.getElementById('resultTitle').textContent+'\n\n'+[...ideas.querySelectorAll('.idea')].map(x=>x.innerText).join('\n\n');
+ const text=document.getElementById('resultTitle').textContent+'\n\n'+(live.innerText?live.innerText+'\n\n':'')+[...ideas.querySelectorAll('.idea')].map(x=>x.innerText).join('\n\n');
  const b=document.getElementById('copyBtn');
  try{await navigator.clipboard.writeText(text);b.textContent='Copied ✓'}
  catch(e){const area=document.createElement('textarea');area.value=text;document.body.append(area);area.select();document.execCommand('copy');area.remove();b.textContent='Copied ✓'}
