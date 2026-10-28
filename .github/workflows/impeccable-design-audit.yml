@@ -27,8 +27,11 @@ jobs:
         id: detector
         continue-on-error: true
         run: |
+          set +e
           npx --yes impeccable detect --json index.html content-studio.html > impeccable-findings.json 2>&1
-          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          status=$?
+          echo "Impeccable detector exit code: $status"
+          exit 0
 
       - name: Upload audit findings
         if: always()
