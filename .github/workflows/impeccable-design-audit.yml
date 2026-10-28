@@ -1,0 +1,40 @@
+name: Impeccable design audit
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  design-audit:
+    name: Scan static frontend for design issues
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run Impeccable detector
+        id: detector
+        continue-on-error: true
+        run: |
+          npx --yes impeccable detect --json index.html content-studio.html > impeccable-findings.json 2>&1
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Upload audit findings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: impeccable-design-findings
+          path: impeccable-findings.json
+          if-no-files-found: warn
+          retention-days: 14
