@@ -65,6 +65,10 @@ async function getText(url) {
   }
 }
 
+// Keep only English (Latin) and Hindi (Devanagari) topics. Google Trends India also lists
+// Tamil, Telugu, Kannada, Malayalam etc. topics that most clients cannot use.
+const ALLOWED_SCRIPT = /^[\p{Script=Latin}\p{Script=Devanagari}\p{N}\p{P}\p{Z}\p{S}]+$/u;
+
 function trafficNum(t) {
   const m = String(t || '').replace(/,/g, '').match(/([\d.]+)\s*([KM]?)/i);
   if (!m) return 0;
@@ -80,7 +84,7 @@ async function fetchTrending() {
   const out = [];
   for (const it of items(xml)) {
     const title = tag(it, 'title');
-    if (!title || title.length > 80 || SENSITIVE.test(title)) continue;
+    if (!title || title.length > 80 || !ALLOWED_SCRIPT.test(title) || SENSITIVE.test(title)) continue;
     const nb = it.match(/<ht:news_item>[\s\S]*?<\/ht:news_item>/i);
     const newsTitle = nb ? tag(nb[0], 'ht:news_item_title') : '';
     if (newsTitle && SENSITIVE.test(newsTitle)) continue;
@@ -98,7 +102,7 @@ async function fetchTrending() {
 }
 
 async function fetchNews(query, days) {
-  const q = encodeURIComponent(query + ' when:' + days + 'd');
+  const q = encodeURIComponent(query + ' India when:' + days + 'd');
   const xml = await getText('https://news.google.com/rss/search?q=' + q + '&hl=en-IN&gl=IN&ceid=IN:en');
   const out = [];
   for (const it of items(xml)) {
