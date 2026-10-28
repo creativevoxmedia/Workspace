@@ -733,7 +733,7 @@
 
 /* Free Content Studio homepage promotion */
 .content-studio-promo{padding:clamp(64px,9vw,116px) 0;background:radial-gradient(ellipse at 80% 45%,rgba(255,48,59,.13),transparent 42%),#101014;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
-.content-studio-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(34px,7vw,90px);align-items:center}
+.content-studio-inner{display:grid;grid-template-columns:1fr;gap:clamp(34px,7vw,90px);align-items:center}.content-studio-copy{max-width:760px}
 .content-studio-copy h2{font-size:clamp(2.2rem,5vw,4.1rem);line-height:1.05;letter-spacing:-.045em;margin:16px 0}
 .content-studio-copy h2 span,.cs-preview-title span{color:var(--red,#ff303b)}
 .content-studio-copy>p{max-width:570px;color:var(--muted,#aaaab5);line-height:1.8}
@@ -762,7 +762,7 @@
       </a>
       <div style="display:flex;align-items:center;gap:8px"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme"><span class="theme-toggle-icon" id="theme-icon" aria-hidden="true">☀</span><span id="theme-label">Light</span></button><button class="menu-btn" id="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">Menu ☰</button></div>
       <nav class="navlinks" id="main-nav" aria-label="Main navigation">
-        <a href="#services">Services</a><a href="#industries">Who We Support</a><a href="#work">Our Work</a><a href="#insights">Our Approach</a><a href="#about">About</a><a href="#leadership">Leadership</a><a href="content-studio.html">Free Content Studio ↗</a><a href="https://www.instagram.com/creativevox_media?mdxt=cGh4cHBic2NvcWlv&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on Instagram">Instagram ↗</a><a href="https://www.linkedin.com/company/creativevox-media/" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on LinkedIn">LinkedIn ↗</a>
+        <a href="#services">Services</a><a href="#work">Our Work</a><a href="#insights">Our Approach</a><a href="#about">About</a><a href="#leadership">Leadership</a><a href="content-studio.html">Free Content Studio ↗</a><a href="https://www.instagram.com/creativevox_media?mdxt=cGh4cHBic2NvcWlv&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on Instagram">Instagram ↗</a><a href="https://www.linkedin.com/company/creativevox-media/" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on LinkedIn">LinkedIn ↗</a>
         <a class="button" href="#contact">Let's Talk <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
@@ -884,13 +884,6 @@
           <p>Tell us about your business and your goal. Get five practical Instagram post and Reel ideas to help you plan your next piece of content.</p>
           <ul class="content-studio-points"><li>✓ Quick ideas for your industry</li><li>✓ Goals for engagement, leads, sales or awareness</li><li>✓ Free to try, no sign-up required</li></ul>
           <a class="button content-studio-cta" href="content-studio.html">Try the Free Content Studio <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="content-studio-preview" aria-label="Content Studio preview" role="img">
-          <div class="cs-preview-top"><span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-dot"></span><span class="cs-preview-label">CREATIVEVOX AI STUDIO</span></div>
-          <div class="cs-preview-kicker">YOUR NEXT BIG IDEA</div><div class="cs-preview-title">Create with<br><span>purpose.</span></div>
-          <div class="cs-preview-card"><span>01 / REEL IDEA</span><strong>Behind the Scenes</strong><small>Show how your business brings value to customers.</small></div>
-          <div class="cs-preview-card cs-preview-card-alt"><span>02 / POST IDEA</span><strong>Myth vs. Fact</strong><small>Turn a common customer question into useful content.</small></div>
-          <div class="cs-preview-foot">YOUR IDEAS. OUR CREATIVE EXECUTION.</div>
         </div>
       </div>
     </section>
@@ -1021,33 +1014,6 @@
         <div class="web-picker" id="web-picker" role="tablist" aria-label="Choose a project"></div>
         <div class="web-detail" id="web-detail" role="tabpanel" aria-live="polite"></div>
         <div class="web-cta"><span>Want a website like this for your business?</span><a class="button" href="#contact" id="web-dialog-cta">Start a Project <span aria-hidden="true">↗</span></a></div>
-      </div>
-    </dialog>
-
-    <section class="industry-section" id="industries">
-      <div class="wrap">
-        <div class="section-head">
-          <div><div class="kicker">Who we support</div><h2>Digital solutions for<br><span class="accent-text">businesses and creators.</span></h2></div>
-          <p class="section-intro">Practical digital solutions for businesses and creators at different stages of growth—from launching a new idea to building a stronger online presence.</p>
-        </div>
-        <p class="approach-tap-hint">Tap any option to explore <span aria-hidden="true">↗</span></p>
-        <div class="support-tabs" aria-label="Who we support">
-          <button class="support-tab" type="button" data-support="startups">Startups & New Ventures</button>
-          <button class="support-tab" type="button" data-support="local">Small & Local Businesses</button>
-          <button class="support-tab" type="button" data-support="creators">Brands, Creators & Influencers</button>
-        </div>
-      </div>
-    </section>
-    <dialog class="support-dialog" id="support-dialog" aria-labelledby="support-dialog-title">
-      <div class="support-dialog-head">
-        <div><div class="kicker">Who we support</div><h2 id="support-dialog-title">Startups & New Ventures</h2></div>
-        <button class="support-dialog-close" id="support-dialog-close" type="button" aria-label="Close details">×</button>
-      </div>
-      <div class="support-dialog-body">
-        <span class="industry-number" id="support-dialog-tag">01 / Startups & New Ventures</span>
-        <h3 id="support-dialog-subtitle">Launch with confidence</h3>
-        <p id="support-dialog-description">Build a strong foundation with a professional website, brand identity, engaging content and digital marketing that helps your business reach the right audience.</p>
-        <a href="#contact" class="textlink" id="support-dialog-cta">Discuss Your Launch ↗</a>
       </div>
     </dialog>
 
@@ -1477,36 +1443,6 @@
       document.getElementById('web-dialog-cta').addEventListener('click',()=>dlg.close());
       dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
     })();
-
-    const supportDetails = {
-      startups: {tag:"01 / Startups & New Ventures",title:"Launch with confidence",description:"Build a strong foundation with a professional website, brand identity, engaging content and digital marketing that helps your business reach the right audience.",cta:"Discuss Your Launch ↗"},
-      local: {tag:"02 / Small & Local Businesses",title:"Reach more local customers",description:"Help more customers discover and trust your business with a professional website, consistent social media, engaging posts and practical digital marketing.",cta:"Grow Your Local Presence ↗"},
-      creators: {tag:"03 / Growing Brands, Creators & Influencers",title:"Build a stronger digital presence",description:"Grow your brand or personal presence with engaging reels, AI and real-video editing, content creation and digital solutions designed to connect with your audience.",cta:"Explore Creative Solutions ↗"}
-    };
-    const supportDialog = document.getElementById("support-dialog");
-    const supportDialogTitle = document.getElementById("support-dialog-title");
-    const supportDialogTag = document.getElementById("support-dialog-tag");
-    const supportDialogSubtitle = document.getElementById("support-dialog-subtitle");
-    const supportDialogDescription = document.getElementById("support-dialog-description");
-    const supportDialogCta = document.getElementById("support-dialog-cta");
-    const supportTabs = [...document.querySelectorAll(".support-tab")];
-    function openSupportDetails(key, button) {
-      const detail = supportDetails[key];
-      if (!detail || !supportDialog) return;
-      supportDialogTitle.textContent = key === "creators" ? "Brands, Creators & Influencers" : key === "local" ? "Small & Local Businesses" : "Startups & New Ventures";
-      supportDialogTag.textContent = detail.tag;
-      supportDialogSubtitle.textContent = detail.title;
-      supportDialogDescription.textContent = detail.description;
-      supportDialogCta.textContent = detail.cta;
-      supportDialogCta.href = "#contact";
-      supportTabs.forEach(tab => tab.setAttribute("aria-expanded", String(tab === button)));
-      if (typeof supportDialog.showModal === "function") supportDialog.showModal();
-      else window.location.hash = "contact";
-    }
-    supportTabs.forEach(button => button.addEventListener("click", () => openSupportDetails(button.dataset.support, button)));
-    document.getElementById("support-dialog-close").addEventListener("click", () => supportDialog.close());
-    supportDialog.addEventListener("click", event => { if (event.target === supportDialog) supportDialog.close(); });
-    supportDialog.addEventListener("close", () => supportTabs.forEach(tab => tab.setAttribute("aria-expanded", "false")));
 
     const approachDetails = {
       strategy: {title:"Strategy",tag:"01 / Strategy",subtitle:"Understand before we create",description:"We learn about your business, audience and objectives before recommending a website, campaign or creative solution."},
