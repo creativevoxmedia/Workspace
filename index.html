@@ -263,6 +263,9 @@
     .leadership-accordion[open] .leadership-chevron{transform:rotate(45deg)}
     .leadership-content{padding:0 28px 28px;border-top:1px solid var(--line)}
     .leadership-content .section-head{padding-top:25px}
+    .industry-section.fold-section{padding:44px 0 14px}
+    .how-we-work.fold-section{padding:14px 0 44px}
+    @media(max-width:560px){.industry-section.fold-section{padding:34px 0 10px}.how-we-work.fold-section{padding:10px 0 34px}}
     .team{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
     .person{padding:23px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
     .person-initial{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#ff303b1c;color:#ff656d;font-weight:950;font-size:17px;margin-bottom:20px}
@@ -999,8 +1002,15 @@
       </div>
     </dialog>
 
-    <section class="industry-section" id="industries">
+    <section class="industry-section fold-section" id="industries">
       <div class="wrap">
+        <details class="leadership-accordion">
+          <summary class="leadership-trigger">
+            <span class="leadership-trigger-icon" aria-hidden="true">◎</span>
+            <span class="leadership-trigger-copy"><span class="kicker">Who we support</span><strong>Businesses &amp; Creators We Work With</strong><small>Tap to see who we help and how.</small></span>
+            <span class="leadership-trigger-action"><span class="leadership-trigger-label">View details</span><span class="leadership-chevron" aria-hidden="true">＋</span></span>
+          </summary>
+          <div class="leadership-content">
         <div class="section-head">
           <div><div class="kicker">Who we support</div><h2>Digital solutions for<br><span class="accent-text">businesses and creators.</span></h2></div>
           <p class="section-intro">Practical digital solutions for businesses and creators at different stages of growth—from launching a new idea to building a stronger online presence.</p>
@@ -1011,6 +1021,8 @@
           <button class="support-tab" type="button" data-support="local">Small & Local Businesses</button>
           <button class="support-tab" type="button" data-support="creators">Brands, Creators & Influencers</button>
         </div>
+          </div>
+        </details>
       </div>
     </section>
     <dialog class="support-dialog" id="support-dialog" aria-labelledby="support-dialog-title">
@@ -1026,8 +1038,15 @@
       </div>
     </dialog>
 
-<section class="how-we-work" style="padding-top:20px" id="how-we-work">
+<section class="how-we-work fold-section" id="how-we-work">
       <div class="wrap">
+        <details class="leadership-accordion">
+          <summary class="leadership-trigger">
+            <span class="leadership-trigger-icon" aria-hidden="true">↻</span>
+            <span class="leadership-trigger-copy"><span class="kicker">How we work</span><strong>Discover. Plan. Create. Refine.</strong><small>Tap to see our simple project process.</small></span>
+            <span class="leadership-trigger-action"><span class="leadership-trigger-label">View process</span><span class="leadership-chevron" aria-hidden="true">＋</span></span>
+          </summary>
+          <div class="leadership-content">
         <div class="section-head"><div><div class="kicker">How we work</div><h2>Simple process.<br>Clear direction.</h2></div></div>
         <div class="process-tabs" role="tablist" aria-label="Our project process">
           <button class="process-tab is-active" id="process-tab-discover" type="button" role="tab" aria-selected="true" aria-controls="process-panel" data-process="discover">Discover</button>
@@ -1038,6 +1057,8 @@
         <div class="process-panel" id="process-panel" role="tabpanel" aria-labelledby="process-tab-discover" tabindex="0">
           <b class="process-panel-step">STEP 01</b><h3>Discover</h3><p>We learn about your business, audience, goals and requirements to understand what success looks like before recommending the right solution.</p>
         </div>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -1419,6 +1440,22 @@ const processDetails = {
       navToggle.textContent = 'Menu ☰';
     }));
   
+    // Who We Support, How We Work and Leadership are tap-to-open rows; links that point at them open them.
+    (function(){
+      function open(id){
+        const sec = id && document.getElementById(id);
+        const d = sec && sec.querySelector('details.leadership-accordion');
+        if (d && !d.open) d.open = true;
+      }
+      function fromHash(){ let h = ''; try { h = decodeURIComponent((location.hash || '').slice(1)); } catch (e) {} open(h); }
+      document.addEventListener('click', function(e){
+        const a = e.target.closest && e.target.closest('a[href^="#"]');
+        if (a) open(a.getAttribute('href').slice(1));
+      });
+      window.addEventListener('hashchange', fromHash);
+      fromHash();
+    })();
+
     // Cinematic 3D hero: mouse parallax, floating dust, pause when off-screen.
     (function(){
       const hero = document.getElementById('home');
