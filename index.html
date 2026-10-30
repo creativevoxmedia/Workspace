@@ -743,22 +743,8 @@
 .cs-preview-card>span{color:#ff747b;font-size:.65rem;font-weight:800;letter-spacing:1.2px}.cs-preview-card strong{font-size:1rem}.cs-preview-card small{color:#aaaab5;line-height:1.5}
 .cs-preview-card-alt{margin-left:22px}.cs-preview-foot{font-size:.62rem;letter-spacing:1.5px;color:#898993;margin-top:22px}
 @media(max-width:760px){.content-studio-inner{grid-template-columns:1fr}.content-studio-preview{transform:none}.content-studio-promo{padding:64px 0}.content-studio-copy h2{font-size:clamp(2.2rem,10vw,3.2rem)}}
-
-    /* ===== Click-to-open sections: the homepage shows only the hero; every other section opens from its button ===== */
-    .view-bar{display:none}
-    html.js-views:not([data-view="home"]) .view-bar{display:block;padding:22px 0 0}
-    .view-back{min-height:44px}
-    html.js-views[data-view="home"] main>section:not(#home),
-    html.js-views[data-view="work"] main>section:not(#work):not(#content-studio-promo),
-    html.js-views[data-view="industries"] main>section:not(#industries),
-    html.js-views[data-view="about"] main>section:not(#about):not(#how-we-work),
-    html.js-views[data-view="leadership"] main>section:not(#leadership),
-    html.js-views[data-view="contact"] main>section:not(#contact){display:none}
-    main>section:focus{outline:none}
-    .navlinks a[aria-current="page"]:not(.button){color:var(--red2)}
 </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
-<script>(function(){var d=document.documentElement,m={work:'work','content-studio-promo':'work',industries:'industries','how-we-work':'about',about:'about',leadership:'leadership',contact:'contact'};var h='';try{h=decodeURIComponent((location.hash||'').slice(1))}catch(e){}d.classList.add('js-views');d.setAttribute('data-view',m[h]||'home');})();</script>
 </head>
 <body>
   <div class="topline"></div>
@@ -777,7 +763,6 @@
   </header>
 
   <main>
-    <div class="wrap view-bar"><a class="button secondary view-back" href="#home">← Back to Home</a></div>
     <section class="hero" id="home">
       <div class="wrap hero-grid">
         <div class="reveal">
@@ -1434,43 +1419,6 @@ const processDetails = {
       navToggle.textContent = 'Menu ☰';
     }));
   
-    // Click-to-open sections: one page, but only the hero shows on the homepage. Each nav/CTA button opens its section.
-    (function(){
-      const de = document.documentElement;
-      const map = {work:'work','content-studio-promo':'work',industries:'industries','how-we-work':'about',about:'about',leadership:'leadership',contact:'contact'};
-      const first = {work:'work',industries:'industries',about:'how-we-work',leadership:'leadership',contact:'contact'};
-      const navLinks = Array.prototype.slice.call(document.querySelectorAll('#main-nav a[href^="#"]'));
-      function mark(view){
-        navLinks.forEach(function(a){
-          const target = map[a.getAttribute('href').slice(1)];
-          if (target && target === view) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
-        });
-      }
-      function readHash(){
-        let h = '';
-        try { h = decodeURIComponent((location.hash || '').slice(1)); } catch (e) {}
-        return h;
-      }
-      function apply(opts){
-        const h = readHash();
-        let view = de.getAttribute('data-view') || 'home';
-        if (map[h]) view = map[h]; else if (h === '' || h === 'home') view = 'home'; else return;   // unknown hash: leave the page as is
-        const changed = view !== de.getAttribute('data-view');
-        document.querySelectorAll('dialog[open]').forEach(function(d){ d.close(); });
-        de.setAttribute('data-view', view);
-        mark(view);
-        if (opts && opts.initial) return;
-        if (changed || h === 'home') {
-          de.style.scrollBehavior = 'auto'; window.scrollTo(0, 0); de.style.scrollBehavior = '';
-          const el = view === 'home' ? document.getElementById('home') : document.getElementById(first[view]);
-          if (el) { el.setAttribute('tabindex', '-1'); el.focus({preventScroll: true}); }
-        }
-      }
-      window.addEventListener('hashchange', function(){ apply(); });
-      window.addEventListener('pageshow', function(e){ if (e.persisted) apply({initial: true}); });
-      apply({initial: true});
-    })();
-
     // Cinematic 3D hero: mouse parallax, floating dust, pause when off-screen.
     (function(){
       const hero = document.getElementById('home');
