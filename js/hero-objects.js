@@ -436,6 +436,7 @@ export function mountHeroObjects({ hero, art, scene }) {
   if (!objs.length) { renderer.dispose(); canvas.remove(); return null; }
 
   /* keep the canvas glued to the CSS scene and each model glued to its CSS anchor */
+  let dprCap = 1.5;
   function layout() {
     const W = scene.offsetWidth + M * 2, H = scene.offsetHeight + M * 2;
     if (!W || !H) return;
@@ -443,7 +444,7 @@ export function mountHeroObjects({ hero, art, scene }) {
     canvas.style.top = (scene.offsetTop - M) + 'px';
     canvas.style.width = W + 'px';
     canvas.style.height = H + 'px';
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, dprCap));
     renderer.setSize(W, H, false);
     camera.aspect = W / H;
     camera.fov = THREE.MathUtils.radToDeg(2 * Math.atan((H / U / 2) / camDist));
@@ -462,8 +463,12 @@ export function mountHeroObjects({ hero, art, scene }) {
 
   /* pointer parallax */
   let tx = 0, ty = 0, mx = 0, my = 0;
+  let heroRect = null;
+  const dirtyRect = () => { heroRect = null; };
+  window.addEventListener('scroll', dirtyRect, { passive: true });
+  window.addEventListener('resize', dirtyRect, { passive: true });
   function onMove(e) {
-    const r = hero.getBoundingClientRect();
+    const r = heroRect || (heroRect = hero.getBoundingClientRect());
     tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
     ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
   }
@@ -472,9 +477,13 @@ export function mountHeroObjects({ hero, art, scene }) {
   hero.addEventListener('pointerleave', onLeave);
 
   const clock = new THREE.Clock();
+  let frameAcc = 0, frameN = 0;   // adaptive pixel ratio: step down once if the GPU cannot hold ~42 fps
   let t = 0;
   function frame() {
-    const dt = Math.min(clock.getDelta(), 0.05);
+    const raw = clock.getDelta();
+    const dt = Math.min(raw, 0.05);
+    frameAcc += raw; frameN++;
+    if (frameN === 90) { if (frameAcc / frameN > 0.024 && dprCap > 1) { dprCap = Math.max(1, dprCap - 0.25); layout(); } frameAcc = 0; frameN = 0; }
     t += dt;
     mx += (tx - mx) * 0.06;
     my += (ty - my) * 0.06;
@@ -516,6 +525,8 @@ export function mountHeroObjects({ hero, art, scene }) {
     renderer.setAnimationLoop(null);
     io.disconnect(); ro.disconnect();
     hero.removeEventListener('pointermove', onMove);
+    window.removeEventListener('scroll', dirtyRect);
+    window.removeEventListener('resize', dirtyRect);
     hero.removeEventListener('pointerleave', onLeave);
     document.removeEventListener('visibilitychange', sync);
     objs.forEach(o => { o.unbind(); o.el.style.translate = ''; });
