@@ -158,10 +158,11 @@ export function mountHeroScene({ hero, anchor }) {
 
   // sizing: keep the rig centred on the CSS scene
   const half = { w: 1, h: 1 };
+  let dprCap = 1.5;
   function layout() {
     const w = hero.clientWidth, h = hero.clientHeight;
     if (!w || !h) return;
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, dprCap));
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
@@ -179,8 +180,12 @@ export function mountHeroScene({ hero, anchor }) {
 
   // pointer parallax
   let tx = 0, ty = 0, mx = 0, my = 0;
+  let heroRect = null;
+  const dirtyRect = () => { heroRect = null; };
+  window.addEventListener('scroll', dirtyRect, { passive: true });
+  window.addEventListener('resize', dirtyRect, { passive: true });
   function onMove(e) {
-    const r = hero.getBoundingClientRect();
+    const r = heroRect || (heroRect = hero.getBoundingClientRect());
     tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
     ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
   }
@@ -189,9 +194,13 @@ export function mountHeroScene({ hero, anchor }) {
   hero.addEventListener('pointerleave', onLeave);
 
   const clock = new THREE.Clock();
+  let frameAcc = 0, frameN = 0;   // adaptive pixel ratio: step down once if the GPU cannot hold ~42 fps
   let t = 0, intro = 0;
   function frame() {
-    const dt = Math.min(clock.getDelta(), 0.05);
+    const raw = clock.getDelta();
+    const dt = Math.min(raw, 0.05);
+    frameAcc += raw; frameN++;
+    if (frameN === 90) { if (frameAcc / frameN > 0.024 && dprCap > 1) { dprCap = Math.max(1, dprCap - 0.25); layout(); } frameAcc = 0; frameN = 0; }
     t += dt;
     intro = Math.min(1, intro + dt / 2.4);
     const ease = 1 - Math.pow(1 - intro, 3);
@@ -240,6 +249,8 @@ export function mountHeroScene({ hero, anchor }) {
     renderer.setAnimationLoop(null);
     io.disconnect(); ro.disconnect();
     hero.removeEventListener('pointermove', onMove);
+    window.removeEventListener('scroll', dirtyRect);
+    window.removeEventListener('resize', dirtyRect);
     hero.removeEventListener('pointerleave', onLeave);
     document.removeEventListener('visibilitychange', sync);
     renderer.dispose();

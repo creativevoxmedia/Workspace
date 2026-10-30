@@ -102,7 +102,7 @@
       .navlinks .button{margin-top:6px}
     }
     .hero{position:relative;isolation:isolate;overflow:hidden;padding:105px 0 88px;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 78% 42%,#ff303b12,transparent 43%),linear-gradient(115deg,#0a0a0c 0%,#101014 52%,#0a0a0c 100%)}
-    .hero:before{content:"";position:absolute;width:600px;height:600px;right:-100px;top:-120px;border-radius:50%;background:radial-gradient(circle,#ff303b30 0, #ff303b0b 36%,transparent 69%);filter:blur(8px);pointer-events:none;animation:heroGlow 8s ease-in-out infinite alternate;z-index:-1}
+    .hero:before{content:"";position:absolute;width:600px;height:600px;right:-100px;top:-120px;border-radius:50%;background:radial-gradient(circle,#ff303b30 0, #ff303b0b 36%,transparent 69%);pointer-events:none;animation:heroGlow 8s ease-in-out infinite alternate;z-index:-1}
     .hero:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(#ffffff12 1px,transparent 1px),linear-gradient(90deg,#ffffff12 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(90deg,transparent,#000 45%,#000 90%,transparent);z-index:-1}
     .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:55px;position:relative;perspective:1200px}
     .hero-copy-block{position:relative;z-index:2}
@@ -366,8 +366,9 @@
     .hero-art,.hero-art:hover{transform-style:flat;min-height:0;display:block;align-self:center}
     .scene{position:relative;width:100%;height:580px;perspective:1100px;perspective-origin:50% 40%;isolation:isolate;user-select:none}
     .scene:before{content:"";position:absolute;inset:-6% -12%;z-index:-2;pointer-events:none;background:radial-gradient(closest-side at 50% 50%,rgba(255,48,59,.24),transparent),radial-gradient(closest-side at 50% 88%,rgba(255,122,69,.16),transparent);animation:glowPulse 6s ease-in-out infinite alternate}
-    .floor{position:absolute;left:-30%;width:160%;bottom:-2%;height:50%;z-index:-1;pointer-events:none;transform:perspective(520px) rotateX(68deg);transform-origin:50% 100%;background-image:linear-gradient(rgba(255,48,59,.42) 1px,transparent 1px),linear-gradient(90deg,rgba(255,48,59,.42) 1px,transparent 1px);background-size:52px 52px;animation:floorMove 3.4s linear infinite;-webkit-mask-image:radial-gradient(ellipse at 50% 55%,#000 0,transparent 68%);mask-image:radial-gradient(ellipse at 50% 55%,#000 0,transparent 68%)}
-    .beam{position:absolute;inset:-25% -20%;z-index:4;pointer-events:none;mix-blend-mode:screen;background:linear-gradient(104deg,transparent 42%,rgba(255,120,110,.10) 50%,transparent 58%);animation:beamSweep 8s ease-in-out infinite}
+    .floor{position:absolute;left:-30%;width:160%;bottom:-2%;height:50%;z-index:-1;pointer-events:none;overflow:hidden;transform:perspective(520px) rotateX(68deg);transform-origin:50% 100%;-webkit-mask-image:radial-gradient(ellipse at 50% 55%,#000 0,transparent 68%);mask-image:radial-gradient(ellipse at 50% 55%,#000 0,transparent 68%)}
+    .floor:before{content:"";position:absolute;left:0;right:0;top:-52px;bottom:0;background-image:linear-gradient(rgba(255,48,59,.42) 1px,transparent 1px),linear-gradient(90deg,rgba(255,48,59,.42) 1px,transparent 1px);background-size:52px 52px;animation:floorMove 3.4s linear infinite;will-change:transform}
+    .beam{position:absolute;inset:-25% -20%;z-index:4;pointer-events:none;background:linear-gradient(104deg,transparent 42%,rgba(255,120,110,.10) 50%,transparent 58%);animation:beamSweep 8s ease-in-out infinite}
 
     .stage,.rings{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));will-change:transform}
     .rings{z-index:-1;pointer-events:none}
@@ -403,11 +404,11 @@
     .o-code .obj-body{width:178px;padding:13px 15px 22px}
     .win-dots{display:flex;gap:5px}.win-dots i{width:7px;height:7px;border-radius:50%;background:#ff5f57}.win-dots i:nth-child(2){background:#febc2e}.win-dots i:nth-child(3){background:#28c840}
     .code{display:block;margin-top:10px}
-    .code i{display:block;height:6px;width:var(--w);margin:8px 0;border-radius:4px;background:linear-gradient(90deg,#ff5962,#ff9a62);animation:typeLine 5.2s ease-out infinite;animation-delay:calc(var(--i) * .38s)}
+    .code i{display:block;height:6px;width:var(--w);margin:8px 0;border-radius:4px;background:linear-gradient(90deg,#ff5962,#ff9a62);transform-origin:0 50%;animation:typeLineX 5.2s ease-out infinite;animation-delay:calc(var(--i) * .38s)}
     .code i.ind{margin-left:14px;background:linear-gradient(90deg,#8f9bff,#5fd3ff)}
     .code i:nth-child(4){background:linear-gradient(90deg,#d9d9e3,#8a8a98)}
     .code i.cur:after{content:"";position:absolute;width:2px;height:12px;margin:-3px 0 0 6px;background:#fff;animation:blink 1s steps(2) infinite}
-    .code i.cur{position:relative}
+    .code i.cur{position:relative;transform:none;animation-name:typeLine}
 
     /* reels: phone */
     .o-reel .obj-body{width:106px;height:192px;padding:10px 9px;border-radius:20px}
@@ -458,9 +459,10 @@
     @keyframes ringSpin{to{transform:rotateX(var(--tx,72deg)) rotateY(var(--ty,0deg)) rotateZ(360deg)}}
     @keyframes flyIn{from{opacity:0;transform:translateZ(-420px) translateY(60px)}to{opacity:1;transform:translateZ(var(--z,0px))}}
     @keyframes bob{0%,100%{transform:translateY(0) rotateX(var(--rx0,6deg)) rotateY(var(--ry0,-14deg)) rotateZ(var(--rz,0deg))}50%{transform:translateY(-18px) rotateX(calc(var(--rx0,6deg) * -.7)) rotateY(calc(var(--ry0,-14deg) * -.55)) rotateZ(calc(var(--rz,0deg) * -1))}}
-    @keyframes floorMove{to{background-position:0 52px}}
+    @keyframes floorMove{to{transform:translate3d(0,52px,0)}}
     @keyframes beamSweep{0%,100%{transform:translateX(-26%)}50%{transform:translateX(26%)}}
     @keyframes glowPulse{from{opacity:.65}to{opacity:1}}
+    @keyframes typeLineX{0%{transform:scaleX(0)}28%,86%{transform:scaleX(1)}100%{transform:scaleX(0)}}
     @keyframes typeLine{0%{width:0}28%,86%{width:var(--w)}100%{width:0}}
     @keyframes blink{50%{opacity:0}}
     @keyframes filmRoll{to{transform:translateY(16px)}}
@@ -683,6 +685,7 @@
     .hero.objects-on .obj-body>*:not(.obj-label){visibility:hidden}
     .hero.objects-on a.obj:hover .obj-body,.hero.objects-on a.obj:focus-visible .obj-body{filter:none}
     .hero.objects-on .obj-label{bottom:-26px}
+    .hero.objects-on .obj-body>*:not(.obj-label),.hero.objects-on .obj-body>*:not(.obj-label) *,.hero.objects-on .obj-body>*:not(.obj-label):before,.hero.objects-on .obj-body>*:not(.obj-label):after,.hero.objects-on .obj-body>*:not(.obj-label) *:before,.hero.objects-on .obj-body>*:not(.obj-label) *:after{animation:none!important}
 
     /* ===== Website Development projects popup ===== */
     .work-card-web{cursor:pointer}
@@ -1440,18 +1443,24 @@ const processDetails = {
 
       if (reduce || !(window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches)) return;
 
+      const rings = scene.querySelector('.rings');
       let tx = 0, ty = 0, cx = 0, cy = 0, raf = 0;
+      let rect = null;
+      const dirty = function(){ rect = null; };
+      window.addEventListener('scroll', dirty, {passive: true});
+      window.addEventListener('resize', dirty, {passive: true});
       function frame(){
         cx += (tx - cx) * 0.08;
         cy += (ty - cy) * 0.08;
-        scene.style.setProperty('--rx', cy.toFixed(2) + 'deg');
-        scene.style.setProperty('--ry', cx.toFixed(2) + 'deg');
+        const tf = 'rotateX(' + cy.toFixed(2) + 'deg) rotateY(' + cx.toFixed(2) + 'deg)';
+        stage.style.transform = tf;
+        if (rings) rings.style.transform = tf;
         raf = (Math.abs(tx - cx) > 0.01 || Math.abs(ty - cy) > 0.01) ? requestAnimationFrame(frame) : 0;
       }
       function aim(x, y){ tx = x; ty = y; if (!raf) raf = requestAnimationFrame(frame); }
       hero.addEventListener('pointermove', function(e){
         if (e.pointerType !== 'mouse') return;
-        const r = hero.getBoundingClientRect();
+        const r = rect || (rect = hero.getBoundingClientRect());
         aim(((e.clientX - r.left) / r.width - 0.5) * 18, -((e.clientY - r.top) / r.height - 0.5) * 11);
       });
       hero.addEventListener('pointerleave', function(){ aim(0, 0); });
