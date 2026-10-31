@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/RoomEnvironment.js';
 import { RoundedBoxGeometry } from 'three/addons/RoundedBoxGeometry.js';
 
-const RED = 0xff303b;
+const RED = 0xc1322a;
 
 function glowTexture(size, inner, outer) {
   const c = document.createElement('canvas');
@@ -14,7 +14,7 @@ function glowTexture(size, inner, outer) {
   const grad = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
   grad.addColorStop(0, inner);
   grad.addColorStop(0.35, outer);
-  grad.addColorStop(1, 'rgba(255,255,255,0)');
+  grad.addColorStop(1, 'rgba(216,239,232,0)');
   g.fillStyle = grad;
   g.fillRect(0, 0, size, size);
   const t = new THREE.CanvasTexture(c);
@@ -29,8 +29,8 @@ function streakTexture() {
   g.scale(1, 0.125);
   const grad = g.createRadialGradient(256, 256, 0, 256, 256, 256);
   grad.addColorStop(0, 'rgba(255,255,255,1)');
-  grad.addColorStop(0.25, 'rgba(255,255,255,.35)');
-  grad.addColorStop(1, 'rgba(255,255,255,0)');
+  grad.addColorStop(0.25, 'rgba(216,239,232,.35)');
+  grad.addColorStop(1, 'rgba(216,239,232,0)');
   g.fillStyle = grad;
   g.fillRect(0, 0, 512, 512);
   const t = new THREE.CanvasTexture(c);
@@ -55,7 +55,7 @@ export function mountHeroScene({ hero, anchor }) {
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.08;
+  renderer.toneMappingExposure = 1.15;
 
   const scene = new THREE.Scene();
   const pmrem = new THREE.PMREMGenerator(renderer);
@@ -70,7 +70,7 @@ export function mountHeroScene({ hero, anchor }) {
   const key = new THREE.DirectionalLight(0xffffff, 1.6);
   key.position.set(-4, 5, 6);
   scene.add(key);
-  const fill = new THREE.PointLight(0xaab4ff, 40, 18, 2);
+  const fill = new THREE.PointLight(0xbfeadc, 40, 18, 2);
   fill.position.set(-5, -3, 4);
   scene.add(fill);
   const rim = new THREE.PointLight(RED, 90, 16, 2);
@@ -81,7 +81,7 @@ export function mountHeroScene({ hero, anchor }) {
   const rig = new THREE.Group();
   scene.add(rig);
 
-  const dot = glowTexture(128, 'rgba(255,255,255,1)', 'rgba(255,255,255,.35)');
+  const dot = glowTexture(128, 'rgba(255,255,255,1)', 'rgba(216,239,232,.35)');
 
   // large soft glow behind the scene
   const back = new THREE.Sprite(new THREE.SpriteMaterial({
@@ -94,7 +94,7 @@ export function mountHeroScene({ hero, anchor }) {
 
   // anamorphic light streak
   const streakMap = streakTexture();
-  const streak = new THREE.Mesh(new THREE.PlaneGeometry(13, 0.55), additive(streakMap, 0xff4a52, 0.5));
+  const streak = new THREE.Mesh(new THREE.PlaneGeometry(13, 0.55), additive(streakMap, 0xd9453c, 0.5));
   streak.position.z = -1.4;
   rig.add(streak);
   const streakCore = new THREE.Mesh(new THREE.PlaneGeometry(8, 0.1), additive(streakMap, 0xffffff, 0.5));
@@ -105,7 +105,7 @@ export function mountHeroScene({ hero, anchor }) {
   const rings = [];
   [
     { r: 3.35, tilt: [1.05, 0.0], speed: 0.14, color: 0xffffff, op: 0.4 },
-    { r: 4.0, tilt: [0.82, 0.45], speed: -0.1, color: 0xff5962, op: 0.55 },
+    { r: 4.0, tilt: [0.82, 0.45], speed: -0.1, color: 0xe5584d, op: 0.55 },
     { r: 4.6, tilt: [1.22, -0.35], speed: 0.065, color: 0xffffff, op: 0.2 }
   ].forEach((d, i) => {
     const tilt = new THREE.Group();
@@ -121,7 +121,7 @@ export function mountHeroScene({ hero, anchor }) {
       new THREE.MeshBasicMaterial({ color: RED, transparent: true, opacity: 0.05, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false })
     ));
     const bead = new THREE.Sprite(new THREE.SpriteMaterial({
-      map: dot, color: i === 1 ? 0xff7b83 : RED, opacity: 0.95, transparent: true, depthWrite: false,
+      map: dot, color: i === 1 ? 0xea5b53 : RED, opacity: 0.95, transparent: true, depthWrite: false,
       blending: THREE.AdditiveBlending, toneMapped: false
     }));
     bead.scale.set(0.62, 0.62, 1);
@@ -154,11 +154,11 @@ export function mountHeroScene({ hero, anchor }) {
     return { geo, pos, seed, count };
   }
   const dust = makePoints(640, 0xffffff, 0.09, 0.62, 0.05, 0.16);
-  const embers = makePoints(200, 0xff5a4a, 0.13, 0.9, 0.12, 0.32);
+  const embers = makePoints(200, 0xe43227, 0.13, 0.9, 0.12, 0.32);
 
   // sizing: keep the rig centred on the CSS scene
   const half = { w: 1, h: 1 };
-  let dprCap = 1.5;
+  let dprCap = 2;
   function layout() {
     const w = hero.clientWidth, h = hero.clientHeight;
     if (!w || !h) return;
