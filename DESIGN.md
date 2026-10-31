@@ -1,15 +1,17 @@
 # CreativeVox Media — Design System
 
 ## Direction
-Build a premium, editorial-feeling digital agency site: confident, creative, and conversion-focused. Keep the existing red / near-black brand identity, but avoid generic AI-generated SaaS styling. Use intentional typography, strong hierarchy, purposeful negative space, and distinct section compositions.
+Build a premium, editorial-feeling digital agency site: confident, creative, and conversion-focused. Keep the red brand identity, now on a deep green-black base with mint and sage supporting tones, but avoid generic AI-generated SaaS styling. Use intentional typography, strong hierarchy, purposeful negative space, and distinct section compositions.
 
 ## Tokens
-- Background: near-black (#0a0a0c)
-- Panels: charcoal (#121216 / #18181d)
-- Primary text: near-white (#f7f7f8)
-- Muted text: neutral gray only where contrast remains readable
-- Accent: brand red (#ff303b), with lighter red for hover and emphasis
-- Borders: subtle white at low opacity in dark mode
+- Background: deep green-black (#0a110f)
+- Panels: dark green (#101a16 / #16221d)
+- Primary text: mint-white (#e3f3ec); display highlights may use mint (#d8efe8)
+- Muted text: sage-gray (#9db8ac), only where contrast remains readable
+- Accent: brand red (#c1322a) for buttons and large type; lighter red (#e5584d) for small text, links and hover
+- Supporting tone: sage (#89ad9e) for gradients and decorative details
+- Borders: subtle mint at low opacity in dark mode (rgba(216,239,232,.12))
+- Light mode: pale mint background (#f2f7f4), near-black green text (#0f1a16), red #b52d25 / #9c241e
 - Layout: centered content, readable line lengths, consistent spacing rhythm
 - Corners: use moderate radii; avoid wrapping every element in nested cards
 
