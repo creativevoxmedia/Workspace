@@ -55,7 +55,7 @@ export function mountHeroScene({ hero, anchor }) {
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.08;
+  renderer.toneMappingExposure = 1.15;
 
   const scene = new THREE.Scene();
   const pmrem = new THREE.PMREMGenerator(renderer);
@@ -158,7 +158,7 @@ export function mountHeroScene({ hero, anchor }) {
 
   // sizing: keep the rig centred on the CSS scene
   const half = { w: 1, h: 1 };
-  let dprCap = 1.5;
+  let dprCap = 2;
   function layout() {
     const w = hero.clientWidth, h = hero.clientHeight;
     if (!w || !h) return;

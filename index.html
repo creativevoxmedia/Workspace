@@ -748,6 +748,41 @@
 .cs-preview-card-alt{margin-left:22px}.cs-preview-foot{font-size:.62rem;letter-spacing:1.5px;color:#7e9e92;margin-top:22px}
 @media(max-width:760px){.content-studio-inner{grid-template-columns:1fr}.content-studio-preview{transform:none}.content-studio-promo{padding:64px 0}.content-studio-copy h2{font-size:clamp(2.2rem,10vw,3.2rem)}}
 </style>
+  <style id="gloss-layer">
+    /* Gloss layer: paint-like highlights, rim light and reflections for a sharp, premium finish */
+    :root{--ease-premium:cubic-bezier(.2,.7,.2,1);--gloss-edge:rgba(216,239,232,.20);--gloss-hi:rgba(255,255,255,.075);--gloss-sweep:rgba(255,255,255,.11)}
+    :root[data-theme="light"]{--gloss-edge:rgba(255,255,255,.95);--gloss-hi:rgba(255,255,255,.60);--gloss-sweep:rgba(255,255,255,.65)}
+    html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+    header{-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);box-shadow:0 14px 34px -22px rgba(0,0,0,.85)}
+    :root[data-theme="light"] header{box-shadow:0 12px 30px -22px rgba(15,26,22,.35)}
+
+    /* Primary buttons: glossy red paint with a travelling highlight */
+    .button:not(.secondary){position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(180deg,#d6463c 0%,#c1322a 46%,#a52a23 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.34),inset 0 -1px 0 rgba(0,0,0,.28),0 12px 28px -10px rgba(193,50,42,.7);transition:transform .35s var(--ease-premium),box-shadow .35s var(--ease-premium),filter .35s}
+    .button:not(.secondary)::after{content:"";position:absolute;top:0;bottom:0;left:-70%;width:46%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-20deg);transition:left .8s var(--ease-premium);pointer-events:none}
+    .button:not(.secondary):hover{background:linear-gradient(180deg,#d9463c 0%,#b5302a 48%,#982621 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -1px 0 rgba(0,0,0,.3),0 16px 34px -10px rgba(193,50,42,.85);filter:saturate(1.08)}
+    .button:not(.secondary):hover::after{left:125%}
+    .button.secondary{box-shadow:inset 0 1px 0 var(--gloss-edge)}
+
+    /* Cards: bright top edge, soft depth, and a glass highlight that sweeps across on hover */
+    .service,.work-card,.person,.step,.contact-box,.about-note{box-shadow:inset 0 1px 0 var(--gloss-edge),inset 0 -1px 0 rgba(0,0,0,.16),0 22px 50px -26px rgba(0,0,0,.7)}
+    :root[data-theme="light"] .service,:root[data-theme="light"] .work-card,:root[data-theme="light"] .person,:root[data-theme="light"] .step,:root[data-theme="light"] .contact-box,:root[data-theme="light"] .about-note{box-shadow:inset 0 1px 0 var(--gloss-edge),0 18px 40px -26px rgba(15,26,22,.28)}
+    .art-card{box-shadow:inset 0 1px 0 var(--gloss-edge),0 35px 90px #000b,0 0 60px rgba(193,50,42,.16)}
+    .floating-tag{box-shadow:inset 0 1px 0 var(--gloss-edge),0 16px 35px #0007}
+    .person,.step,.contact-box{position:relative}
+    .service::after,.person::after,.step::after,.contact-box::after,.art-card::after,.work-card:not(.feature)::before{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit;pointer-events:none;background:linear-gradient(155deg,var(--gloss-hi) 0%,rgba(255,255,255,0) 34%),linear-gradient(115deg,transparent 40%,var(--gloss-sweep) 50%,transparent 60%);background-repeat:no-repeat;background-size:100% 100%,250% 100%;background-position:0 0,160% 0;transition:background-position .9s var(--ease-premium)}
+    .service:hover::after,.person:hover::after,.step:hover::after,.art-card:hover::after,.work-card:not(.feature):hover::before{background-position:0 0,-60% 0}
+    .service,.work-card,.person,.step{transition-timing-function:var(--ease-premium)}
+
+    /* Hero: crisp headline, car-paint shine on the red words, red light beam and floor reflection */
+    .hero h1{text-shadow:0 1px 0 rgba(216,239,232,.10),0 16px 36px rgba(0,0,0,.55)}
+    h1 em{background-image:linear-gradient(100deg,#c1322a 0%,#e5584d 26%,#ffb0a6 40%,#e5584d 54%,#c1322a 78%,#c1322a 100%)}
+    .hero{background:linear-gradient(104deg,transparent 57%,rgba(193,50,42,.16) 59.2%,rgba(193,50,42,.05) 64%,transparent 65%),radial-gradient(ellipse 55% 22% at 72% 100%,rgba(193,50,42,.32),transparent 72%),radial-gradient(ellipse at 78% 42%,#c1322a12,transparent 43%),linear-gradient(115deg,#0a110f 0%,#0d1713 52%,#0a110f 100%);box-shadow:inset 0 -1px 0 rgba(193,50,42,.45)}
+
+    @media(prefers-reduced-motion:reduce){
+      .button:not(.secondary)::after{display:none}
+      .service::after,.person::after,.step::after,.contact-box::after,.art-card::after,.work-card:not(.feature)::before{transition:none}
+    }
+  </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 </head>
 <body>

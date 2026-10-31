@@ -48,8 +48,8 @@ function roundedPlane(w, h, r) {
 
 function glassMat() {
   return new THREE.MeshPhysicalMaterial({
-    color: 0x111f1a, metalness: 0.65, roughness: 0.3,
-    clearcoat: 1, clearcoatRoughness: 0.2, envMapIntensity: 1.15
+    color: 0x111f1a, metalness: 0.7, roughness: 0.18,
+    clearcoat: 1, clearcoatRoughness: 0.06, envMapIntensity: 1.7
   });
 }
 
@@ -202,8 +202,8 @@ function buildHeart() {
   });
   geo.center();
   const mat = new THREE.MeshPhysicalMaterial({
-    color: RED, roughness: 0.26, metalness: 0.05, clearcoat: 1, clearcoatRoughness: 0.15,
-    emissive: 0x320c09, emissiveIntensity: 1, envMapIntensity: 1.1
+    color: RED, roughness: 0.16, metalness: 0.08, clearcoat: 1, clearcoatRoughness: 0.05,
+    emissive: 0x320c09, emissiveIntensity: 1, envMapIntensity: 1.6
   });
   const heart = new THREE.Mesh(geo, mat);
   heart.scale.setScalar(1.05);
@@ -257,7 +257,7 @@ function buildReel() {
   });
   playGeo.center();
   const play = new THREE.Mesh(playGeo, new THREE.MeshPhysicalMaterial({
-    color: 0xffffff, roughness: 0.3, clearcoat: 1, emissive: 0xffffff, emissiveIntensity: 0.3, envMapIntensity: 0.8
+    color: 0xffffff, roughness: 0.2, clearcoat: 1, clearcoatRoughness: 0.05, emissive: 0xffffff, emissiveIntensity: 0.3, envMapIntensity: 1.2
   }));
   play.position.set(0.02, 0.15, 0.22);
   g.add(play);
@@ -321,8 +321,8 @@ function buildChart() {
   const barGeo = new RoundedBoxGeometry(0.2, 1, 0.2, 3, 0.05);
   const bars = heights.map((h, i) => {
     const m = new THREE.Mesh(barGeo, new THREE.MeshPhysicalMaterial({
-      color: lo.clone().lerp(hi, i / 4), roughness: 0.28, metalness: 0.1, clearcoat: 1, clearcoatRoughness: 0.15,
-      emissive: 0x3e1512, emissiveIntensity: 0.9, envMapIntensity: 1.1
+      color: lo.clone().lerp(hi, i / 4), roughness: 0.16, metalness: 0.12, clearcoat: 1, clearcoatRoughness: 0.05,
+      emissive: 0x3e1512, emissiveIntensity: 0.9, envMapIntensity: 1.6
     }));
     m.position.x = -0.62 + i * 0.31;
     g.add(m);
@@ -331,7 +331,7 @@ function buildChart() {
 
   const arrow = new THREE.Mesh(
     new THREE.ConeGeometry(0.13, 0.3, 24),
-    new THREE.MeshPhysicalMaterial({ color: 0x9bc6b2, emissive: 0x88bca4, emissiveIntensity: 0.7, roughness: 0.3, clearcoat: 1 })
+    new THREE.MeshPhysicalMaterial({ color: 0x9bc6b2, emissive: 0x88bca4, emissiveIntensity: 0.7, roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.05, envMapIntensity: 1.5 })
   );
   g.add(arrow);
 
@@ -371,7 +371,7 @@ export function mountHeroObjects({ hero, art, scene }) {
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  renderer.toneMappingExposure = 1.15;
 
   const sc = new THREE.Scene();
   const pmrem = new THREE.PMREMGenerator(renderer);
@@ -436,7 +436,7 @@ export function mountHeroObjects({ hero, art, scene }) {
   if (!objs.length) { renderer.dispose(); canvas.remove(); return null; }
 
   /* keep the canvas glued to the CSS scene and each model glued to its CSS anchor */
-  let dprCap = 1.5;
+  let dprCap = 2;
   function layout() {
     const W = scene.offsetWidth + M * 2, H = scene.offsetHeight + M * 2;
     if (!W || !H) return;
