@@ -211,6 +211,23 @@
     .service h3{font-size:17px;letter-spacing:-.025em;margin:0 0 10px}
     .service p{font-size:13px;color:var(--muted);margin:0;line-height:1.8}
     .service-num{display:block;margin-top:23px;color:#62626b;font-size:10px;letter-spacing:.15em}
+    /* Udyam registration */
+    .registration{border-bottom:1px solid var(--line)}
+    .registration-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:46px;align-items:center}
+    .registration-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 24px;margin:26px 0 0;padding:0}
+    .registration-facts div{border-top:1px solid var(--line);padding-top:12px}
+    .registration-facts dt{color:var(--muted);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800}
+    .registration-facts dd{margin:5px 0 0;font-weight:800;font-size:15px;overflow-wrap:anywhere}
+    .registration-note{color:var(--muted);font-size:13px;margin:18px 0 0;max-width:520px}
+    .registration-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .registration-actions .button{min-height:44px}
+    .certificate-preview{display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;cursor:zoom-in;box-shadow:0 24px 70px #0006;max-height:520px}
+    .certificate-preview img{display:block;width:100%;height:auto;object-fit:cover;object-position:top}
+    .certificate-preview:focus-visible,.registration-actions a:focus-visible,.registration-actions button:focus-visible{outline:3px solid var(--red2);outline-offset:3px}
+    .certificate-dialog img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+    .certificate-dialog img+img{margin-top:14px}
+    @media(max-width:850px){.registration-grid{grid-template-columns:1fr;gap:30px}}
+    @media(max-width:560px){.registration-facts{grid-template-columns:1fr}.certificate-preview{max-height:380px}}
     .about{background:#101013;border-block:1px solid var(--line)}
     .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:start}
     .about-note{padding:27px;border:1px solid #ff303b55;border-radius:14px;background:linear-gradient(145deg,#ff303b12,#141418)}
@@ -759,7 +776,7 @@
       </a>
       <div style="display:flex;align-items:center;gap:8px"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme"><span class="theme-toggle-icon" id="theme-icon" aria-hidden="true">☀</span><span id="theme-label">Light</span></button><button class="menu-btn" id="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">Menu ☰</button></div>
       <nav class="navlinks" id="main-nav" aria-label="Main navigation">
-        <a href="#work">Our Work</a><a href="#industries">Who We Support</a><a href="#about">About</a><a href="#leadership">Leadership</a><a href="content-studio.html">Free Content Studio ↗</a><a href="https://www.instagram.com/creativevox_media?mdxt=cGh4cHBic2NvcWlv&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on Instagram">Instagram ↗</a><a href="https://www.linkedin.com/company/creativevox-media/" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on LinkedIn">LinkedIn ↗</a>
+        <a href="#work">Our Work</a><a href="#industries">Who We Support</a><a href="#about">About</a><a href="#registration">Registration</a><a href="#leadership">Leadership</a><a href="content-studio.html">Free Content Studio ↗</a><a href="https://www.instagram.com/creativevox_media?mdxt=cGh4cHBic2NvcWlv&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on Instagram">Instagram ↗</a><a href="https://www.linkedin.com/company/creativevox-media/" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on LinkedIn">LinkedIn ↗</a>
         <a class="button" href="#contact">Let's Talk <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
@@ -1114,6 +1131,44 @@
     </section>
   
 
+    <section class="registration" id="registration" aria-labelledby="registration-title">
+      <div class="wrap registration-grid">
+        <div>
+          <div class="kicker">Registered business</div>
+          <h2 id="registration-title">Udyam-registered<br>MSME.</h2>
+          <p class="section-intro" style="max-width:520px;margin-top:16px">CreativeVox Media is registered with the Government of India, Ministry of Micro, Small and Medium Enterprises, under the Udyam registration scheme.</p>
+          <dl class="registration-facts">
+            <div><dt>Udyam registration no.</dt><dd>UDYAM-UP-15-0151901</dd></div>
+            <div><dt>Enterprise</dt><dd>CreativeVox Media</dd></div>
+            <div><dt>Type</dt><dd>Micro enterprise</dd></div>
+            <div><dt>Major activity</dt><dd>Services</dd></div>
+            <div><dt>Registered on</dt><dd>04 Nov 2026</dd></div>
+            <div><dt>Classification</dt><dd>NIC 62099 – IT &amp; computer services</dd></div>
+          </dl>
+          <p class="registration-note">Personal details such as the address and social category are hidden on the public copy.</p>
+          <div class="registration-actions">
+            <button class="button" type="button" id="certificate-open">View certificate <span aria-hidden="true">↗</span></button>
+            <a class="button secondary" href="https://udyamregistration.gov.in/Udyam_Verify.aspx" target="_blank" rel="noopener noreferrer">Verify on Udyam portal ↗</a>
+            <a class="button secondary" href="./CreativeVox-Media-Udyam-Certificate-redacted.pdf" download>Download PDF</a>
+          </div>
+        </div>
+        <button class="certificate-preview" type="button" id="certificate-preview" aria-label="Open the Udyam registration certificate">
+          <img src="./images/udyam-certificate-thumb.webp" alt="Udyam Registration Certificate for CreativeVox Media, Government of India MSME, with address and social category hidden" width="600" height="826" loading="lazy">
+        </button>
+      </div>
+    </section>
+
+    <dialog class="video-category-dialog certificate-dialog" id="certificate-dialog" aria-labelledby="certificate-dialog-title">
+      <div class="video-category-dialog-head">
+        <div><div class="kicker">Registered business</div><h2 id="certificate-dialog-title">Udyam Registration Certificate</h2></div>
+        <button class="dialog-close" type="button" id="certificate-dialog-close" aria-label="Close certificate">×</button>
+      </div>
+      <div class="video-category-dialog-body">
+        <img src="./images/udyam-certificate-page-1.webp" alt="Udyam Registration Certificate, page 1 of 2, with address and social category hidden" loading="lazy">
+        <img src="./images/udyam-certificate-page-2.webp" alt="Udyam Registration Certificate, page 2 of 2" loading="lazy">
+      </div>
+    </dialog>
+
     <section class="about" id="about">
       <div class="wrap about-grid">
         <div class="about-note"><div class="quote-mark">“</div><p>Good ideas deserve a digital presence that does them justice.</p><small>THE CREATIVEVOX APPROACH</small></div>
@@ -1126,7 +1181,7 @@
     <div class="wrap footer-inner">
       <a class="brand footer-brand" href="#home" aria-label="CreativeVox Media home"><img class="brand-logo footer-logo logo-on-dark" src="./logo-dark.png?v=3" alt="CreativeVox Media circular logo" width="58" height="58" loading="lazy"><img class="brand-logo footer-logo logo-on-light" src="./logo-light.png?v=3" alt="" width="58" height="58" loading="lazy" aria-hidden="true"><span class="brand-name">Creative<span style="color:#ff303b">Vox</span> Media</span></a>
       <span>© <span id="year">2026</span> CreativeVox Media. All rights reserved.</span>
-      <div class="footer-links"><a href="#work">Our Work</a><a href="#about">About</a><a href="#leadership">Leadership</a><a href="#contact">Contact</a><a href="https://www.instagram.com/creativevox_media?mdxt=cGh4cHBic2NvcWlv&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on Instagram">Instagram ↗</a><a href="https://www.linkedin.com/company/creativevox-media/" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on LinkedIn">LinkedIn ↗</a><a href="mailto:teamcreativevoxmedia@gmail.com?subject=Project%20Inquiry%20%7C%20CreativeVox%20Media&body=Hello%20CreativeVox%20Media%2C%0A%0AI%27m%20interested%20in%20your%20services.%20Please%20share%20more%20details.%0A%0AName%3A%20%0ABusiness%2FCompany%3A%20%0AService%20Required%3A%20%0ABudget%20(Optional)%3A%20%0AContact%20Number%3A%20%0A%0AThank%20you.">Email</a></div>
+      <div class="footer-links"><a href="#work">Our Work</a><a href="#about">About</a><a href="#registration">Registration</a><a href="#leadership">Leadership</a><a href="#contact">Contact</a><a href="https://www.instagram.com/creativevox_media?mdxt=cGh4cHBic2NvcWlv&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on Instagram">Instagram ↗</a><a href="https://www.linkedin.com/company/creativevox-media/" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on LinkedIn">LinkedIn ↗</a><a href="mailto:teamcreativevoxmedia@gmail.com?subject=Project%20Inquiry%20%7C%20CreativeVox%20Media&body=Hello%20CreativeVox%20Media%2C%0A%0AI%27m%20interested%20in%20your%20services.%20Please%20share%20more%20details.%0A%0AName%3A%20%0ABusiness%2FCompany%3A%20%0AService%20Required%3A%20%0ABudget%20(Optional)%3A%20%0AContact%20Number%3A%20%0A%0AThank%20you.">Email</a></div>
     </div>
   </footer>
   <script>
@@ -1568,6 +1623,16 @@ const processDetails = {
       }
       if (document.readyState === 'complete') setTimeout(boot, 300);
       else window.addEventListener('load', function(){ setTimeout(boot, 300); }, {once: true});
+    })();
+  
+    (function(){
+      const dlg=document.getElementById('certificate-dialog');
+      if(!dlg)return;
+      const open=()=>{ if(typeof dlg.showModal==='function') dlg.showModal(); else dlg.setAttribute('open',''); };
+      document.getElementById('certificate-open')?.addEventListener('click',open);
+      document.getElementById('certificate-preview')?.addEventListener('click',open);
+      document.getElementById('certificate-dialog-close')?.addEventListener('click',()=>dlg.close());
+      dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
     })();
   </script>
 </body>
