@@ -576,6 +576,18 @@
 .cs-preview-card>span{color:#e0e4ea;font-size:.65rem;font-weight:800;letter-spacing:1.2px}.cs-preview-card strong{font-size:1rem}.cs-preview-card small{color:#aaaab5;line-height:1.5}
 .cs-preview-card-alt{margin-left:22px}.cs-preview-foot{font-size:.62rem;letter-spacing:1.5px;color:#898993;margin-top:22px}
 @media(max-width:760px){.content-studio-inner{grid-template-columns:1fr}.content-studio-preview{transform:none}.content-studio-promo{padding:64px 0}.content-studio-copy h2{font-size:clamp(2.2rem,10vw,3.2rem)}}
+
+    /* Services cards: clean 2x2 grid, aligned buttons, no tilt */
+    .work-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+    .work-grid .work-card{perspective:none}
+    .work-inner{transform:none!important;overflow:hidden}
+    .work-grid .work-card-copy{padding:26px 30px 24px}
+    .work-grid .work-card p{margin-bottom:20px;min-height:3.6em}
+    .work-grid .video-category-links{margin:0 0 26px}
+    .work-grid .work-card .work-foot{display:flex;justify-content:space-between;align-items:center}
+    .work-card:hover .work-inner,.work-card:focus-within .work-inner{transform:translateY(-4px)!important}
+    .work-card:hover h3,.work-card:focus-within h3,.work-card:hover .label,.work-card:hover p,.work-card:hover .work-foot,.work-card:hover .video-category-links{transform:none}
+    @media(max-width:1000px){.work-grid{grid-template-columns:1fr;max-width:560px}}
 </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 </head>
@@ -651,7 +663,7 @@
                 <div class="post p2"><span class="phead"><span class="av"></span><span class="ln"></span></span><span class="img g2"></span><span class="act"><i class="liked"></i><i></i><i></i></span></div>
                 <span class="chip">↗</span>
               </div></div>
-              <div class="work-card-copy"><span class="label">03 / Campaign Strategy</span><h3>Performance<br>Marketing</h3><p>Explore campaign blueprints for Meta Ads, Google Ads, lead generation and e-commerce sales—covering objectives, audience strategy, creative direction and measurement.</p>
+              <div class="work-card-copy"><span class="label">03 / Performance</span><h3>Performance<br>Marketing</h3><p>Explore campaign blueprints for Meta Ads, Google Ads, lead generation and e-commerce sales—covering objectives, audience strategy, creative direction and measurement.</p>
                 <div class="video-category-links"><button type="button" class="textlink" id="performance-campaigns-open">Explore Campaigns ↗</button></div>
                 <span class="work-foot">PERFORMANCE MARKETING ↗</span></div>
               <span class="work-glare" aria-hidden="true"></span>
@@ -665,7 +677,7 @@
                 <div class="tl"><span class="clip c1"></span><span class="clip c2"></span><span class="clip c3"></span><span class="clip c4"></span><span class="head"></span></div>
                 <div class="fstrip"></div>
               </div></div>
-              <div class="work-card-copy"><span class="label">03 / Video</span><h3>Video<br>Editing</h3><p>Choose the type of video work you want to explore: AI-generated videos or real-footage edits.</p>
+              <div class="work-card-copy"><span class="label">04 / Video</span><h3>Video<br>Editing</h3><p>Choose the type of video work you want to explore: AI-generated videos or real-footage edits.</p>
                 <div class="video-category-links"><button type="button" class="textlink video-category-open" data-video-category="ai">AI Videos ↗</button><button type="button" class="textlink video-category-open" data-video-category="real">Real Videos ↗</button></div>
                 <span class="work-foot">VIDEO EDITING ↗</span>
               </div>
