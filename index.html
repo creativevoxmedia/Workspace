@@ -588,6 +588,14 @@
     .work-card:hover .work-inner,.work-card:focus-within .work-inner{transform:translateY(-4px)!important}
     .work-card:hover h3,.work-card:focus-within h3,.work-card:hover .label,.work-card:hover p,.work-card:hover .work-foot,.work-card:hover .video-category-links{transform:none}
     @media(max-width:1000px){.work-grid{grid-template-columns:1fr;max-width:560px}}
+
+    .web-pick i{background:linear-gradient(145deg,var(--pc,#c9ced6),color-mix(in srgb,var(--pc,#7f8693) 60%,#000))}
+    .web-pick:hover,.web-pick[aria-selected="true"]{border-color:var(--pc,var(--accent-text))}
+    .web-pick[aria-selected="true"]{background:color-mix(in srgb,var(--pc,#888) 12%,transparent)}
+    .browser-screen{background:radial-gradient(ellipse 75% 75% at 70% 30%,var(--g1),transparent 70%),linear-gradient(160deg,color-mix(in srgb,var(--pc,#121518) 22%,#0d0f12),#0d0f12)}
+    .browser-screen em{background:var(--pc,var(--accent))}
+    .web-info .kicker{color:var(--pc,var(--accent-text))}
+    .web-info ul li::marker{color:var(--pc,var(--accent-text))}
 </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 </head>
@@ -1046,7 +1054,7 @@
         {
           id:'creativevox', initial:'CV', name:'CreativeVox Media Website', type:'Agency website · Our own site',
           url:'https://creativevoxmedia.github.io/Workspace/', host:'creativevoxmedia.github.io/Workspace', source:'https://github.com/creativevoxmedia/Workspace',
-          headline:'Creative that makes your brand stand out.', glow:'rgba(170,178,192,.34)',
+          headline:'Creative that makes your brand stand out.', glow:'rgba(209,42,69,.45)', color:'#d12a45',
           desc:'Our own agency website: a fast single-page site that presents services, work and process clearly and makes it easy to start a project.',
           points:['Clean, fast hero with a brand card and clear calls to action','Interactive service and work cards with detail popups','Dark and light themes, responsive on mobile, optional interface sounds','Hosted on GitHub Pages: no build step, quick to load'],
           tags:['HTML','CSS','JavaScript','Responsive']
@@ -1054,7 +1062,7 @@
         {
           id:'arham', initial:'AF', name:'Arham Faiz Portfolio', type:'Personal portfolio website',
           url:'https://arhamfaizportfolio.vercel.app/', host:'arhamfaizportfolio.vercel.app', source:'',
-          headline:'Arham Faiz Ansari — Portfolio', glow:'rgba(170,178,192,.34)',
+          headline:'Arham Faiz Ansari — Portfolio', glow:'rgba(47,125,225,.45)', color:'#2f7de1',
           desc:'A professional personal portfolio showcasing Arham Faiz Ansari’s profile and work.',
           points:['Personal portfolio website','Live website hosted on Vercel','Explore the portfolio and its project presentation'],
           tags:['Portfolio','Web Design','Vercel']
@@ -1062,7 +1070,7 @@
         {
           id:'aiman', initial:'AY', name:'Portfolio by Ayman', type:'Personal portfolio website',
           url:'https://creativevox-website.onrender.com/', host:'creativevox-website.onrender.com', source:'',
-          headline:'Portfolio by Ayman', glow:'rgba(170,178,192,.34)',
+          headline:'Portfolio by Ayman', glow:'rgba(20,160,133,.45)', color:'#14a085',
           desc:'A personal portfolio website showcasing Ayman’s profile and work.',
           points:['Personal portfolio website','Live website hosted on Render','Explore the portfolio and its project presentation'],
           tags:['Portfolio','Web Design','Render']
@@ -1070,7 +1078,7 @@
         {
           id:'fazil', initial:'FA', name:'Fazil Ali Portfolio', type:'Personal portfolio website',
           url:'https://fazilaliprofile.github.io/portfolio/', host:'fazilaliprofile.github.io/portfolio', source:'https://github.com/fazilaliprofile/portfolio',
-          headline:'Business Analyst Portfolio', glow:'rgba(170,178,192,.34)',
+          headline:'Business Analyst Portfolio', glow:'rgba(224,138,30,.45)', color:'#e08a1e',
           desc:'A professional portfolio for a Business Analyst working in data, market research and business development.',
           points:['Sections for About, Experience, Skills & Analytics, Featured Projects, Education and Certifications','A separate Research Dashboard page','MONDAY, a personal AI assistant page','Clean, content-first layout'],
           tags:['HTML','CSS','JavaScript','Portfolio']
@@ -1082,9 +1090,9 @@
       function link(href,label,cls){const a=el('a',cls,label);a.href=href;a.target='_blank';a.rel='noopener noreferrer';return a;}
       function show(id){
         const p=projects.find(x=>x.id===id)||projects[0];
-        picker.querySelectorAll('.web-pick').forEach(b=>b.setAttribute('aria-selected',b.dataset.id===p.id?'true':'false'));
+        detail.style.setProperty('--pc',p.color); picker.querySelectorAll('.web-pick').forEach(b=>b.setAttribute('aria-selected',b.dataset.id===p.id?'true':'false'));
         detail.textContent='';
-        const br=el('div','browser'); br.style.setProperty('--g1',p.glow);
+        const br=el('div','browser'); br.style.setProperty('--g1',p.glow); br.style.setProperty('--pc',p.color);
         const bar=el('div','browser-bar'); bar.append(el('i'),el('i'),el('i'),el('div','browser-url',p.host)); br.appendChild(bar);
         const sc=el('div','browser-screen'); sc.append(el('small',null,p.name),el('b',null,p.headline),el('span'),el('span'),el('em',null,'Get in touch')); br.appendChild(sc);
         const info=el('div','web-info');
@@ -1098,7 +1106,7 @@
       }
       projects.forEach(p=>{
         const b=el('button','web-pick'); b.type='button'; b.dataset.id=p.id; b.setAttribute('role','tab');
-        b.append(el('i',null,p.initial),document.createTextNode(p.name));
+        b.style.setProperty('--pc',p.color); b.append(el('i',null,p.initial),document.createTextNode(p.name));
         b.addEventListener('click',()=>show(p.id)); picker.appendChild(b);
       });
       function open(){ show(projects[0].id); if(typeof dlg.showModal==='function') dlg.showModal(); }
