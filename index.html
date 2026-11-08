@@ -612,20 +612,9 @@
     :root:not([data-theme="light"]) .hero{background:radial-gradient(ellipse 70% 90% at 0% 100%,rgba(154,26,47,.26),transparent 62%),radial-gradient(ellipse 50% 60% at 100% 0%,rgba(205,210,220,.07),transparent 70%),linear-gradient(180deg,#140d10 0%,var(--bg) 100%)}
     .hero{padding:112px 0 96px}
     .hero h1{font-size:clamp(40px,4.9vw,66px)}
-    .hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:64px;align-items:center}
-    .hero-index{margin:0;padding:8px 26px;list-style:none;border:1px solid var(--line);border-radius:14px;background:rgba(var(--tint),.04)}
-    .hero-index li{border-bottom:1px solid var(--line)}
-    .hero-index li:last-child{border-bottom:0}
-    .hero-index a{display:grid;grid-template-columns:34px 1fr auto;align-items:baseline;gap:6px 12px;padding:20px 0;color:var(--text)}
-    .hero-index .num{color:var(--accent-text);font-size:11px;font-weight:850;letter-spacing:.14em}
-    .hero-index strong{font-size:16px;font-weight:750;letter-spacing:-.01em}
-    .hero-index small{grid-column:2;color:var(--muted);font-size:13px;line-height:1.55}
-    .hero-index .go{color:var(--accent-text);transition:transform .2s}
-    .hero-index a:hover .go{transform:translateX(3px)}
-    .hero-index a:focus-visible{outline:2px solid var(--accent-text);outline-offset:3px;border-radius:6px}
+    .hero-grid{display:block}
     @media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:44px}.hero{padding:88px 0 68px}}
-    @media(max-width:560px){.hero h1{font-size:44px}.hero{padding:56px 0 48px}.hero-index{padding:4px 18px}.hero-index a{padding:16px 0}}
-    @media(prefers-reduced-motion:reduce){.hero-index .go{transition:none}.hero-index a:hover .go{transform:none}}
+    @media(max-width:560px){.hero h1{font-size:44px}.hero{padding:56px 0 48px}}
     /* Keep the top nav on one line: switch to the menu button below 1100px */
     .navlinks a{white-space:nowrap}
     .navlinks .nav-social{display:none}
@@ -670,12 +659,6 @@
             <a class="button secondary" href="#work">Explore Services <span aria-hidden="true">↓</span></a>
           </div>
         </div>
-        <ol class="hero-index reveal" aria-label="Our services">
-          <li><a href="#work"><span class="num">01</span><strong>Website Development</strong><span class="go" aria-hidden="true">↗</span><small>Websites and landing pages for businesses.</small></a></li>
-          <li><a href="#work"><span class="num">02</span><strong>Social Media Marketing</strong><span class="go" aria-hidden="true">↗</span><small>Management, creative post designs and content creation.</small></a></li>
-          <li><a href="#work"><span class="num">03</span><strong>Performance Marketing</strong><span class="go" aria-hidden="true">↗</span><small>Meta Ads, Google Ads and lead generation plans.</small></a></li>
-          <li><a href="#work"><span class="num">04</span><strong>Video Editing</strong><span class="go" aria-hidden="true">↗</span><small>AI-generated videos and real-footage edits.</small></a></li>
-        </ol>
       </div>
     </section>
 
