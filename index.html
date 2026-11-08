@@ -605,6 +605,40 @@
     :root[data-theme="light"] .cs-preview-label,:root[data-theme="light"] .cs-preview-foot,:root[data-theme="light"] .cs-preview-card small{color:var(--muted)}
     :root[data-theme="light"] .cs-preview-kicker,:root[data-theme="light"] .cs-preview-card>span{color:#3a404b}
     :root[data-theme="light"] .cs-preview-card{border-color:var(--line);background:#f8f9fb}
+
+    /* ===== Design refresh: dark royal red + silver, plain premium hero (no 3D) ===== */
+    :root:not([data-theme="light"]){--bg:#0b0809;--panel:#151013;--panel2:#1d1519;--text:#f1f2f5;--muted:#a9aab3;--line:rgba(205,210,220,.14);--accent:#9a1a2f;--accent-hover:#b0213a}
+    :root:not([data-theme="light"]) header{background:rgba(11,8,9,.9)}
+    :root:not([data-theme="light"]) .hero{background:radial-gradient(ellipse 70% 90% at 0% 100%,rgba(154,26,47,.26),transparent 62%),radial-gradient(ellipse 50% 60% at 100% 0%,rgba(205,210,220,.07),transparent 70%),linear-gradient(180deg,#140d10 0%,var(--bg) 100%)}
+    .hero{padding:112px 0 96px}
+    .hero h1{font-size:clamp(40px,4.9vw,66px)}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:64px;align-items:center}
+    .hero-index{margin:0;padding:8px 26px;list-style:none;border:1px solid var(--line);border-radius:14px;background:rgba(var(--tint),.04)}
+    .hero-index li{border-bottom:1px solid var(--line)}
+    .hero-index li:last-child{border-bottom:0}
+    .hero-index a{display:grid;grid-template-columns:34px 1fr auto;align-items:baseline;gap:6px 12px;padding:20px 0;color:var(--text)}
+    .hero-index .num{color:var(--accent-text);font-size:11px;font-weight:850;letter-spacing:.14em}
+    .hero-index strong{font-size:16px;font-weight:750;letter-spacing:-.01em}
+    .hero-index small{grid-column:2;color:var(--muted);font-size:13px;line-height:1.55}
+    .hero-index .go{color:var(--accent-text);transition:transform .2s}
+    .hero-index a:hover .go{transform:translateX(3px)}
+    .hero-index a:focus-visible{outline:2px solid var(--accent-text);outline-offset:3px;border-radius:6px}
+    @media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:44px}.hero{padding:88px 0 68px}}
+    @media(max-width:560px){.hero h1{font-size:44px}.hero{padding:56px 0 48px}.hero-index{padding:4px 18px}.hero-index a{padding:16px 0}}
+    @media(prefers-reduced-motion:reduce){.hero-index .go{transition:none}.hero-index a:hover .go{transform:none}}
+    /* Keep the top nav on one line: switch to the menu button below 1100px */
+    .navlinks a{white-space:nowrap}
+    .navlinks .nav-social{display:none}
+    @media(max-width:1100px){
+      .nav{position:relative}
+      .menu-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;border:0;background:transparent;padding:8px 0 8px 10px;margin:0;color:var(--text);font-size:13px;font-weight:750;white-space:nowrap}
+      .navlinks{display:none;position:absolute;top:calc(100% - 1px);left:0;right:0;padding:14px;background:#15181c;border:1px solid var(--line);border-radius:0 0 12px 12px;box-shadow:0 18px 35px #0008;align-items:stretch;gap:4px;flex-direction:column}
+      .navlinks.is-open{display:flex}
+      .navlinks a:not(.button){display:block;padding:10px 12px}
+      .navlinks .nav-social{display:block}
+      .navlinks .button{margin-top:6px}
+    }
+    @media(min-width:1101px){.navlinks{gap:20px}}
 </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 </head>
@@ -618,7 +652,7 @@
       </a>
       <div style="display:flex;align-items:center;gap:8px"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme"><span class="theme-toggle-icon" id="theme-icon" aria-hidden="true">☀</span><span id="theme-label">Light</span></button><button class="menu-btn" id="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">Menu ☰</button></div>
       <nav class="navlinks" id="main-nav" aria-label="Main navigation">
-        <a href="#work">Our Work</a><a href="#industries">Who We Support</a><a href="#about">About</a><a href="#registration">Registration</a><a href="#leadership">Leadership</a><a href="content-studio.html">Free Content Studio ↗</a><a href="https://www.instagram.com/creativevox_media?mdxt=cGh4cHBic2NvcWlv&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on Instagram">Instagram ↗</a><a href="https://www.linkedin.com/company/creativevox-media/" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on LinkedIn">LinkedIn ↗</a>
+        <a href="#work">Our Work</a><a href="#industries">Who We Support</a><a href="#about">About</a><a href="#registration">Registration</a><a href="#leadership">Leadership</a><a href="content-studio.html">Free Content Studio ↗</a><a class="nav-social" href="https://www.instagram.com/creativevox_media?mdxt=cGh4cHBic2NvcWlv&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on Instagram">Instagram ↗</a><a class="nav-social" href="https://www.linkedin.com/company/creativevox-media/" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on LinkedIn">LinkedIn ↗</a>
         <a class="button" href="#contact">Let's Talk <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
@@ -635,10 +669,13 @@
             <a class="button" href="#contact">Start a Project <span aria-hidden="true">↗</span></a>
             <a class="button secondary" href="#work">Explore Services <span aria-hidden="true">↓</span></a>
           </div>
-          <ul class="hero-services" aria-label="Our services">
-            <li>Website Development</li><li>Social Media Marketing</li><li>Performance Marketing</li><li>Video Editing</li>
-          </ul>
         </div>
+        <ol class="hero-index reveal" aria-label="Our services">
+          <li><a href="#work"><span class="num">01</span><strong>Website Development</strong><span class="go" aria-hidden="true">↗</span><small>Websites and landing pages for businesses.</small></a></li>
+          <li><a href="#work"><span class="num">02</span><strong>Social Media Marketing</strong><span class="go" aria-hidden="true">↗</span><small>Management, creative post designs and content creation.</small></a></li>
+          <li><a href="#work"><span class="num">03</span><strong>Performance Marketing</strong><span class="go" aria-hidden="true">↗</span><small>Meta Ads, Google Ads and lead generation plans.</small></a></li>
+          <li><a href="#work"><span class="num">04</span><strong>Video Editing</strong><span class="go" aria-hidden="true">↗</span><small>AI-generated videos and real-footage edits.</small></a></li>
+        </ol>
       </div>
     </section>
 
