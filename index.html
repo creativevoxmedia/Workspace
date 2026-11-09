@@ -1277,13 +1277,14 @@ const processDetails = {
         ].join('\n');
         const to = 'teamcreativevoxmedia@gmail.com';
         const enc = encodeURIComponent;
+        const crlf = t => t.replace(/\r?\n/g, '\r\n');
         let mailBody = body;
-        let mailto = 'mailto:' + to + '?subject=' + enc(subject) + '&body=' + enc(mailBody);
+        let mailto = 'mailto:' + to + '?subject=' + enc(subject) + '&body=' + enc(crlf(mailBody));
         // Many mail apps drop links longer than ~2000 characters, so trim very long details in the mailto link only.
-        if (mailto.length > 1900) {
+        if (mailto.length > 1800) {
           const max = Math.max(200, values.get('details').length - Math.ceil((mailto.length - 1800) / 3));
           mailBody = body.replace(values.get('details'), values.get('details').slice(0, max) + '… (continued, full text copied from the website form)');
-          mailto = 'mailto:' + to + '?subject=' + enc(subject) + '&body=' + enc(mailBody);
+          mailto = 'mailto:' + to + '?subject=' + enc(subject) + '&body=' + enc(crlf(mailBody));
         }
         const fb = document.getElementById('enquiry-fallback');
         if (fb) {

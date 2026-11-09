@@ -302,8 +302,9 @@ function finish(){
   fill('rMisc',['Design: '+tget(DESIGN,state.design)[1],'Content: '+tget(CONTENT,state.content)[1],'Brand and domain: '+(b.length?b.join('; '):'Not specified'),'Timeline: '+tget(TIME,state.time)[1]]);
   var tp=tips();fill('rTips',tp,'');$('rTipsBox').style.display=tp.length?'':'none';
   var text=brief(),subj='Website Project Brief | '+t.t+' | '+$('fName').value.trim();
-  var mailto='mailto:'+TO+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(text);
-  if(mailto.length>1900){var cut=text.slice(0,1300)+'\n… (full brief copied from the website planner)';mailto='mailto:'+TO+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(cut)}
+  var crlf=function(t){return t.replace(/\r?\n/g,'\r\n')};
+  var mailto='mailto:'+TO+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(crlf(text));
+  if(mailto.length>1800){var cut=text.slice(0,1300)+'\n… (full brief copied from the website planner)';mailto='mailto:'+TO+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(crlf(cut))}
   $('aMail').href=mailto;
   $('aWa').href='https://wa.me/918077851657?text='+encodeURIComponent(text.length>1500?text.slice(0,1500)+'…':text);
   $('aGmail').onclick=function(){window.open('https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(TO)+'&su='+encodeURIComponent(subj)+'&body='+encodeURIComponent(text),'_blank','noopener')};
