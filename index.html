@@ -42,7 +42,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{color-scheme:dark;--bg:#0f1114;--panel:#171a1f;--panel2:#1f2329;--text:#eef0f3;--muted:#9aa0aa;--line:rgba(211,216,224,.14);--tint:211,216,224;--accent:#a3182b;--accent-hover:#b81e33;--accent-text:#d3d8e0;--silver:#d3d8e0;--max:1160px}
+    :root{color-scheme:dark;--bg:#050607;--panel:#0d0f11;--panel2:#14171b;--text:#eef0f3;--muted:#9aa0aa;--line:rgba(211,216,224,.14);--tint:211,216,224;--accent:#a3182b;--accent-hover:#b81e33;--accent-text:#d3d8e0;--silver:#d3d8e0;--max:1160px}
     :root[data-theme="light"]{color-scheme:light;--bg:#e5e8ed;--panel:#f3f4f7;--panel2:#d8dce3;--text:#171a1f;--muted:#535a66;--line:rgba(23,26,31,.16);--tint:80,88,102;--accent:#a3182b;--accent-hover:#8f1426;--accent-text:#444b57;--silver:#6b717c}
     :root[data-theme="light"] header{background:rgba(229,232,237,.92)}
     :root[data-theme="light"] .navlinks{color:#3a404a}
@@ -1011,7 +1011,9 @@
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const themeLabel = document.getElementById('theme-label');
-    const savedTheme = localStorage.getItem('creativevox-theme');
+    /* To revert to the silver look, change DEFAULT_THEME to 'light' */
+    const DEFAULT_THEME = 'dark';
+    const savedTheme = localStorage.getItem('creativevox-theme-v2');
     const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     function applyTheme(theme){
       document.documentElement.dataset.theme = theme;
@@ -1019,12 +1021,12 @@
       themeIcon.textContent = isDark ? '☾' : '☀';
       themeLabel.textContent = isDark ? 'Dark' : 'Light';
       themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#0f1114' : '#e5e8ed');
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#050607' : '#e5e8ed');
     }
-    applyTheme(savedTheme || 'light');
+    applyTheme(savedTheme || DEFAULT_THEME);
     themeToggle.addEventListener('click', () => {
       const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('creativevox-theme', nextTheme);
+      localStorage.setItem('creativevox-theme-v2', nextTheme);
       applyTheme(nextTheme);
     });
 
