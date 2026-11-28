@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -608,10 +608,7 @@
     :root[data-theme="light"] .cs-preview-kicker,:root[data-theme="light"] .cs-preview-card>span{color:#3a404b}
     :root[data-theme="light"] .cs-preview-card{border-color:var(--line);background:#f8f9fb}
 
-    /* ===== Design refresh: dark royal red + silver, plain premium hero (no 3D) ===== */
-    :root:not([data-theme="light"]){--bg:#0b0809;--panel:#151013;--panel2:#1d1519;--text:#f1f2f5;--muted:#a9aab3;--line:rgba(205,210,220,.14);--accent:#9a1a2f;--accent-hover:#b0213a}
-    :root:not([data-theme="light"]) header{background:rgba(11,8,9,.9)}
-    :root:not([data-theme="light"]) .hero{background:radial-gradient(ellipse 70% 90% at 0% 100%,rgba(154,26,47,.26),transparent 62%),radial-gradient(ellipse 50% 60% at 100% 0%,rgba(205,210,220,.07),transparent 70%),linear-gradient(180deg,#140d10 0%,var(--bg) 100%)}
+    /* ===== Design refresh: plain premium hero (no 3D) ===== */
     .hero{padding:112px 0 96px}
     .hero h1{font-size:clamp(40px,4.9vw,66px)}
     .hero-grid{display:block}
@@ -766,7 +763,7 @@
         <img class="brand-logo logo-on-dark" src="./logo-dark.png?v=4" alt="CreativeVox Media circular logo" width="64" height="64"><img class="brand-logo logo-on-light" src="./logo-light.png?v=4" alt="" width="64" height="64" aria-hidden="true">
         <span class="brand-name">Creative<span style="color:var(--accent-text)">Vox</span> Media</span>
       </a>
-      <div style="display:flex;align-items:center;gap:8px"><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme"><span class="theme-toggle-icon" id="theme-icon" aria-hidden="true">☀</span><span id="theme-label">Light</span></button><button class="menu-btn" id="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">Menu ☰</button></div>
+      <div style="display:flex;align-items:center;gap:8px"><button class="menu-btn" id="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">Menu ☰</button></div>
       <nav class="navlinks" id="main-nav" aria-label="Main navigation">
         <a href="#industries">Who We Support</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#registration">Registration</a><a href="web-studio.html">Free Web Studio ↗</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a><a class="nav-social" href="https://www.linkedin.com/company/creativevox-media/" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on LinkedIn">LinkedIn ↗</a>
         <a class="button" href="#contact">Let's Talk <span aria-hidden="true">↗</span></a>
@@ -1116,27 +1113,6 @@
   <script>
     (function(){const bar=document.getElementById('scroll-progress');if(!bar)return;function u(){const h=document.documentElement.scrollHeight-innerHeight;bar.style.width=(h>0?scrollY/h*100:0)+'%'}addEventListener('scroll',u,{passive:true});u()})();
     document.getElementById('year').textContent = new Date().getFullYear();
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    const themeLabel = document.getElementById('theme-label');
-    /* To revert to the silver look, change DEFAULT_THEME to 'light' */
-    const DEFAULT_THEME = 'dark';
-    const savedTheme = localStorage.getItem('creativevox-theme-v2');
-    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    function applyTheme(theme){
-      document.documentElement.dataset.theme = theme;
-      const isDark = theme === 'dark';
-      themeIcon.textContent = isDark ? '☾' : '☀';
-      themeLabel.textContent = isDark ? 'Dark' : 'Light';
-      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', isDark ? '#050607' : '#e5e8ed');
-    }
-    applyTheme(savedTheme || DEFAULT_THEME);
-    themeToggle.addEventListener('click', () => {
-      const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('creativevox-theme-v2', nextTheme);
-      applyTheme(nextTheme);
-    });
 
     const performanceCampaignsDialog = document.getElementById('performance-campaigns-dialog');
     document.getElementById('performance-campaigns-open')?.addEventListener('click',()=>performanceCampaignsDialog?.showModal());

@@ -55,7 +55,7 @@
     SOUNDS[name]();
   }
 
-  // ---- toggle button (inserted next to the theme toggle) ----
+  // ---- toggle button (inserted next to the menu button) ----
   var btn = document.createElement('button');
   btn.type = 'button';
   btn.className = 'theme-toggle sound-toggle';
@@ -67,8 +67,8 @@
     btn.innerHTML = '<span class="theme-toggle-icon" aria-hidden="true">' + (on ? '🔊' : '🔇') + '</span><span class="sound-label">' + (on ? 'Sound' : 'Muted') + '</span>';
   }
   paint();
-  var themeBtn = document.getElementById('theme-toggle');
-  if (themeBtn && themeBtn.parentNode) themeBtn.parentNode.insertBefore(btn, themeBtn);
+  var menuBtn = document.getElementById('nav-toggle');
+  if (menuBtn && menuBtn.parentNode) menuBtn.parentNode.insertBefore(btn, menuBtn);
   else return;
 
   btn.addEventListener('click', function (e) {
@@ -84,7 +84,6 @@
     var el = e.target.closest && e.target.closest('a.button, button, .textlink, .linkedin-link');
     if (!el || el === btn || !on) return;
     if (el.id === 'nav-toggle') { play(el.getAttribute('aria-expanded') === 'true' ? 'close' : 'open'); return; }
-    if (el.id === 'theme-toggle') { play('tick'); return; }
     if (el.matches('[id$="-close"], [id$="-dismiss"]')) return; // dialog observer plays "close"
     play('pop');
   }, true);
