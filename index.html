@@ -785,6 +785,31 @@
     }
     @keyframes navdrop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
     @media(max-width:560px){header .nav{height:68px}header .brand{gap:11px}header .brand-logo{width:46px;height:46px}header .brand-name{font-size:16.5px}header .brand-name small{font-size:8.5px;letter-spacing:.2em}}
+
+    /* ===== Professional hero additions ===== */
+    .hero-trust{display:flex;flex-wrap:wrap;gap:10px 22px;list-style:none;margin:30px 0 0;padding:0;color:var(--muted);font-size:13px;font-weight:650}
+    .hero-trust li{display:inline-flex;align-items:center;gap:8px}
+    .hero-trust li:before{content:"";width:16px;height:16px;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.3l2.3 2.3 4.7-4.9' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;flex-shrink:0}
+    .hero-card{display:none}
+    @media(min-width:961px){
+      .hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:56px;align-items:center}
+      .hero-grid>div:first-child{max-width:none}
+      .hero-card{display:block;padding:8px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 30px 60px rgba(20,24,32,.14)}
+      .hero-card-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 12px;color:var(--text);font-size:11px;font-weight:850;letter-spacing:.2em;text-transform:uppercase}
+      .hero-card-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(163,24,43,.14)}
+      .hero-card-row{display:flex;align-items:center;gap:16px;padding:16px 18px;border-top:1px solid var(--line);border-radius:0;transition:background .2s ease}
+      .hero-card-row:hover{background:rgba(var(--tint),.08)}
+      .hero-card-row b{flex:0 0 auto;color:var(--accent);font-size:13px;font-weight:800;letter-spacing:.06em}
+      .hero-card-row span{flex:1;display:block}
+      .hero-card-row strong{display:block;color:var(--text);font-size:15.5px;font-weight:750;letter-spacing:-.01em}
+      .hero-card-row small{display:block;margin-top:4px;color:var(--muted);font-size:12.5px;line-height:1.5}
+      .hero-card-row i{font-style:normal;color:var(--muted);font-size:16px;transition:transform .2s ease,color .2s ease}
+      .hero-card-row:hover i{transform:translate(2px,-2px);color:var(--accent)}
+      .hero-card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:6px 6px 6px;padding:14px 16px;border-radius:12px;background:#171a1f;color:#e7e9ee;font-size:13px;font-weight:650}
+      .hero-card-foot a{color:#fff;font-weight:800}
+      .hero-card-foot a:hover{text-decoration:underline}
+    }
+    @media(max-width:560px){.hero-trust{margin-top:24px;gap:8px 16px;font-size:12.5px}}
 </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I start a project with CreativeVox Media?", "acceptedAnswer": {"@type": "Answer", "text": "The quickest way is the Free Web Studio: choose your pages and features and send us a ready brief. You can also use the enquiry form or message us on WhatsApp, and we will reply with the next steps."}}, {"@type": "Question", "name": "How much does a website cost?", "acceptedAnswer": {"@type": "Answer", "text": "Indicative price ranges and timelines are listed in the Pricing section of our website, starting from about ₹5,000 for a landing page. Every project is still quoted individually based on its pages, features and design needs, so share your requirements through the Free Web Studio or the enquiry form and we will send you a custom quote."}}, {"@type": "Question", "name": "Can I get a personal portfolio website?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We design and develop personal portfolios for professionals, creators and students, as well as complete business websites and landing pages."}}, {"@type": "Question", "name": "Do you work with clients outside Bareilly?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We are based in Bareilly, Uttar Pradesh, and handle projects online through WhatsApp, email and calls, so location is not a limit."}}, {"@type": "Question", "name": "What is your payment and refund policy?", "acceptedAnswer": {"@type": "Answer", "text": "Our payment terms and the no-refund policy are explained clearly in the Terms & Conditions. Please read them before confirming a project."}}, {"@type": "Question", "name": "How is my information used?", "acceptedAnswer": {"@type": "Answer", "text": "Details you share are used only to respond to your enquiry. Read the Privacy Policy for full details."}}]}</script>
@@ -816,7 +841,19 @@
             <a class="button" href="#contact">Start a Project <span aria-hidden="true">↗</span></a>
             <a class="button secondary" href="#work">Explore Services <span aria-hidden="true">↓</span></a>
           </div>
+          <ul class="hero-trust" aria-label="Why work with CreativeVox Media">
+            <li>Udyam registered MSME</li>
+            <li>Based in Bareilly, India</li>
+            <li>Free Web Studio planner</li>
+          </ul>
         </div>
+        <aside class="hero-card reveal" aria-label="What we deliver">
+          <div class="hero-card-head"><span>What we deliver</span><span class="hero-card-dot" aria-hidden="true"></span></div>
+          <a class="hero-card-row" href="#work-web-card"><b>01</b><span><strong>Website Development</strong><small>Portfolio sites, business websites and landing pages</small></span><i aria-hidden="true">↗</i></a>
+          <a class="hero-card-row" href="#work"><b>02</b><span><strong>Performance Marketing</strong><small>Campaign plans built around clear business goals</small></span><i aria-hidden="true">↗</i></a>
+          <a class="hero-card-row" href="#work"><b>03</b><span><strong>Video Editing</strong><small>Reels, ads and brand videos with clean finishing</small></span><i aria-hidden="true">↗</i></a>
+          <div class="hero-card-foot"><span>Ready to start?</span><a href="#contact">Get a free quote ↗</a></div>
+        </aside>
       </div>
     </section>
 
