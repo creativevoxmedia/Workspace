@@ -751,6 +751,40 @@
     .wa-float:hover{filter:brightness(1.12)}
     .scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#7E1224,#d3d8e0);z-index:100;pointer-events:none}
     @media(max-width:560px){.wa-float{padding:11px 15px;font-size:13px}.faq-section{padding:60px 0}}
+
+    /* ===== Professional header ===== */
+    :root[data-theme="light"] header{background:rgba(248,249,251,.92);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);border-bottom:1px solid rgba(23,26,31,.10);transition:box-shadow .25s ease}
+    header.is-scrolled{box-shadow:0 10px 30px rgba(20,24,32,.10)}
+    header .nav{height:80px}
+    header .brand{gap:13px;letter-spacing:0}
+    header .brand-logo{width:52px;height:52px}
+    header .brand-name{display:block;font-size:18px;font-weight:800;letter-spacing:-.025em;line-height:1.1;color:var(--text)}
+    header .brand-name small{display:block;margin-top:5px;font-size:9.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+    .menu-icon{position:relative;display:inline-block;width:16px;height:12px}
+    .menu-icon i{position:absolute;left:0;right:0;height:2px;border-radius:2px;background:currentColor;transition:transform .25s ease,top .25s ease,opacity .2s ease}
+    .menu-icon i:nth-child(1){top:0}.menu-icon i:nth-child(2){top:5px}.menu-icon i:nth-child(3){top:10px}
+    .menu-btn[aria-expanded="true"] .menu-icon i:nth-child(1){top:5px;transform:rotate(45deg)}
+    .menu-btn[aria-expanded="true"] .menu-icon i:nth-child(2){opacity:0}
+    .menu-btn[aria-expanded="true"] .menu-icon i:nth-child(3){top:5px;transform:rotate(-45deg)}
+    @media(min-width:1101px){
+      header .navlinks{gap:26px;font-size:13.5px;font-weight:600}
+      header .navlinks a:not(.button){position:relative;padding:8px 0;color:#3a404a;transition:color .2s ease}
+      header .navlinks a:not(.button):after{content:"";position:absolute;left:0;right:0;bottom:2px;height:2px;border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+      header .navlinks a:not(.button):hover{color:var(--text)}
+      header .navlinks a:not(.button):hover:after{transform:scaleX(1)}
+      header .navlinks .button{padding:11px 20px;border-radius:10px;font-size:13px;box-shadow:0 8px 18px rgba(163,24,43,.24)}
+    }
+    @media(max-width:1100px){
+      header .nav .menu-btn{display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 15px;border:1px solid rgba(23,26,31,.16);border-radius:12px;background:rgba(255,255,255,.7);color:var(--text);font-size:13px;font-weight:700;box-shadow:0 2px 8px rgba(20,24,32,.06)}
+      header .nav .menu-btn:active{background:#fff}
+      :root[data-theme="light"] header .navlinks{top:calc(100% + 10px);padding:8px;gap:0;background:rgba(255,255,255,.98);border:1px solid rgba(23,26,31,.10);border-radius:18px;box-shadow:0 26px 54px rgba(20,24,32,.20);animation:navdrop .22s ease}
+      header .navlinks a:not(.button){padding:15px 14px;border-radius:10px;font-size:15px;font-weight:600;color:#2b3038;border-bottom:1px solid rgba(23,26,31,.07)}
+      header .navlinks a:not(.button):hover{background:rgba(var(--tint),.08);color:var(--text)}
+      header .navlinks a.nav-social{border-bottom:0}
+      header .navlinks a.button{margin:10px 4px 4px;padding:15px 18px;border-radius:12px;font-size:14px;box-shadow:0 10px 22px rgba(163,24,43,.26)}
+    }
+    @keyframes navdrop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+    @media(max-width:560px){header .nav{height:68px}header .brand{gap:11px}header .brand-logo{width:46px;height:46px}header .brand-name{font-size:16.5px}header .brand-name small{font-size:8.5px;letter-spacing:.2em}}
 </style>
   <!-- Contact email verified: teamcreativevoxmedia@gmail.com -->
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I start a project with CreativeVox Media?", "acceptedAnswer": {"@type": "Answer", "text": "The quickest way is the Free Web Studio: choose your pages and features and send us a ready brief. You can also use the enquiry form or message us on WhatsApp, and we will reply with the next steps."}}, {"@type": "Question", "name": "How much does a website cost?", "acceptedAnswer": {"@type": "Answer", "text": "Indicative price ranges and timelines are listed in the Pricing section of our website, starting from about ₹5,000 for a landing page. Every project is still quoted individually based on its pages, features and design needs, so share your requirements through the Free Web Studio or the enquiry form and we will send you a custom quote."}}, {"@type": "Question", "name": "Can I get a personal portfolio website?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We design and develop personal portfolios for professionals, creators and students, as well as complete business websites and landing pages."}}, {"@type": "Question", "name": "Do you work with clients outside Bareilly?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. We are based in Bareilly, Uttar Pradesh, and handle projects online through WhatsApp, email and calls, so location is not a limit."}}, {"@type": "Question", "name": "What is your payment and refund policy?", "acceptedAnswer": {"@type": "Answer", "text": "Our payment terms and the no-refund policy are explained clearly in the Terms & Conditions. Please read them before confirming a project."}}, {"@type": "Question", "name": "How is my information used?", "acceptedAnswer": {"@type": "Answer", "text": "Details you share are used only to respond to your enquiry. Read the Privacy Policy for full details."}}]}</script>
@@ -761,9 +795,9 @@
     <div class="wrap nav">
       <a class="brand" href="#home" aria-label="CreativeVox Media home">
         <img class="brand-logo logo-on-dark" src="./logo-dark.png?v=4" alt="CreativeVox Media circular logo" width="64" height="64"><img class="brand-logo logo-on-light" src="./logo-light.png?v=4" alt="" width="64" height="64" aria-hidden="true">
-        <span class="brand-name">Creative<span style="color:var(--accent-text)">Vox</span> Media</span>
+        <span class="brand-name">Creative<span style="color:var(--accent-text)">Vox</span> Media<small>Digital Agency</small></span>
       </a>
-      <div style="display:flex;align-items:center;gap:8px"><button class="menu-btn" id="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false">Menu ☰</button></div>
+      <div style="display:flex;align-items:center;gap:8px"><button class="menu-btn" id="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false"><span class="menu-label">Menu</span><span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span></button></div>
       <nav class="navlinks" id="main-nav" aria-label="Main navigation">
         <a href="#industries">Who We Support</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#registration">Registration</a><a href="web-studio.html">Free Web Studio ↗</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a><a class="nav-social" href="https://www.linkedin.com/company/creativevox-media/" target="_blank" rel="noopener noreferrer" aria-label="Visit CreativeVox Media on LinkedIn">LinkedIn ↗</a>
         <a class="button" href="#contact">Let's Talk <span aria-hidden="true">↗</span></a>
@@ -1391,17 +1425,20 @@ const processDetails = {
         window.location.href = mailto;
       });
     }
+    const siteHeader = document.querySelector('header');
+    const syncHeader = () => siteHeader.classList.toggle('is-scrolled', window.scrollY > 8);
+    window.addEventListener('scroll', syncHeader, {passive:true}); syncHeader();
     const navToggle = document.getElementById('nav-toggle');
     const mainNav = document.getElementById('main-nav');
     navToggle.addEventListener('click', () => {
       const isOpen = mainNav.classList.toggle('is-open');
       navToggle.setAttribute('aria-expanded', String(isOpen));
-      navToggle.textContent = isOpen ? 'Close ✕' : 'Menu ☰';
+      navToggle.querySelector('.menu-label').textContent = isOpen ? 'Close' : 'Menu';
     });
     mainNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
       mainNav.classList.remove('is-open');
       navToggle.setAttribute('aria-expanded', 'false');
-      navToggle.textContent = 'Menu ☰';
+      navToggle.querySelector('.menu-label').textContent = 'Menu';
     }));
   
     // Who We Support, How We Work and Leadership are tap-to-open rows; links that point at them open them.
